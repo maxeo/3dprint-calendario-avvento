@@ -101,8 +101,21 @@ fil = C["filetto_mm"]
 nastro = P["P01_Nastro"]["size"]
 base_h = 5.0
 
+# filamento di ogni pezzo (per gli ZIP «Scarica per colore»): un solo verde; il giallo vale anche per la stella
+FILAMENTI = {"verde": {"label": "Verde", "color": "#2e8b57"}, "rosso": {"label": "Rosso", "color": "#c0392b"},
+             "bianco": {"label": "Bianco", "color": "#efede6"}, "giallo": {"label": "Giallo", "color": "#f2c418"},
+             "marrone": {"label": "Marrone", "color": "#8a5a3c"}, "nero": {"label": "Nero", "color": "#26262a"}}
+FIL_GRUPPO = {"Base": "bianco", "Tronco": "marrone", "Cassetto": "rosso", "Albero": "verde", "Stella": "giallo",
+              "Palline": "rosso", "Ganci": "giallo", "Capsule": "verde", "Tappi": "bianco", "Tappi rossi": "rosso",
+              "Capsula 25": "rosso", "Chiave": "giallo", "Numeri rossi": "rosso", "Numeri bianchi": "bianco",
+              "Regalo verde": "verde", "Regali rossi": "rosso", "Nastri verdi": "verde", "Nastro rosso": "rosso",
+              "Perni": "bianco", "Cappello e occhi": "nero", "Naso": "giallo"}
+for pp in parts:
+    pp["filament"] = "giallo" if pp["id"] == "N25" else FIL_GRUPPO[pp["group"]]
+
 spec = {
     "root": "..",
+    "filaments": FILAMENTI,
     "output": "guida.html",
     "title": "Calendario dell'Avvento · albero a scivolo · Guida",
     "theme": {"accent": "#1f7a4a", "viewer_bg": "#14201a"},

@@ -1,5 +1,31 @@
 {
  "root": "..",
+ "filaments": {
+  "verde": {
+   "label": "Verde",
+   "color": "#2e8b57"
+  },
+  "rosso": {
+   "label": "Rosso",
+   "color": "#c0392b"
+  },
+  "bianco": {
+   "label": "Bianco",
+   "color": "#efede6"
+  },
+  "giallo": {
+   "label": "Giallo",
+   "color": "#f2c418"
+  },
+  "marrone": {
+   "label": "Marrone",
+   "color": "#8a5a3c"
+  },
+  "nero": {
+   "label": "Nero",
+   "color": "#26262a"
+  }
+ },
  "output": "guida.html",
  "title": "Calendario dell'Avvento · albero a scivolo · Guida",
  "theme": {
@@ -1227,7 +1253,8 @@
     ]
    ],
    "cull": true,
-   "smooth": 35
+   "smooth": 35,
+   "filament": "bianco"
   },
   {
    "id": "R1",
@@ -1264,7 +1291,8 @@
      1.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "R2",
@@ -1301,7 +1329,8 @@
      1.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "verde"
   },
   {
    "id": "R3",
@@ -1338,7 +1367,8 @@
      1.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "NR1",
@@ -1375,7 +1405,8 @@
      1.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "verde"
   },
   {
    "id": "NR2",
@@ -1412,7 +1443,8 @@
      1.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "NR3",
@@ -1449,7 +1481,8 @@
      1.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "verde"
   },
   {
    "id": "CP",
@@ -1486,7 +1519,8 @@
      1.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "nero"
   },
   {
    "id": "NS",
@@ -1523,7 +1557,8 @@
      1.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "giallo"
   },
   {
    "id": "OC1",
@@ -1560,7 +1595,8 @@
      1.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "nero"
   },
   {
    "id": "OC2",
@@ -1597,7 +1633,8 @@
      1.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "nero"
   },
   {
    "id": "PR",
@@ -1666,7 +1703,8 @@
      0.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "TR",
@@ -1703,7 +1741,8 @@
      1.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "marrone"
   },
   {
    "id": "CA",
@@ -1740,7 +1779,8 @@
      1.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "N",
@@ -1777,7 +1817,8 @@
      1.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "verde"
   },
   {
    "id": "S",
@@ -1814,7 +1855,8 @@
      1.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "giallo"
   },
   {
    "id": "G1",
@@ -1854,7 +1896,8 @@
    "view_file": "dati/vista/P15_Gancio.stl",
    "smooth": 35,
    "cull": true,
-   "note_html": "Si avvita nel fianco destro della curva alta."
+   "note_html": "Si avvita nel fianco destro della curva alta.",
+   "filament": "giallo"
   },
   {
    "id": "PS1",
@@ -1893,7 +1936,8 @@
    ],
    "view_file": "dati/vista/P10_Pallina_sopra.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "PT1",
@@ -1932,7 +1976,8 @@
    ],
    "view_file": "dati/vista/P14_Pallina_sotto.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "G2",
@@ -1972,7 +2017,8 @@
    "view_file": "dati/vista/P15_Gancio.stl",
    "smooth": 35,
    "cull": true,
-   "note_html": "Si avvita nel fianco sinistro della curva di mezzo."
+   "note_html": "Si avvita nel fianco sinistro della curva di mezzo.",
+   "filament": "giallo"
   },
   {
    "id": "PS2",
@@ -2011,7 +2057,8 @@
    ],
    "view_file": "dati/vista/P10_Pallina_sopra.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "PT2",
@@ -2050,7 +2097,8 @@
    ],
    "view_file": "dati/vista/P14_Pallina_sotto.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "G3",
@@ -2090,7 +2138,8 @@
    "view_file": "dati/vista/P15_Gancio.stl",
    "smooth": 35,
    "cull": true,
-   "note_html": "Si avvita nel fianco del fermo d'uscita."
+   "note_html": "Si avvita nel fianco del fermo d'uscita.",
+   "filament": "giallo"
   },
   {
    "id": "PS3",
@@ -2129,7 +2178,8 @@
    ],
    "view_file": "dati/vista/P10_Pallina_sopra.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "PT3",
@@ -2168,7 +2218,8 @@
    ],
    "view_file": "dati/vista/P14_Pallina_sotto.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "G4",
@@ -2208,7 +2259,8 @@
    "view_file": "dati/vista/P15_Gancio.stl",
    "smooth": 35,
    "cull": true,
-   "note_html": "Si avvita nel sotto il ramo basso, a destra."
+   "note_html": "Si avvita nel sotto il ramo basso, a destra.",
+   "filament": "giallo"
   },
   {
    "id": "PS4",
@@ -2247,7 +2299,8 @@
    ],
    "view_file": "dati/vista/P10_Pallina_sopra.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "PT4",
@@ -2286,7 +2339,8 @@
    ],
    "view_file": "dati/vista/P14_Pallina_sotto.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "C",
@@ -2447,7 +2501,8 @@
    ],
    "view_file": "dati/vista/P02_Corpo_capsula.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "verde"
   },
   {
    "id": "T01",
@@ -2487,7 +2542,8 @@
    "view_file": "dati/vista/P03_Tappo_01.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T02",
@@ -2527,7 +2583,8 @@
    "view_file": "dati/vista/P03_Tappo_02.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T03",
@@ -2567,7 +2624,8 @@
    "view_file": "dati/vista/P03_Tappo_03.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T04",
@@ -2607,7 +2665,8 @@
    "view_file": "dati/vista/P03_Tappo_04.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T05",
@@ -2647,7 +2706,8 @@
    "view_file": "dati/vista/P03_Tappo_05.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "T06",
@@ -2687,7 +2747,8 @@
    "view_file": "dati/vista/P03_Tappo_06.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T07",
@@ -2727,7 +2788,8 @@
    "view_file": "dati/vista/P03_Tappo_07.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T08",
@@ -2767,7 +2829,8 @@
    "view_file": "dati/vista/P03_Tappo_08.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T09",
@@ -2807,7 +2870,8 @@
    "view_file": "dati/vista/P03_Tappo_09.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T10",
@@ -2847,7 +2911,8 @@
    "view_file": "dati/vista/P03_Tappo_10.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "T11",
@@ -2887,7 +2952,8 @@
    "view_file": "dati/vista/P03_Tappo_11.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T12",
@@ -2927,7 +2993,8 @@
    "view_file": "dati/vista/P03_Tappo_12.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T13",
@@ -2967,7 +3034,8 @@
    "view_file": "dati/vista/P03_Tappo_13.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T14",
@@ -3007,7 +3075,8 @@
    "view_file": "dati/vista/P03_Tappo_14.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T15",
@@ -3047,7 +3116,8 @@
    "view_file": "dati/vista/P03_Tappo_15.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "T16",
@@ -3087,7 +3157,8 @@
    "view_file": "dati/vista/P03_Tappo_16.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T17",
@@ -3127,7 +3198,8 @@
    "view_file": "dati/vista/P03_Tappo_17.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T18",
@@ -3167,7 +3239,8 @@
    "view_file": "dati/vista/P03_Tappo_18.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T19",
@@ -3207,7 +3280,8 @@
    "view_file": "dati/vista/P03_Tappo_19.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T20",
@@ -3247,7 +3321,8 @@
    "view_file": "dati/vista/P03_Tappo_20.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "T21",
@@ -3287,7 +3362,8 @@
    "view_file": "dati/vista/P03_Tappo_21.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T22",
@@ -3327,7 +3403,8 @@
    "view_file": "dati/vista/P03_Tappo_22.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T23",
@@ -3367,7 +3444,8 @@
    "view_file": "dati/vista/P03_Tappo_23.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "T24",
@@ -3407,7 +3485,8 @@
    "view_file": "dati/vista/P03_Tappo_24.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "bianco"
   },
   {
    "id": "C25",
@@ -3446,7 +3525,8 @@
    ],
    "view_file": "dati/vista/P04_Corpo_capsula_25.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "T25",
@@ -3486,7 +3566,8 @@
    "view_file": "dati/vista/P05_Tappo_25.stl",
    "view_shared": "dati/vista/tappo_corpo.stl",
    "smooth": 35,
-   "cull": true
+   "cull": true,
+   "filament": "rosso"
   },
   {
    "id": "K",
@@ -3523,7 +3604,8 @@
      1.0
     ]
    ],
-   "cull": true
+   "cull": true,
+   "filament": "giallo"
   },
   {
    "id": "N01",
@@ -3562,7 +3644,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_01.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N02",
@@ -3601,7 +3684,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_02.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N03",
@@ -3640,7 +3724,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_03.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N04",
@@ -3679,7 +3764,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_04.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N05",
@@ -3718,7 +3804,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_05.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "bianco"
   },
   {
    "id": "N06",
@@ -3757,7 +3844,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_06.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N07",
@@ -3796,7 +3884,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_07.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N08",
@@ -3835,7 +3924,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_08.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N09",
@@ -3874,7 +3964,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_09.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N10",
@@ -3913,7 +4004,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_10.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "bianco"
   },
   {
    "id": "N11",
@@ -3952,7 +4044,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_11.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N12",
@@ -3991,7 +4084,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_12.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N13",
@@ -4030,7 +4124,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_13.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N14",
@@ -4069,7 +4164,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_14.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N15",
@@ -4108,7 +4204,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_15.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "bianco"
   },
   {
    "id": "N16",
@@ -4147,7 +4244,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_16.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N17",
@@ -4186,7 +4284,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_17.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N18",
@@ -4225,7 +4324,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_18.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N19",
@@ -4264,7 +4364,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_19.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N20",
@@ -4303,7 +4404,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_20.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "bianco"
   },
   {
    "id": "N21",
@@ -4342,7 +4444,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_21.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N22",
@@ -4381,7 +4484,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_22.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N23",
@@ -4420,7 +4524,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_23.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N24",
@@ -4459,7 +4564,8 @@
    ],
    "view_file": "dati/vista/P16_Numero_24.stl",
    "cull": true,
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "filament": "rosso"
   },
   {
    "id": "N25",
@@ -4499,7 +4605,8 @@
    "view_file": "dati/vista/P16_Numero_25.stl",
    "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
-   "color": "#e0b040"
+   "color": "#e0b040",
+   "filament": "giallo"
   }
  ]
 }

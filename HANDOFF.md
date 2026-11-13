@@ -152,3 +152,9 @@ Rigenerare con Blender riscrive i `P16_Numero_*` con lo stesso contenuto in ordi
 5. Aggiornare `dati/scrivi_spec.py` (caricare dall'ingresso in alto **prima la 1, ultima la 25**; prendere
    dall'uscita in basso a sinistra; tappi avvitati; tenone del tronco dal retro), eseguirlo, `build_guide.py`,
    screenshot con `shoot.py`, README, `.gitignore`. `git init` + commit solo su richiesta (italiano, niente Co-Authored-By).
+
+**ZIP per colore (2026-11-13, sera):** nuova opzione della skill guida-stampa-3d: `filaments` nello spec + `filament`
+per pezzo → riquadro «Scarica per colore · ZIP» nella lista di stampa, con la scelta «un file per copia» (pezzi
+uguali ripetuti, `_01`, `_02`…) o un file per pezzo + quantita.txt (scelta ricordata nel browser). In `scrivi_spec.py`
+`FILAMENTI` e `FIL_GRUPPO` (un solo verde; giallo anche per stella, chiave, ganci, naso e N25; perni dei regali bianchi):
+verde 28, rosso 38, bianco 31, giallo 8, marrone 1, nero 3 = 109 pezzi. Provato con Chrome headless (cliccando i pulsanti).
