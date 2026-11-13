@@ -191,10 +191,13 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-zip]');if(
 // "filaments" {chiave: {label, color}} nello spec e "filament" per pezzo: un pulsante per colore scarica tutti i pezzi di quel colore
 const pezziColore=k=>DATA.parts.filter(p=>p.filament===k&&(p.file||p.tiles));
 function renderColori(){const FL=DATA.filaments,el=$('byColor');if(!FL||!el)return;let perCopia=true;try{perCopia=localStorage.getItem('guida-percopia')!=='0'}catch{}
- const bt=Object.entries(FL).map(([k,f])=>{const q=pezziColore(k).reduce((s,p)=>s+(p.quantity||1),0);return q?`<button data-colore="${esc(k)}" title="Tutti gli STL da stampare in ${esc(f.label||k)}"><span class="sw" style="background:${esc(f.color||'#888')}"></span>${esc(f.label||k)} · ${q} ${q>1?'pezzi':'pezzo'}</button>`:''}).join('');
+ const bt=Object.entries(FL).map(([k,f])=>{const q=pezziColore(k).reduce((s,p)=>s+(p.quantity||1),0),nf=selFiles(pezziColore(k).map(p=>p.id)).length;return q?`<button data-colore="${esc(k)}" data-q="${q}" data-nf="${nf}" title="Tutti gli STL da stampare in ${esc(f.label||k)}"><span class="sw" style="background:${esc(f.color||'#888')}"></span>${esc(f.label||k)} · <span class="nq"></span></button>`:''}).join('');
  if(!bt)return;el.hidden=false;el.innerHTML=`<h3>Scarica per colore · ZIP</h3><p class="small" style="margin:0">Un piatto per colore: lo ZIP contiene tutti i pezzi da stampare con quel filamento.</p><div class="chips">${bt}</div>`+
   `<label class="small"><input type="checkbox" id="perCopia" ${perCopia?'checked':''}><span><b>Un file per copia</b>: i pezzi uguali sono ripetuti (4 copie = 4 file), pronti da trascinare nello slicer. Spento: un file per pezzo e quantita.txt con le copie.</span></label>`;
- $('perCopia').onchange=e=>{try{localStorage.setItem('guida-percopia',e.target.checked?'1':'0')}catch{}}}
+ // il conteggio segue la scelta: un file per copia (24 file) oppure un file per pezzo (N file per 24 pezzi)
+ const conta=()=>{const pc=$('perCopia').checked;el.querySelectorAll('[data-colore]').forEach(b=>{const q=+b.dataset.q,nf=+b.dataset.nf;
+  b.querySelector('.nq').textContent=pc||nf===q?`${q} file`:`${nf} file per ${q} pezzi`})};conta();
+ $('perCopia').onchange=e=>{try{localStorage.setItem('guida-percopia',e.target.checked?'1':'0')}catch{}conta()}}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-colore]');if(!b)return;const k=b.dataset.colore,f=DATA.filaments[k],c=$('perCopia');
  scaricaFile(selFiles(pezziColore(k).map(p=>p.id)),b,(f.label||k).normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\W+/g,'_'),!c||c.checked)});
 // link di download: file fisso, oppure uno per ogni lunghezza usata
