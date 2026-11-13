@@ -1,0 +1,2466 @@
+{
+ "root": "..",
+ "output": "guida.html",
+ "title": "Calendario dell'Avvento · albero a scivolo · Guida",
+ "theme": {
+  "accent": "#1f7a4a",
+  "viewer_bg": "#14201a"
+ },
+ "header": {
+  "eyebrow": "Calendario dell'Avvento · albero a scivolo · PETG",
+  "h1": "Venticinque bussolotti, uno al giorno.",
+  "intro_html": "<b>Il nastro verde è uno scivolo chiuso a serpentina.</b> I bussolotti si caricano dall'ingresso in alto, scendono da soli lungo i rami inclinati e le curve, e ogni giorno si sfila quello in basso a sinistra: il successivo rotola al suo posto. I tappi numerati si avvitano. Il 25 è rosso e contiene la chiave del cassetto nascosto nel tronco. Tutto si stampa <b>senza supporti</b>.",
+  "facts": [
+   {
+    "value": "242 mm",
+    "label": "altezza con la stella"
+   },
+   {
+    "value": "190 × 115 mm",
+    "label": "base"
+   },
+   {
+    "value": "25 bussolotti",
+    "label": "Ø20 × 48,2 mm, tappo a vite"
+   },
+   {
+    "value": "≈ 913 g",
+    "label": "PETG in tutto"
+   }
+  ]
+ },
+ "camera": {
+  "yaw": -0.35,
+  "pitch": 0.22
+ },
+ "caption": "Albero montato: 25 bussolotti nello scivolo, quattro palline appese, cassetto chiuso a chiave.",
+ "model_note_html": "<span class='badge'>Quote del modello</span><p>Nastro 186 × 142,6 × 57,4 mm (si stampa coricato sul retro) · base 190 × 115 mm</p>",
+ "groups": {
+  "Base e tronco": {
+   "color": "#8a5a3c"
+  },
+  "Albero": {
+   "color": "#2e8b57"
+  },
+  "Palline": {
+   "color": "#c0392b"
+  },
+  "Capsule": {
+   "color": "#7fbf8a"
+  },
+  "Tappi": {
+   "color": "#e8e6e0"
+  },
+  "Tappi rossi": {
+   "color": "#c0392b"
+  },
+  "Capsula 25": {
+   "color": "#c0392b"
+  },
+  "Stella": {
+   "color": "#e0b040"
+  }
+ },
+ "steps_section": {
+  "eyebrow": "01 / Montaggio",
+  "h2": "Dal tronco alla stella, poi i bussolotti.",
+  "intro_html": "Davanti = il lato dei tappi. Destra e sinistra guardando l'albero da davanti.",
+  "start_html": "<h3>Prima prova i filetti.</h3><p>Stampa un corpo con il suo tappo, una pallina e un gancio. Il tappo deve avvitarsi a mano fino in battuta (passo 2 mm, gioco radiale 0,3 mm). Se è duro, aumenta di 0,1 mm la compensazione dei fori nello slicer o stampa con layer più bassi; non forzare.</p>"
+ },
+ "steps": [
+  {
+   "title": "Tronco sulla base",
+   "short": "2 perni · dall'alto",
+   "text": "Appoggia il tronco sulla base: i due perni Ø3,4 della base entrano nei fori sotto il tronco. L'apertura del cassetto guarda davanti.",
+   "parts": [
+    "B",
+    "TR"
+   ],
+   "built": [
+    "B",
+    "TR"
+   ],
+   "moving": [
+    "TR"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "travel": 40
+  },
+  {
+   "title": "Cassetto nel tronco",
+   "short": "da davanti",
+   "text": "Infila il cassetto nel tronco finché il frontale va in battuta. Gioco 0,4 mm per lato.",
+   "parts": [
+    "CA"
+   ],
+   "built": [
+    "B",
+    "TR",
+    "CA"
+   ],
+   "moving": [
+    "CA"
+   ],
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "travel": 45
+  },
+  {
+   "title": "Nastro sul tronco",
+   "short": "tenone · da davanti verso il retro",
+   "text": "Sopra il tronco c'è un tenone 36 × 4 mm; sotto il nastro, una scanalatura aperta sul retro. Appoggia il nastro sul tronco spostato in avanti e fallo scorrere verso il retro: si ferma quando il tenone tocca il bordino davanti. Una goccia di colla se vuoi l'albero fisso.",
+   "parts": [
+    "N"
+   ],
+   "built": [
+    "B",
+    "TR",
+    "CA",
+    "N"
+   ],
+   "moving": [
+    "N"
+   ],
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "travel": 50
+  },
+  {
+   "title": "Stella in cima",
+   "short": "linguetta · dall'alto",
+   "text": "Infila la linguetta della stella nella fessura della cresta in cima al nastro, con la punta della stella verso davanti.",
+   "parts": [
+    "S"
+   ],
+   "built": [
+    "B",
+    "TR",
+    "CA",
+    "N",
+    "S"
+   ],
+   "moving": [
+    "S"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "travel": 30
+  },
+  {
+   "title": "Ganci a vite",
+   "short": "4 ganci",
+   "text": "Avvita i ganci a mano nei fori filettati finché il collarino tocca il nastro: due sui fianchi delle curve, uno nel fianco del fermo d'uscita e uno sotto il ramo basso a destra (questo entra dal davanti). La gola del piolo deve restare libera.",
+   "parts": [
+    "G1",
+    "G2",
+    "G3",
+    "G4"
+   ],
+   "built": [
+    "B",
+    "TR",
+    "CA",
+    "N",
+    "S",
+    "G1",
+    "G2",
+    "G3",
+    "G4"
+   ],
+   "moving": [
+    "G1",
+    "G2",
+    "G3",
+    "G4"
+   ],
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "travel": 14
+  },
+  {
+   "title": "Palline appese",
+   "short": "due metà · occhiello sul piolo",
+   "text": "Avvita la metà sotto (quella con il collare) dentro la metà sopra (quella con l'occhiello) fino a chiuderle. Infila l'occhiello sul piolo del gancio: passa sopra la punta e cade nella gola, dove resta appeso.",
+   "parts": [
+    "PS1",
+    "PS2",
+    "PS3",
+    "PS4",
+    "PT1",
+    "PT2",
+    "PT3",
+    "PT4"
+   ],
+   "built": [
+    "B",
+    "TR",
+    "CA",
+    "N",
+    "S",
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "PS1",
+    "PS2",
+    "PS3",
+    "PS4",
+    "PT1",
+    "PT2",
+    "PT3",
+    "PT4"
+   ],
+   "moving": [
+    "PS1",
+    "PS2",
+    "PS3",
+    "PS4",
+    "PT1",
+    "PT2",
+    "PT3",
+    "PT4"
+   ],
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "travel": 18
+  },
+  {
+   "title": "Riempi e carica i bussolotti",
+   "short": "dall'ingresso in alto · prima la 1",
+   "text": "Riempi i corpi (bocca Ø12,8, interno lungo 44,4 mm: cioccolatini piccoli, caramelle, un biglietto) e avvita i tappi. Carica dall'ingresso in alto a sinistra, coricati e con il tappo davanti: <b>prima la 1</b>, che rotola fino al fermo in basso, poi la 2, la 3… fino alla 24. Ognuno spinge e scende dietro al precedente.",
+   "parts": [
+    "C",
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08",
+    "T09",
+    "T10",
+    "T11",
+    "T12",
+    "T13",
+    "T14",
+    "T15",
+    "T16",
+    "T17",
+    "T18",
+    "T19",
+    "T20",
+    "T21",
+    "T22",
+    "T23",
+    "T24"
+   ],
+   "built": [
+    "B",
+    "TR",
+    "CA",
+    "N",
+    "S",
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "PS1",
+    "PS2",
+    "PS3",
+    "PS4",
+    "PT1",
+    "PT2",
+    "PT3",
+    "PT4",
+    "C",
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08",
+    "T09",
+    "T10",
+    "T11",
+    "T12",
+    "T13",
+    "T14",
+    "T15",
+    "T16",
+    "T17",
+    "T18",
+    "T19",
+    "T20",
+    "T21",
+    "T22",
+    "T23",
+    "T24"
+   ],
+   "moving": [
+    "C",
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08",
+    "T09",
+    "T10",
+    "T11",
+    "T12",
+    "T13",
+    "T14",
+    "T15",
+    "T16",
+    "T17",
+    "T18",
+    "T19",
+    "T20",
+    "T21",
+    "T22",
+    "T23",
+    "T24"
+   ],
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "travel": 60
+  },
+  {
+   "title": "Per ultima la 25",
+   "short": "con la chiave",
+   "text": "Metti la chiave nel bussolotto rosso 25 (la chiave è lunga 21,9 mm), avvita il tappo con il numero d'oro e caricalo per ultimo: resta all'ingresso, sotto la stella.",
+   "parts": [
+    "C25",
+    "T25"
+   ],
+   "built": [
+    "B",
+    "TR",
+    "CA",
+    "N",
+    "S",
+    "G1",
+    "PS1",
+    "PT1",
+    "G2",
+    "PS2",
+    "PT2",
+    "G3",
+    "PS3",
+    "PT3",
+    "G4",
+    "PS4",
+    "PT4",
+    "C",
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08",
+    "T09",
+    "T10",
+    "T11",
+    "T12",
+    "T13",
+    "T14",
+    "T15",
+    "T16",
+    "T17",
+    "T18",
+    "T19",
+    "T20",
+    "T21",
+    "T22",
+    "T23",
+    "T24",
+    "C25",
+    "T25"
+   ],
+   "moving": [
+    "C25",
+    "T25"
+   ],
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "travel": 60
+  },
+  {
+   "title": "Ogni giorno",
+   "short": "dall'uscita in basso a sinistra",
+   "text": "Il bussolotto del giorno è in basso a sinistra, contro il fermo: lì il bordino davanti è tagliato, quindi si sfila in avanti. Il successivo rotola al suo posto. Il 25 dicembre la chiave apre il cassetto: infila la mappa in verticale nella serratura (7,6 mm nella fessura da 9), gira di 90° e tira.",
+   "parts": [
+    "C",
+    "T01",
+    "CA",
+    "K"
+   ],
+   "built": [
+    "B",
+    "TR",
+    "CA",
+    "N",
+    "S",
+    "G1",
+    "PS1",
+    "PT1",
+    "G2",
+    "PS2",
+    "PT2",
+    "G3",
+    "PS3",
+    "PT3",
+    "G4",
+    "PS4",
+    "PT4",
+    "C",
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08",
+    "T09",
+    "T10",
+    "T11",
+    "T12",
+    "T13",
+    "T14",
+    "T15",
+    "T16",
+    "T17",
+    "T18",
+    "T19",
+    "T20",
+    "T21",
+    "T22",
+    "T23",
+    "T24",
+    "C25",
+    "T25",
+    "K"
+   ]
+  }
+ ],
+ "map": {
+  "eyebrow": "02 / Sigle",
+  "h2": "Uno scivolo, venticinque bussolotti.",
+  "cards": [
+   {
+    "title": "Albero · vista frontale",
+    "columns": 3,
+    "top_label": "Alto",
+    "bottom_label": "Basso",
+    "ids": [
+     "",
+     "S",
+     "",
+     "C25",
+     "T25",
+     "K",
+     "G1",
+     "N",
+     "G2",
+     "PS1",
+     "C",
+     "PT1",
+     "T01",
+     "T24",
+     "G4",
+     "TR",
+     "CA",
+     "B"
+    ],
+    "note_html": "I bussolotti 1–24 hanno lo stesso corpo (C, 24 copie) e un tappo numerato ciascuno. Ganci e palline sono 4 copie dello stesso pezzo (G, PS, PT)."
+   }
+  ]
+ },
+ "print": {
+  "eyebrow": "03 / Stampa",
+  "h2": "Lista e parametri di stampa.",
+  "common_html": "<b>Punto di partenza da verificare:</b> PETG · ugello 0,4 · Anycubic Kobra S1 (piatto 250 × 250). Nessun pezzo richiede supporti: gli STL sono già orientati per la stampa.",
+  "profiles": [
+   {
+    "key": "nastro",
+    "title": "Nastro a scivolo",
+    "rows": [
+     [
+      "Orientamento",
+      "retro sul piatto (come nello STL)"
+     ],
+     [
+      "Layer",
+      "0,20"
+     ],
+     [
+      "Pareti",
+      "3"
+     ],
+     [
+      "Infill",
+      "15% Gyroid"
+     ],
+     [
+      "Brim",
+      "5 mm"
+     ]
+    ],
+    "why": "Coricato sul retro tutte le pareti del canale sono verticali e i bordini a gradini da 1,33 mm escono a 45°. Ingombro 186 × 142,6 mm, alto 57,4. I fori filettati dei ganci sui fianchi restano orizzontali: diametro piccolo, si stampano senza supporti. Il brim tiene giù le punte delle curve.",
+    "summary": "retro sul piatto · 3 pareti · 15% · brim"
+   },
+   {
+    "key": "base",
+    "title": "Base con regali e pupazzo",
+    "rows": [
+     [
+      "Layer",
+      "0,20"
+     ],
+     [
+      "Pareti",
+      "3"
+     ],
+     [
+      "Infill",
+      "15%"
+     ],
+     [
+      "Colore",
+      "regali rossi: multicolore o cambio filamento da 5 mm"
+     ]
+    ],
+    "why": "Regali e pupazzo sono uniti alla base. Con un solo filamento esce tutto bianco; con il multicolore i regali sono rossi (nello STL sono corpi separati che lo slicer unisce: si possono colorare uno per uno).",
+    "summary": "3 pareti · 15%"
+   },
+   {
+    "key": "grandi",
+    "title": "Tronco e cassetto",
+    "rows": [
+     [
+      "Pareti",
+      "3"
+     ],
+     [
+      "Infill",
+      "15% Gyroid"
+     ],
+     [
+      "Orientamento",
+      "come nello STL"
+     ]
+    ],
+    "why": "Il tronco si stampa sul retro con l'apertura in alto e il tenone che sale dal piatto; il cassetto sul frontale. Niente ponti lunghi.",
+    "summary": "3 pareti · 15%"
+   },
+   {
+    "key": "capsule",
+    "title": "Corpi dei bussolotti",
+    "rows": [
+     [
+      "Layer",
+      "0,16"
+     ],
+     [
+      "Pareti",
+      "3"
+     ],
+     [
+      "Infill",
+      "0% (parete piena)"
+     ],
+     [
+      "Orientamento",
+      "fondo sul piatto"
+     ]
+    ],
+    "why": "Il filetto del collo (passo 2, dente 0,8 mm) viene meglio con layer bassi. Stampa i 24 corpi verdi in un piatto e il 25 in rosso.",
+    "summary": "0,16 · fondo sul piatto"
+   },
+   {
+    "key": "tappi",
+    "title": "Tappi numerati",
+    "rows": [
+     [
+      "Layer",
+      "0,16 (0,20 l'ultimo strato)"
+     ],
+     [
+      "Orientamento",
+      "bocca sul piatto, numero in alto"
+     ],
+     [
+      "Cambio colore",
+      "a 7,6 mm (inizio del numero)"
+     ]
+    ],
+    "why": "Il numero è in rilievo di 0,6 mm sul cielo. Con una pausa a 7,6 mm il numero esce in un altro colore: rosso sui tappi bianchi, bianco sui tappi rossi (5, 10, 15, 20), oro sul 25. La parete del tappo attorno al filetto è 1,3 mm: almeno 3 perimetri.",
+    "summary": "cambio colore a 7,6 mm"
+   },
+   {
+    "key": "filetti",
+    "title": "Ganci e palline",
+    "rows": [
+     [
+      "Layer",
+      "0,12"
+     ],
+     [
+      "Pareti",
+      "4"
+     ],
+     [
+      "Infill",
+      "100% (ganci)"
+     ],
+     [
+      "Orientamento",
+      "come nello STL"
+     ]
+    ],
+    "why": "Pezzi piccoli con filetti fini (passo 1,5): layer basso e pieni. La metà sopra della pallina si stampa sul giunto con l'occhiello in alto; la metà sotto capovolta, sul collare; il gancio in piedi, punta del piolo sul piatto.",
+    "summary": "0,12 · 4 pareti"
+   },
+   {
+    "key": "piccoli",
+    "title": "Stella e chiave",
+    "rows": [
+     [
+      "Pareti",
+      "3"
+     ],
+     [
+      "Infill",
+      "20%"
+     ],
+     [
+      "Velocità",
+      "ridotta"
+     ]
+    ],
+    "why": "Pezzi piatti: la stella ha il retro sul piatto e la linguetta nel suo stesso piano.",
+    "summary": "3 pareti · 20%"
+   }
+  ],
+  "note_html": "Colori del video di partenza: nastro verde, corpi verdi, tappi bianchi con i multipli di 5 rossi, tronco marrone, base bianca, stella e chiave oro, palline rosse."
+ },
+ "notes": {
+  "eyebrow": "04 / Lo scivolo",
+  "h2": "Perché i bussolotti scendono da soli.",
+  "nav": "Scivolo",
+  "cards": [
+   {
+    "title": "Il canale",
+    "html": "<ul><li>Canale alto 23 mm: 3 mm d'aria sopra il bussolotto Ø20, due bussolotti non possono sovrapporsi</li><li>Rami inclinati di 2° verso la curva successiva; curve a U con raggio 14 mm in mezzeria</li><li>Percorso lungo 520,2 mm: 25 bussolotti e 20 mm liberi all'ingresso</li><li>Canale passante, con un bordino da 4 mm davanti e dietro: il bussolotto resta centrato (1,8 mm d'aria in profondità) e dal retro se ne vedono i fondi</li><li>9 colonnine da 3 mm davanti e altrettante dietro uniscono i rami fra loro (il canale passante altrimenti li staccherebbe): stanno nello spessore dei bordini, 1,2 mm prima del bussolotto</li><li>All'ingresso i gradini dei bordini diventano rampe: il bussolotto entra senza impuntarsi</li></ul>"
+   },
+   {
+    "title": "Filetti",
+    "html": "<ul><li>Tappo: passo 2, dente 0,8, gioco radiale 0,3 mm</li><li>Pallina: passo 1,5, cono a 45° che centra le due metà</li><li>Gancio: passo 1,5 nel foro del nastro, 7 mm in presa</li></ul><p>Avvita sempre a mano: se un filetto è duro, non forzarlo con la pinza.</p>"
+   },
+   {
+    "title": "Chiave e serratura",
+    "html": "<p>La fessura nel frontale del cassetto è 3,2 × 9 mm. La mappa della chiave è 2,4 × 7,6 mm: entra solo in verticale. Girata di 90° resta dietro il frontale e fa da maniglia.</p><svg viewBox='0 0 220 110' width='100%'><rect x='10' y='10' width='90' height='90' fill='#c0392b'/><rect x='53' y='37' width='4' height='36' fill='#111'/><text x='55' y='108' font-size='9' text-anchor='middle' fill='currentColor'>fessura 3,2 × 9</text><rect x='130' y='40' width='60' height='9' fill='#e0b040'/><rect x='186' y='29' width='9' height='31' fill='#e0b040'/><circle cx='126' cy='44' r='11' fill='none' stroke='#e0b040' stroke-width='7'/><text x='165' y='80' font-size='9' text-anchor='middle' fill='currentColor'>mappa 2,4 × 7,6</text></svg>"
+   }
+  ]
+ },
+ "files": {
+  "h2": "I file.",
+  "intro_html": "Script parametrico in Blender: cambia le misure in cima e rigenera tutto.",
+  "links": [
+   {
+    "label": "README",
+    "href": "README.md"
+   },
+   {
+    "label": "Script Blender",
+    "href": "blender/costruisci.py"
+   },
+   {
+    "label": "Geometria e controlli",
+    "href": "dati/geometria.json"
+   }
+  ]
+ },
+ "footer_html": "Guida offline: aprire questo file dalla cartella del progetto.",
+ "parts": [
+  {
+   "id": "B",
+   "label": "Base con regali e pupazzo",
+   "group": "Base e tronco",
+   "file": "stl/P11_Base.stl",
+   "quantity": 1,
+   "print": "base",
+   "mode": "mesh",
+   "max_triangles": 6000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "TR",
+   "label": "Tronco",
+   "group": "Base e tronco",
+   "file": "stl/P06_Tronco.stl",
+   "quantity": 1,
+   "print": "grandi",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     57.4
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "CA",
+   "label": "Cassetto con serratura",
+   "group": "Base e tronco",
+   "file": "stl/P07_Cassetto.stl",
+   "quantity": 1,
+   "print": "grandi",
+   "mode": "mesh",
+   "max_triangles": 2000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     -3.0
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     -0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "N",
+   "label": "Nastro a scivolo",
+   "group": "Albero",
+   "file": "stl/P01_Nastro.stl",
+   "quantity": 1,
+   "print": "nastro",
+   "mode": "mesh",
+   "max_triangles": 24000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     57.4
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "S",
+   "label": "Stella",
+   "group": "Stella",
+   "file": "stl/P09_Stella.stl",
+   "quantity": 1,
+   "print": "piccoli",
+   "mode": "mesh",
+   "max_triangles": 1200,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -1.0
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     30.2
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     220.2822
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "G1",
+   "label": "Gancio 1",
+   "group": "Palline",
+   "file": "stl/P15_Gancio.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 1200,
+   "matrix": [
+    [
+     -0.0,
+     -0.0,
+     -1.0,
+     69.5
+    ],
+    [
+     -1.0,
+     0.0,
+     0.0,
+     28.7
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     164.1705
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Si avvita nel fianco destro della curva alta."
+  },
+  {
+   "id": "PS1",
+   "label": "Pallina 1 · sopra",
+   "group": "Palline",
+   "file": "stl/P10_Pallina_sopra.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 2000,
+   "matrix": [
+    [
+     -1.0,
+     0.0,
+     0.0,
+     64.15
+    ],
+    [
+     -0.0,
+     -1.0,
+     0.0,
+     28.7
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     148.8705
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "PT1",
+   "label": "Pallina 1 · sotto",
+   "group": "Palline",
+   "file": "stl/P14_Pallina_sotto.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 2000,
+   "matrix": [
+    [
+     -1.0,
+     -0.0,
+     0.0,
+     64.15
+    ],
+    [
+     -0.0,
+     1.0,
+     -0.0,
+     28.7
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     157.4706
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "G2",
+   "label": "Gancio 2",
+   "group": "Palline",
+   "file": "stl/P15_Gancio.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 1200,
+   "matrix": [
+    [
+     -0.0,
+     0.0,
+     1.0,
+     -105.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0,
+     28.7
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     133.3769
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Si avvita nel fianco sinistro della curva di mezzo."
+  },
+  {
+   "id": "PS2",
+   "label": "Pallina 2 · sopra",
+   "group": "Palline",
+   "file": "stl/P10_Pallina_sopra.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 2000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -100.15
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     28.7
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     118.0769
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "PT2",
+   "label": "Pallina 2 · sotto",
+   "group": "Palline",
+   "file": "stl/P14_Pallina_sotto.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 2000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -100.15
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     28.7
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     126.6769
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "G3",
+   "label": "Gancio 3",
+   "group": "Palline",
+   "file": "stl/P15_Gancio.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 1200,
+   "matrix": [
+    [
+     -0.0,
+     0.0,
+     1.0,
+     -103.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0,
+     28.7
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     74.25
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Si avvita nel fianco del fermo d'uscita."
+  },
+  {
+   "id": "PS3",
+   "label": "Pallina 3 · sopra",
+   "group": "Palline",
+   "file": "stl/P10_Pallina_sopra.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 2000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -98.15
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     28.7
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     58.95
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "PT3",
+   "label": "Pallina 3 · sotto",
+   "group": "Palline",
+   "file": "stl/P14_Pallina_sotto.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 2000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -98.15
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     28.7
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     67.55
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "G4",
+   "label": "Gancio 4",
+   "group": "Palline",
+   "file": "stl/P15_Gancio.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 1200,
+   "matrix": [
+    [
+     -1.0,
+     0.0,
+     -0.0,
+     48.6954
+    ],
+    [
+     -0.0,
+     -0.0,
+     1.0,
+     -12.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     64.4079
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Si avvita nel sotto il ramo basso, a destra."
+  },
+  {
+   "id": "PS4",
+   "label": "Pallina 4 · sopra",
+   "group": "Palline",
+   "file": "stl/P10_Pallina_sopra.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 2000,
+   "matrix": [
+    [
+     0.0,
+     -1.0,
+     0.0,
+     48.6954
+    ],
+    [
+     1.0,
+     0.0,
+     0.0,
+     -6.65
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     49.1079
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "PT4",
+   "label": "Pallina 4 · sotto",
+   "group": "Palline",
+   "file": "stl/P14_Pallina_sotto.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 2000,
+   "matrix": [
+    [
+     0.0,
+     1.0,
+     -0.0,
+     48.6954
+    ],
+    [
+     1.0,
+     -0.0,
+     0.0,
+     -6.65
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     57.7079
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "C",
+   "label": "Corpo capsula 1–24",
+   "group": "Capsule",
+   "file": "stl/P02_Corpo_capsula.stl",
+   "quantity": 24,
+   "print": "capsule",
+   "mode": "mesh",
+   "max_triangles": 1500,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -71.9476
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     52.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     81.0079
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "instances": [
+    [
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     20.387,
+     0.0,
+     0.712
+    ],
+    [
+     40.775,
+     0.0,
+     1.424
+    ],
+    [
+     61.163,
+     0.0,
+     2.136
+    ],
+    [
+     81.55,
+     0.0,
+     2.848
+    ],
+    [
+     101.938,
+     0.0,
+     3.56
+    ],
+    [
+     122.325,
+     0.0,
+     4.272
+    ],
+    [
+     142.516,
+     0.0,
+     7.262
+    ],
+    [
+     147.948,
+     0.0,
+     26.829
+    ],
+    [
+     128.498,
+     0.0,
+     32.868
+    ],
+    [
+     108.111,
+     0.0,
+     33.58
+    ],
+    [
+     87.723,
+     0.0,
+     34.292
+    ],
+    [
+     67.336,
+     0.0,
+     35.004
+    ],
+    [
+     46.948,
+     0.0,
+     35.716
+    ],
+    [
+     26.561,
+     0.0,
+     36.428
+    ],
+    [
+     6.323,
+     0.0,
+     38.874
+    ],
+    [
+     -0.492,
+     0.0,
+     58.004
+    ],
+    [
+     18.597,
+     0.0,
+     65.03
+    ],
+    [
+     38.985,
+     0.0,
+     65.742
+    ],
+    [
+     59.372,
+     0.0,
+     66.454
+    ],
+    [
+     79.76,
+     0.0,
+     67.166
+    ],
+    [
+     100.187,
+     0.0,
+     68.974
+    ],
+    [
+     108.877,
+     0.0,
+     87.328
+    ],
+    [
+     90.297,
+     0.0,
+     95.789
+    ]
+   ]
+  },
+  {
+   "id": "T01",
+   "label": "Tappo 1",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_01.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -71.9476
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     81.0079
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T02",
+   "label": "Tappo 2",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_02.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -51.5601
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     81.7199
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T03",
+   "label": "Tappo 3",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_03.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -31.1725
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     82.4318
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T04",
+   "label": "Tappo 4",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_04.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -10.7849
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     83.1438
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T05",
+   "label": "Tappo 5",
+   "group": "Tappi rossi",
+   "file": "stl/P03_Tappo_05.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     9.6026
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     83.8557
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T06",
+   "label": "Tappo 6",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_06.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     29.9902
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     84.5677
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T07",
+   "label": "Tappo 7",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_07.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     50.3778
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     85.2796
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T08",
+   "label": "Tappo 8",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_08.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     70.5683
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     88.27
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T09",
+   "label": "Tappo 9",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_09.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     76.0005
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     107.8373
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T10",
+   "label": "Tappo 10",
+   "group": "Tappi rossi",
+   "file": "stl/P03_Tappo_10.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     56.5509
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     113.8758
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T11",
+   "label": "Tappo 11",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_11.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     36.1634
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     114.5877
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T12",
+   "label": "Tappo 12",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_12.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     15.7758
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     115.2997
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T13",
+   "label": "Tappo 13",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_13.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -4.6118
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     116.0116
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T14",
+   "label": "Tappo 14",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_14.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -24.9994
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     116.7236
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T15",
+   "label": "Tappo 15",
+   "group": "Tappi rossi",
+   "file": "stl/P03_Tappo_15.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -45.3869
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     117.4355
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T16",
+   "label": "Tappo 16",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_16.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -65.6246
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     119.8819
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T17",
+   "label": "Tappo 17",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_17.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -72.4395
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     139.0117
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T18",
+   "label": "Tappo 18",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_18.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -53.3505
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     146.0383
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T19",
+   "label": "Tappo 19",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_19.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -32.9629
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     146.7503
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T20",
+   "label": "Tappo 20",
+   "group": "Tappi rossi",
+   "file": "stl/P03_Tappo_20.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -12.5753
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     147.4622
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T21",
+   "label": "Tappo 21",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_21.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     7.8123
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     148.1742
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T22",
+   "label": "Tappo 22",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_22.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     28.2393
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     149.9818
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T23",
+   "label": "Tappo 23",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_23.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     36.9299
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     168.3357
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T24",
+   "label": "Tappo 24",
+   "group": "Tappi",
+   "file": "stl/P03_Tappo_24.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     18.3498
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     176.7971
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "C25",
+   "label": "Corpo capsula 25",
+   "group": "Capsula 25",
+   "file": "stl/P04_Corpo_capsula_25.stl",
+   "quantity": 1,
+   "print": "capsule",
+   "mode": "mesh",
+   "max_triangles": 1500,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -2.0377
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     52.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     177.509
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "T25",
+   "label": "Tappo 25",
+   "group": "Capsula 25",
+   "file": "stl/P05_Tappo_25.stl",
+   "quantity": 1,
+   "print": "tappi",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -2.0377
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     12.4
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     177.509
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "K",
+   "label": "Chiave",
+   "group": "Capsula 25",
+   "file": "stl/P08_Chiave.stl",
+   "quantity": 1,
+   "print": "piccoli",
+   "mode": "mesh",
+   "max_triangles": 800,
+   "matrix": [
+    [
+     0.9397,
+     -0.342,
+     0.0,
+     -31.0
+    ],
+    [
+     0.342,
+     0.9397,
+     0.0,
+     -64.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ]
+  }
+ ]
+}
