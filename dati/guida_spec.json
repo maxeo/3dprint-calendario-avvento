@@ -34,9 +34,13 @@
   "pitch": 0.22
  },
  "caption": "Albero montato: 25 bussolotti nello scivolo, quattro palline appese, cassetto chiuso a chiave.",
+ "labels": false,
  "model_note_html": "<span class='badge'>Quote del modello</span><p>Nastro 186 × 142,6 × 57,4 mm (si stampa coricato sul retro) · base 190 × 115 mm</p>",
  "groups": {
-  "Base e tronco": {
+  "Base": {
+   "color": "#efede6"
+  },
+  "Tronco": {
    "color": "#8a5a3c"
   },
   "Albero": {
@@ -57,6 +61,36 @@
   "Capsula 25": {
    "color": "#c0392b"
   },
+  "Chiave": {
+   "color": "#f2c418"
+  },
+  "Regali rossi": {
+   "color": "#c0392b"
+  },
+  "Regalo verde": {
+   "color": "#3fae5a"
+  },
+  "Nastri verdi": {
+   "color": "#3fae5a"
+  },
+  "Nastro rosso": {
+   "color": "#c0392b"
+  },
+  "Cappello e occhi": {
+   "color": "#26262a"
+  },
+  "Cassetto": {
+   "color": "#c0392b"
+  },
+  "Naso": {
+   "color": "#f2c418"
+  },
+  "Perni": {
+   "color": "#d8d4c8"
+  },
+  "Ganci": {
+   "color": "#f2c418"
+  },
   "Stella": {
    "color": "#e0b040"
   },
@@ -65,9 +99,6 @@
   },
   "Numeri bianchi": {
    "color": "#f4f2ec"
-  },
-  "Numero oro": {
-   "color": "#e0b040"
   }
  },
  "steps_section": {
@@ -78,15 +109,148 @@
  },
  "steps": [
   {
+   "title": "Regali sulla base",
+   "short": "2 perni per regalo · dall'alto",
+   "text": "Infila i perni (Ø3,4 × 5,6 mm, due per regalo) nei fori della base, poi appoggia sopra i regali: i due fori sotto ogni regalo vanno sui suoi perni. Il verde va davanti a destra, accanto al tronco; i rossi davanti a sinistra, vicino al pupazzo, e dietro a destra. Se un perno balla, un punto di colla.",
+   "parts": [
+    "PR",
+    "R1",
+    "R2",
+    "R3"
+   ],
+   "built": [
+    "B",
+    "PR",
+    "R1",
+    "R2",
+    "R3"
+   ],
+   "moving": [
+    "R1",
+    "R2",
+    "R3"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "travel": 25
+  },
+  {
+   "title": "Nastri sui regali",
+   "short": "dall'alto · nel solco",
+   "text": "Ogni nastro è una croce con quattro gambe: si infila dall'alto nel solco del regalo (3,3 × 0,8 mm) e ne sporge 0,6 mm. Nastro verde sui regali rossi, rosso su quello verde.",
+   "parts": [
+    "NR1",
+    "NR2",
+    "NR3"
+   ],
+   "built": [
+    "B",
+    "PR",
+    "R1",
+    "R2",
+    "R3",
+    "NR1",
+    "NR2",
+    "NR3"
+   ],
+   "moving": [
+    "NR1",
+    "NR2",
+    "NR3"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "travel": 20
+  },
+  {
+   "title": "Cappello al pupazzo",
+   "short": "perno in cima alla testa",
+   "text": "Il cappello nero si infila sul perno Ø3 in cima alla testa (foro Ø3,2). Se balla, un punto di colla.",
+   "parts": [
+    "CP"
+   ],
+   "built": [
+    "B",
+    "PR",
+    "R1",
+    "R2",
+    "R3",
+    "NR1",
+    "NR2",
+    "NR3",
+    "CP"
+   ],
+   "moving": [
+    "CP"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "travel": 15
+  },
+  {
+   "title": "Naso e occhi al pupazzo",
+   "short": "naso avvitato · occhi a incastro",
+   "text": "Il naso giallo ha un codolo filettato Ø3 (passo 1): avvitalo a mano, un paio di giri, finché la base tocca la testa. Gli occhi neri (bottone Ø2,4) entrano a forza: codolo e foro sono Ø1,7 e i fori così piccoli escono un po' stretti. Spingili con il pollice.",
+   "parts": [
+    "NS",
+    "OC1",
+    "OC2"
+   ],
+   "built": [
+    "B",
+    "PR",
+    "R1",
+    "R2",
+    "R3",
+    "NR1",
+    "NR2",
+    "NR3",
+    "CP",
+    "NS",
+    "OC1",
+    "OC2"
+   ],
+   "moving": [
+    "NS",
+    "OC1",
+    "OC2"
+   ],
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "travel": 10
+  },
+  {
    "title": "Tronco sulla base",
    "short": "2 perni · dall'alto",
    "text": "Appoggia il tronco sulla base: i due perni Ø3,4 della base entrano nei fori sotto il tronco. L'apertura del cassetto guarda davanti.",
    "parts": [
-    "B",
     "TR"
    ],
    "built": [
     "B",
+    "PR",
+    "R1",
+    "R2",
+    "R3",
+    "NR1",
+    "NR2",
+    "NR3",
+    "CP",
+    "NS",
+    "OC1",
+    "OC2",
     "TR"
    ],
    "moving": [
@@ -108,6 +272,17 @@
    ],
    "built": [
     "B",
+    "PR",
+    "R1",
+    "R2",
+    "R3",
+    "NR1",
+    "NR2",
+    "NR3",
+    "CP",
+    "NS",
+    "OC1",
+    "OC2",
     "TR",
     "CA"
    ],
@@ -130,6 +305,17 @@
    ],
    "built": [
     "B",
+    "PR",
+    "R1",
+    "R2",
+    "R3",
+    "NR1",
+    "NR2",
+    "NR3",
+    "CP",
+    "NS",
+    "OC1",
+    "OC2",
     "TR",
     "CA",
     "N"
@@ -153,6 +339,17 @@
    ],
    "built": [
     "B",
+    "PR",
+    "R1",
+    "R2",
+    "R3",
+    "NR1",
+    "NR2",
+    "NR3",
+    "CP",
+    "NS",
+    "OC1",
+    "OC2",
     "TR",
     "CA",
     "N",
@@ -180,6 +377,17 @@
    ],
    "built": [
     "B",
+    "PR",
+    "R1",
+    "R2",
+    "R3",
+    "NR1",
+    "NR2",
+    "NR3",
+    "CP",
+    "NS",
+    "OC1",
+    "OC2",
     "TR",
     "CA",
     "N",
@@ -218,6 +426,17 @@
    ],
    "built": [
     "B",
+    "PR",
+    "R1",
+    "R2",
+    "R3",
+    "NR1",
+    "NR2",
+    "NR3",
+    "CP",
+    "NS",
+    "OC1",
+    "OC2",
     "TR",
     "CA",
     "N",
@@ -309,6 +528,17 @@
    ],
    "built": [
     "B",
+    "PR",
+    "R1",
+    "R2",
+    "R3",
+    "NR1",
+    "NR2",
+    "NR3",
+    "CP",
+    "NS",
+    "OC1",
+    "OC2",
     "TR",
     "CA",
     "N",
@@ -444,6 +674,17 @@
    ],
    "built": [
     "B",
+    "R1",
+    "R2",
+    "R3",
+    "NR1",
+    "NR2",
+    "NR3",
+    "CP",
+    "NS",
+    "OC1",
+    "OC2",
+    "PR",
     "TR",
     "CA",
     "N",
@@ -537,6 +778,17 @@
    ],
    "built": [
     "B",
+    "R1",
+    "R2",
+    "R3",
+    "NR1",
+    "NR2",
+    "NR3",
+    "CP",
+    "NS",
+    "OC1",
+    "OC2",
+    "PR",
     "TR",
     "CA",
     "N",
@@ -636,7 +888,13 @@
      "G4",
      "TR",
      "CA",
-     "B"
+     "B",
+     "R1",
+     "NR1",
+     "PR",
+     "CP",
+     "NS",
+     "OC1"
     ],
     "note_html": "I bussolotti 1–24 hanno lo stesso corpo (C, 24 copie) e un tappo numerato ciascuno. Ganci e palline sono 4 copie dello stesso pezzo (G, PS, PT)."
    }
@@ -677,7 +935,7 @@
    },
    {
     "key": "base",
-    "title": "Base con regali e pupazzo",
+    "title": "Base con pupazzo",
     "rows": [
      [
       "Layer",
@@ -693,10 +951,66 @@
      ],
      [
       "Colore",
-      "regali rossi: multicolore o cambio filamento da 5 mm"
+      "bianco"
      ]
     ],
-    "why": "Regali e pupazzo sono uniti alla base. Con un solo filamento esce tutto bianco; con il multicolore i regali sono rossi (nello STL sono corpi separati che lo slicer unisce: si possono colorare uno per uno).",
+    "why": "Il pupazzo è unito alla base (lo unisce lo slicer). I sei fori dei regali sono ciechi, profondi 3 mm: sotto restano 2 mm di base.",
+    "summary": "3 pareti · 15%"
+   },
+   {
+    "key": "pupazzo",
+    "title": "Cappello, occhi e naso",
+    "rows": [
+     [
+      "Layer",
+      "0,12"
+     ],
+     [
+      "Pareti",
+      "3"
+     ],
+     [
+      "Infill",
+      "100%"
+     ],
+     [
+      "Brim",
+      "3 mm su naso e occhi"
+     ],
+     [
+      "Colore",
+      "cappello e occhi neri, naso giallo"
+     ]
+    ],
+    "why": "Pezzi piccoli: il cappello si stampa sulla tesa con il foro in basso; naso e occhi in piedi sul codolo. Il naso ha il filetto (Ø3, il più piccolo che viene bene con l'ugello 0,4; gioco radiale 0,2 mm). Il brim tiene giù il naso; stampali insieme ad altri pezzi dello stesso colore così il layer ha il tempo di raffreddare.",
+    "summary": "0,12 · 100%"
+   },
+   {
+    "key": "regali",
+    "title": "Regali, nastri e perni",
+    "rows": [
+     [
+      "Layer",
+      "0,20"
+     ],
+     [
+      "Pareti",
+      "3"
+     ],
+     [
+      "Infill",
+      "15%"
+     ],
+     [
+      "Orientamento",
+      "fondo forato sul piatto"
+     ],
+     [
+      "Colore",
+      "un regalo verde e due rossi; nastri: due verdi e uno rosso; perni di qualsiasi colore"
+     ]
+    ],
+    "why": "Un solo STL per i tre regali e uno per i nastri: un regalo verde e due rossi, due nastri verdi e uno rosso. Il nastro si stampa capovolto, croce sul piatto e gambe in alto. I perni Ø3,4 entrano nei fori Ø3,6 con 0,2 mm d'aria in fondo: si stampano in piedi, punte smussate.",
     "summary": "3 pareti · 15%"
    },
    {
@@ -836,7 +1150,7 @@
     "summary": "3 pareti · 20%"
    }
   ],
-  "note_html": "Colori del video di partenza: nastro verde, corpi verdi, tappi bianchi con i multipli di 5 rossi, tronco marrone, base bianca, stella e chiave oro, palline rosse."
+  "note_html": "Colori del video di partenza: nastro verde, corpi verdi, tappi bianchi con i multipli di 5 rossi, tronco marrone, base e pupazzo bianchi, cappello e occhi neri, naso giallo, cassetto rosso, regali uno verde e due rossi con i nastri del colore opposto, stella oro, chiave e ganci gialli, palline rosse."
  },
  "notes": {
   "eyebrow": "04 / Lo scivolo",
@@ -879,13 +1193,13 @@
  "parts": [
   {
    "id": "B",
-   "label": "Base con regali e pupazzo",
-   "group": "Base e tronco",
+   "label": "Base con pupazzo",
+   "group": "Base",
    "file": "stl/P11_Base.stl",
    "quantity": 1,
    "print": "base",
    "mode": "mesh",
-   "max_triangles": 6000,
+   "max_triangles": 20000,
    "matrix": [
     [
      1.0,
@@ -911,12 +1225,453 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "cull": true,
+   "smooth": 35
+  },
+  {
+   "id": "R1",
+   "label": "Regalo rosso · davanti a sinistra",
+   "group": "Regali rossi",
+   "file": "stl/P12_Regalo.stl",
+   "quantity": 1,
+   "print": "regali",
+   "mode": "mesh",
+   "max_triangles": 1500,
+   "matrix": [
+    [
+     0.9659,
+     -0.2588,
+     0.0,
+     -51.0
+    ],
+    [
+     0.2588,
+     0.9659,
+     0.0,
+     -26.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     5.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true
+  },
+  {
+   "id": "R2",
+   "label": "Regalo verde · davanti a destra",
+   "group": "Regalo verde",
+   "file": "stl/P12_Regalo.stl",
+   "quantity": 1,
+   "print": "regali",
+   "mode": "mesh",
+   "max_triangles": 1500,
+   "matrix": [
+    [
+     0.9397,
+     0.342,
+     0.0,
+     47.0
+    ],
+    [
+     -0.342,
+     0.9397,
+     0.0,
+     -24.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     5.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true
+  },
+  {
+   "id": "R3",
+   "label": "Regalo rosso · dietro a destra",
+   "group": "Regali rossi",
+   "file": "stl/P12_Regalo.stl",
+   "quantity": 1,
+   "print": "regali",
+   "mode": "mesh",
+   "max_triangles": 1500,
+   "matrix": [
+    [
+     0.9962,
+     -0.0872,
+     0.0,
+     69.0
+    ],
+    [
+     0.0872,
+     0.9962,
+     0.0,
+     30.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     5.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true
+  },
+  {
+   "id": "NR1",
+   "label": "Nastro verde · regalo davanti a sinistra",
+   "group": "Nastri verdi",
+   "file": "stl/P20_Nastro_regalo.stl",
+   "quantity": 1,
+   "print": "regali",
+   "mode": "mesh",
+   "max_triangles": 1500,
+   "matrix": [
+    [
+     0.9659,
+     0.2588,
+     -0.0,
+     -51.0
+    ],
+    [
+     0.2588,
+     -0.9659,
+     0.0,
+     -26.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     19.6
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true
+  },
+  {
+   "id": "NR2",
+   "label": "Nastro rosso · regalo verde",
+   "group": "Nastro rosso",
+   "file": "stl/P20_Nastro_regalo.stl",
+   "quantity": 1,
+   "print": "regali",
+   "mode": "mesh",
+   "max_triangles": 1500,
+   "matrix": [
+    [
+     0.9397,
+     -0.342,
+     0.0,
+     47.0
+    ],
+    [
+     -0.342,
+     -0.9397,
+     0.0,
+     -24.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     19.6
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true
+  },
+  {
+   "id": "NR3",
+   "label": "Nastro verde · regalo dietro a destra",
+   "group": "Nastri verdi",
+   "file": "stl/P20_Nastro_regalo.stl",
+   "quantity": 1,
+   "print": "regali",
+   "mode": "mesh",
+   "max_triangles": 1500,
+   "matrix": [
+    [
+     0.9962,
+     0.0872,
+     -0.0,
+     69.0
+    ],
+    [
+     0.0872,
+     -0.9962,
+     0.0,
+     30.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     19.6
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true
+  },
+  {
+   "id": "CP",
+   "label": "Cappello del pupazzo",
+   "group": "Cappello e occhi",
+   "file": "stl/P18_Cappello.stl",
+   "quantity": 1,
+   "print": "pupazzo",
+   "mode": "mesh",
+   "max_triangles": 1500,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -51.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     50.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     30.3
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true
+  },
+  {
+   "id": "NS",
+   "label": "Naso del pupazzo (si avvita)",
+   "group": "Naso",
+   "file": "stl/P19_Naso.stl",
+   "quantity": 1,
+   "print": "pupazzo",
+   "mode": "mesh",
+   "max_triangles": 600,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -51.0
+    ],
+    [
+     0.0,
+     0.0,
+     -1.0,
+     45.7193
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     25.8
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true
+  },
+  {
+   "id": "OC1",
+   "label": "Occhio sinistro (a incastro)",
+   "group": "Cappello e occhi",
+   "file": "stl/P21_Occhio.stl",
+   "quantity": 1,
+   "print": "pupazzo",
+   "mode": "mesh",
+   "max_triangles": 600,
+   "matrix": [
+    [
+     0.8273,
+     -0.2378,
+     -0.509,
+     -53.2907
+    ],
+    [
+     -0.2378,
+     0.6727,
+     -0.7006,
+     46.8472
+    ],
+    [
+     0.509,
+     0.7006,
+     0.5,
+     27.55
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true
+  },
+  {
+   "id": "OC2",
+   "label": "Occhio destro (a incastro)",
+   "group": "Cappello e occhi",
+   "file": "stl/P21_Occhio.stl",
+   "quantity": 1,
+   "print": "pupazzo",
+   "mode": "mesh",
+   "max_triangles": 600,
+   "matrix": [
+    [
+     0.8273,
+     0.2378,
+     0.509,
+     -48.7093
+    ],
+    [
+     0.2378,
+     0.6727,
+     -0.7006,
+     46.8472
+    ],
+    [
+     -0.509,
+     0.7006,
+     0.5,
+     27.55
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true
+  },
+  {
+   "id": "PR",
+   "label": "Perno dei regali",
+   "group": "Perni",
+   "file": "stl/P17_Perno_regalo.stl",
+   "quantity": 6,
+   "print": "regali",
+   "mode": "mesh",
+   "max_triangles": 300,
+   "matrix": [
+    [
+     0.9659,
+     -0.2588,
+     0.0,
+     -53.4749
+    ],
+    [
+     0.2588,
+     0.9659,
+     0.0,
+     -30.2866
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     2.2
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "instances": [
+    [
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     4.95,
+     8.573,
+     0.0
+    ],
+    [
+     95.989,
+     4.195,
+     0.0
+    ],
+    [
+     104.961,
+     8.378,
+     0.0
+    ],
+    [
+     119.293,
+     56.495,
+     0.0
+    ],
+    [
+     125.656,
+     64.078,
+     0.0
+    ]
+   ],
+   "cull": true
   },
   {
    "id": "TR",
    "label": "Tronco",
-   "group": "Base e tronco",
+   "group": "Tronco",
    "file": "stl/P06_Tronco.stl",
    "quantity": 1,
    "print": "grandi",
@@ -947,12 +1702,13 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "cull": true
   },
   {
    "id": "CA",
    "label": "Cassetto con serratura",
-   "group": "Base e tronco",
+   "group": "Cassetto",
    "file": "stl/P07_Cassetto.stl",
    "quantity": 1,
    "print": "grandi",
@@ -983,7 +1739,8 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "cull": true
   },
   {
    "id": "N",
@@ -1019,7 +1776,8 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "cull": true
   },
   {
    "id": "S",
@@ -1055,17 +1813,18 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "cull": true
   },
   {
    "id": "G1",
    "label": "Gancio 1",
-   "group": "Palline",
+   "group": "Ganci",
    "file": "stl/P15_Gancio.stl",
    "quantity": 1,
    "print": "filetti",
    "mode": "mesh",
-   "max_triangles": 1200,
+   "max_triangles": 100000,
    "matrix": [
     [
      -0.0,
@@ -1092,6 +1851,9 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P15_Gancio.stl",
+   "smooth": 35,
+   "cull": true,
    "note_html": "Si avvita nel fianco destro della curva alta."
   },
   {
@@ -1102,7 +1864,7 @@
    "quantity": 1,
    "print": "filetti",
    "mode": "mesh",
-   "max_triangles": 2000,
+   "max_triangles": 100000,
    "matrix": [
     [
      -1.0,
@@ -1128,7 +1890,10 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P10_Pallina_sopra.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "PT1",
@@ -1138,7 +1903,7 @@
    "quantity": 1,
    "print": "filetti",
    "mode": "mesh",
-   "max_triangles": 2000,
+   "max_triangles": 100000,
    "matrix": [
     [
      -1.0,
@@ -1164,17 +1929,20 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P14_Pallina_sotto.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "G2",
    "label": "Gancio 2",
-   "group": "Palline",
+   "group": "Ganci",
    "file": "stl/P15_Gancio.stl",
    "quantity": 1,
    "print": "filetti",
    "mode": "mesh",
-   "max_triangles": 1200,
+   "max_triangles": 100000,
    "matrix": [
     [
      -0.0,
@@ -1201,6 +1969,9 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P15_Gancio.stl",
+   "smooth": 35,
+   "cull": true,
    "note_html": "Si avvita nel fianco sinistro della curva di mezzo."
   },
   {
@@ -1211,7 +1982,7 @@
    "quantity": 1,
    "print": "filetti",
    "mode": "mesh",
-   "max_triangles": 2000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -1237,7 +2008,10 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P10_Pallina_sopra.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "PT2",
@@ -1247,7 +2021,7 @@
    "quantity": 1,
    "print": "filetti",
    "mode": "mesh",
-   "max_triangles": 2000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -1273,17 +2047,20 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P14_Pallina_sotto.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "G3",
    "label": "Gancio 3",
-   "group": "Palline",
+   "group": "Ganci",
    "file": "stl/P15_Gancio.stl",
    "quantity": 1,
    "print": "filetti",
    "mode": "mesh",
-   "max_triangles": 1200,
+   "max_triangles": 100000,
    "matrix": [
     [
      -0.0,
@@ -1310,6 +2087,9 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P15_Gancio.stl",
+   "smooth": 35,
+   "cull": true,
    "note_html": "Si avvita nel fianco del fermo d'uscita."
   },
   {
@@ -1320,7 +2100,7 @@
    "quantity": 1,
    "print": "filetti",
    "mode": "mesh",
-   "max_triangles": 2000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -1346,7 +2126,10 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P10_Pallina_sopra.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "PT3",
@@ -1356,7 +2139,7 @@
    "quantity": 1,
    "print": "filetti",
    "mode": "mesh",
-   "max_triangles": 2000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -1382,17 +2165,20 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P14_Pallina_sotto.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "G4",
    "label": "Gancio 4",
-   "group": "Palline",
+   "group": "Ganci",
    "file": "stl/P15_Gancio.stl",
    "quantity": 1,
    "print": "filetti",
    "mode": "mesh",
-   "max_triangles": 1200,
+   "max_triangles": 100000,
    "matrix": [
     [
      -1.0,
@@ -1419,6 +2205,9 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P15_Gancio.stl",
+   "smooth": 35,
+   "cull": true,
    "note_html": "Si avvita nel sotto il ramo basso, a destra."
   },
   {
@@ -1429,7 +2218,7 @@
    "quantity": 1,
    "print": "filetti",
    "mode": "mesh",
-   "max_triangles": 2000,
+   "max_triangles": 100000,
    "matrix": [
     [
      0.0,
@@ -1455,7 +2244,10 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P10_Pallina_sopra.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "PT4",
@@ -1465,7 +2257,7 @@
    "quantity": 1,
    "print": "filetti",
    "mode": "mesh",
-   "max_triangles": 2000,
+   "max_triangles": 100000,
    "matrix": [
     [
      0.0,
@@ -1491,7 +2283,10 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P14_Pallina_sotto.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "C",
@@ -1501,7 +2296,7 @@
    "quantity": 24,
    "print": "capsule",
    "mode": "mesh",
-   "max_triangles": 1500,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -1649,7 +2444,10 @@
      0.0,
      95.789
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P02_Corpo_capsula.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T01",
@@ -1659,7 +2457,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -1685,7 +2483,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_01.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T02",
@@ -1695,7 +2497,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -1721,7 +2523,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_02.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T03",
@@ -1731,7 +2537,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -1757,7 +2563,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_03.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T04",
@@ -1767,7 +2577,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -1793,7 +2603,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_04.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T05",
@@ -1803,7 +2617,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -1829,7 +2643,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_05.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T06",
@@ -1839,7 +2657,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -1865,7 +2683,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_06.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T07",
@@ -1875,7 +2697,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -1901,7 +2723,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_07.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T08",
@@ -1911,7 +2737,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -1937,7 +2763,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_08.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T09",
@@ -1947,7 +2777,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -1973,7 +2803,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_09.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T10",
@@ -1983,7 +2817,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2009,7 +2843,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_10.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T11",
@@ -2019,7 +2857,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2045,7 +2883,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_11.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T12",
@@ -2055,7 +2897,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2081,7 +2923,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_12.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T13",
@@ -2091,7 +2937,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2117,7 +2963,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_13.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T14",
@@ -2127,7 +2977,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2153,7 +3003,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_14.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T15",
@@ -2163,7 +3017,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2189,7 +3043,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_15.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T16",
@@ -2199,7 +3057,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2225,7 +3083,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_16.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T17",
@@ -2235,7 +3097,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2261,7 +3123,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_17.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T18",
@@ -2271,7 +3137,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2297,7 +3163,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_18.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T19",
@@ -2307,7 +3177,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2333,7 +3203,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_19.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T20",
@@ -2343,7 +3217,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2369,7 +3243,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_20.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T21",
@@ -2379,7 +3257,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2405,7 +3283,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_21.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T22",
@@ -2415,7 +3297,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2441,7 +3323,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_22.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T23",
@@ -2451,7 +3337,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2477,7 +3363,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_23.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T24",
@@ -2487,7 +3377,7 @@
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2513,7 +3403,11 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P03_Tappo_24.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "C25",
@@ -2523,7 +3417,7 @@
    "quantity": 1,
    "print": "capsule",
    "mode": "mesh",
-   "max_triangles": 1500,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2549,17 +3443,20 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P04_Corpo_capsula_25.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "T25",
    "label": "Tappo 25",
-   "group": "Capsula 25",
+   "group": "Tappi rossi",
    "file": "stl/P05_Tappo_25.stl",
    "quantity": 1,
    "print": "tappi",
    "mode": "mesh",
-   "max_triangles": 9000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2585,12 +3482,16 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "view_file": "dati/vista/P05_Tappo_25.stl",
+   "view_shared": "dati/vista/tappo_corpo.stl",
+   "smooth": 35,
+   "cull": true
   },
   {
    "id": "K",
    "label": "Chiave",
-   "group": "Capsula 25",
+   "group": "Chiave",
    "file": "stl/P08_Chiave.stl",
    "quantity": 1,
    "print": "piccoli",
@@ -2621,7 +3522,8 @@
      0.0,
      1.0
     ]
-   ]
+   ],
+   "cull": true
   },
   {
    "id": "N01",
@@ -2631,7 +3533,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2658,6 +3560,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_01.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -2668,7 +3572,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2695,6 +3599,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_02.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -2705,7 +3611,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2732,6 +3638,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_03.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -2742,7 +3650,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2769,6 +3677,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_04.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -2779,7 +3689,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2806,6 +3716,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_05.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -2816,7 +3728,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2843,6 +3755,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_06.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -2853,7 +3767,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2880,6 +3794,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_07.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -2890,7 +3806,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2917,6 +3833,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_08.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -2927,7 +3845,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2954,6 +3872,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_09.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -2964,7 +3884,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -2991,6 +3911,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_10.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -3001,7 +3923,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -3028,6 +3950,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_11.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -3038,7 +3962,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -3065,6 +3989,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_12.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -3075,7 +4001,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -3102,6 +4028,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_13.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -3112,7 +4040,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -3139,6 +4067,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_14.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -3149,7 +4079,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -3176,6 +4106,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_15.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -3186,7 +4118,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -3213,6 +4145,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_16.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -3223,7 +4157,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -3250,6 +4184,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_17.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -3260,7 +4196,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -3287,6 +4223,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_18.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -3297,7 +4235,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -3324,6 +4262,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_19.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -3334,7 +4274,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -3361,6 +4301,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_20.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -3371,7 +4313,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -3398,6 +4340,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_21.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -3408,7 +4352,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -3435,6 +4379,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_22.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -3445,7 +4391,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -3472,6 +4418,8 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_23.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
@@ -3482,7 +4430,7 @@
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -3509,17 +4457,19 @@
      1.0
     ]
    ],
+   "view_file": "dati/vista/P16_Numero_24.stl",
+   "cull": true,
    "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   },
   {
    "id": "N25",
    "label": "Numero 25 da inserire",
-   "group": "Numero oro",
+   "group": "Capsula 25",
    "file": "stl/P16_Numero_25.stl",
    "quantity": 1,
    "print": "numeri",
    "mode": "mesh",
-   "max_triangles": 3000,
+   "max_triangles": 100000,
    "matrix": [
     [
      1.0,
@@ -3546,7 +4496,10 @@
      1.0
     ]
    ],
-   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+   "view_file": "dati/vista/P16_Numero_25.stl",
+   "cull": true,
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo.",
+   "color": "#e0b040"
   }
  ]
 }

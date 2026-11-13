@@ -23,7 +23,12 @@ Oppure apri **[guida.html](guida.html)** (offline) per la vista 3D, i passaggi d
 | P10_Pallina_sopra, P14_Pallina_sotto | palline in due metà avvitate | 4 |
 | P15_Gancio | gancio a vite per appendere le palline | 4 |
 | P16_Numero_01…25 | numeri da inserire nel solco dei tappi (facoltativi, altro colore) | 1 ciascuno |
-| P11_Base | base con regali e pupazzo, pezzo unico | 1 |
+| P11_Base | base con il pupazzo e i fori dei regali | 1 |
+| P12_Regalo | regalo con due fori sotto e il solco del nastro (uno verde, due rossi) | 3 |
+| P17_Perno_regalo | perno che ferma il regalo sulla base | 6 |
+| P20_Nastro_regalo | nastro a croce da infilare nel solco del regalo (due verdi, uno rosso) | 3 |
+| P18_Cappello | cappello nero del pupazzo, sul perno in cima alla testa | 1 |
+| P19_Naso, P21_Occhio | naso giallo avvitato (filetto Ø3 passo 1), occhi neri Ø2,4 a incastro | 1 + 2 |
 
 Stampante di riferimento: Anycubic Kobra S1 (piatto 250 × 250). Nessun pezzo richiede supporti.
 

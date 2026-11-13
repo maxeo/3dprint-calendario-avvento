@@ -272,8 +272,8 @@ def cyl_y(r, x, z, y0, y1, name, seg=SEG):
     return o
 
 
-def testo(s, size, depth, name):
-    """Testo pieno (mesh chiusa) centrato in XY, da z = 0 a z = depth."""
+def testo(s, size, depth, name, res=12):
+    """Testo pieno (mesh chiusa) centrato in XY, da z = 0 a z = depth. res: risoluzione delle curve del font."""
     cu = bpy.data.curves.new(name, 'FONT')
     cu.body = s
     try:
@@ -281,6 +281,7 @@ def testo(s, size, depth, name):
     except Exception:
         pass
     cu.size, cu.extrude = size, depth / 2
+    cu.resolution_u = res
     cu.align_x, cu.align_y = 'CENTER', 'CENTER'
     cu.fill_mode = 'BOTH'
     o = bpy.data.objects.new(name, cu)
@@ -295,7 +296,7 @@ def testo(s, size, depth, name):
     return obj_from_bm(bm, name, C_TMP)
 
 
-def numero_inserto(s, size, depth, gioco, name):
+def numero_inserto(s, size, depth, gioco, name, c=None, res=12):
     """Numero da inserire nel solco: stesso testo del solco con il contorno rientrato di `gioco` (anche i buchi
     di 4, 6, 8, 9, 0 si allargano), spessore depth. Il rientro sulla faccia piana resta chiuso; l'offset della curva no."""
     cu = bpy.data.curves.new(name, 'FONT')
@@ -305,6 +306,7 @@ def numero_inserto(s, size, depth, gioco, name):
     except Exception:
         pass
     cu.size = size
+    cu.resolution_u = res
     cu.align_x, cu.align_y = 'CENTER', 'CENTER'
     cu.fill_mode = 'BOTH'
     o = bpy.data.objects.new(name, cu)
@@ -320,7 +322,7 @@ def numero_inserto(s, size, depth, gioco, name):
     ex = bmesh.ops.extrude_face_region(bm, geom=list(bm.faces))
     bmesh.ops.translate(bm, verts=[e for e in ex["geom"] if isinstance(e, bmesh.types.BMVert)], vec=Vector((0, 0, depth)))
     bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
-    return obj_from_bm(bm, name, C_STAMPA)
+    return obj_from_bm(bm, name, c or C_STAMPA)
 
 
 def join_into(target, objs, mat_index=0):
@@ -716,6 +718,43 @@ paint(corpo_p, M_VERDE_CH); paint(corpo_25, M_ROSSO)
 pieces[corpo_p.name] = (corpo_p, Matrix())
 pieces[corpo_25.name] = (corpo_25, Matrix())
 tb = tappo_base(CAP_D)
+# --- viste per la guida (solo il viewer: gli STL di stampa non cambiano) ---
+# Solo le superfici che si vedono, a risoluzione regolare, con il font meno fitto. I tappi sono un corpo comune
+# (fianco e smusso, file unico) più il cielo con il numero inciso, l'unica parte diversa da tappo a tappo.
+V_SEG, V_RES = 48, 5
+viste, comuni = {}, {}
+
+
+def vista_tappo_corpo(dia):
+    r = dia / 2
+    o = lathe([(0, H_TAPPO), (r - 0.6, H_TAPPO), (r, H_TAPPO - 0.6), (r, 0), (0, 0)], "vista_tappo_corpo", C_TMP, seg=V_SEG)
+    bm = bmesh.new(); bm.from_mesh(o.data)       # via il cielo: lo porta ogni tappo con il suo numero
+    bmesh.ops.delete(bm, geom=[f for f in bm.faces if all(v.co.z > H_TAPPO - 1e-3 for v in f.verts)], context='FACES')
+    bm.to_mesh(o.data); bm.free()
+    return o
+
+
+def vista_tappo_cielo(dia, numero):
+    r = dia / 2 - 0.6
+    z0 = H_TAPPO - NUM_H - 0.3
+    o = lathe([(0, z0), (r, z0), (r, H_TAPPO), (0, H_TAPPO)], f"vista_cielo_{numero}", C_TMP, seg=V_SEG)
+    t = testo(str(numero), num_size(dia, numero), NUM_H + 1.0, "num", res=V_RES)
+    t.data.transform(Matrix.Translation((0, 0, H_TAPPO - NUM_H)))
+    boolean(o, t, 'DIFFERENCE')
+    bm = bmesh.new(); bm.from_mesh(o.data)       # restano la faccia del cielo e il solco
+    bmesh.ops.delete(bm, geom=[f for f in bm.faces if any(v.co.z < z0 + 0.15 for v in f.verts)], context='FACES')
+    bm.to_mesh(o.data); bm.free()
+    return o
+
+
+def vista_corpo(dia):
+    r = dia / 2                                  # il collo sta dentro il tappo: basta il cilindro
+    return lathe([(0, 0), (r, 0), (r, CORPO_L), (R_COLLO, CORPO_L), (R_COLLO, CORPO_L + COLLO_L - 0.5),
+                  (0, CORPO_L + COLLO_L - 0.5)], "vista_corpo", C_TMP, seg=V_SEG)
+
+
+viste[corpo_p.name] = vista_corpo(CAP_D)
+viste[corpo_25.name] = vista_corpo(CAP25_D)
 for n, x, zc, d, _ in capsule:
     nm = f"P03_Tappo_{n:02d}" if n < 25 else "P05_Tappo_25"
     o, H = tappo(tb, d, n, nm)
@@ -728,6 +767,11 @@ for n, x, zc, d, _ in capsule:
     ni.data.transform(Matrix.Translation((0, 0, H - NUM_H)))
     ni.data.materials.append(M_ORO if n == 25 else (M_BIANCO if rosso else M_ROSSO))
     pieces[ni.name] = (ni, Matrix.Rotation(math.pi, 4, 'X'))   # capovolto: la faccia a vista sul piatto
+    viste[o.name] = vista_tappo_cielo(d, n)
+    comuni.setdefault("tappo_corpo", (vista_tappo_corpo(d), o.name))
+    vn = numero_inserto(str(n), num_size(d, n), NUM_H, NUM_GIOCO, f"vista_num_{n}", C_TMP, res=V_RES)
+    vn.data.transform(Matrix.Translation((0, 0, H - NUM_H)))
+    viste[ni.name] = vn
     # montaggio: asse lungo Y, tappo davanti (verso -Y)
     rot = Matrix.Rotation(math.pi / 2, 4, 'X')     # +Z -> -Y
     montato(o, None, f"Tappo_{n:02d}", Matrix.Translation((x, Y_CAP + H, zc)) @ rot)
@@ -843,30 +887,51 @@ a_s = math.degrees(math.asin(PB_S / PALLA_R))
 c_in = (PB_RL - PB_CONO_G + PB_S) - PB_W * math.sqrt(2)          # cono interno a PB_W dal cono esterno
 z_m = incontro_45(c_in)
 a_m = math.degrees(math.asin(z_m / PB_RI))
-pal_sotto = lathe([(0, -PALLA_R)] + arco_rz(PALLA_R, -88, a_s)[1:] +
-                  [(PB_RL - PB_CONO_G, PB_S), (PB_RC, PB_Z0), (PB_RC, PB_ZC), (PB_BORE, PB_ZC), (PB_BORE, c_in - PB_BORE),
-                   (c_in - z_m, z_m)] + arco_rz(PB_RI, a_m, -88)[1:] + [(0, -PB_RI)],
-                  "P14_Pallina_sotto", C_STAMPA, seg=96)
-boolean(pal_sotto, filetto(PB_RC - 0.2, PB_H + 0.2, PB_Z0 + 0.3, PB_ZC - 0.5, PB_BORE + 0.6, PB_PASSO, seg=96), 'UNION')
-# metà sopra («madrevite»): bordo piano sul giunto, svasatura a 45°, anello filettato, poi la cupola vuota
 a_r = math.degrees(math.asin(PB_ZR / PB_RI))
-pal_sopra = lathe([(PB_RL, PB_S)] + arco_rz(PALLA_R, a_s, 88) + [(0, PALLA_R), (0, PB_RI)] +
-                  arco_rz(PB_RI, 88, a_r)[1:] + [(PB_RF, PB_ZR), (PB_RF, PB_Z0)],
-                  "P10_Pallina_sopra", C_STAMPA, seg=96)
-boolean(pal_sopra, filetto(PB_RF - 0.2, PB_H + 0.2, PB_Z0 - 0.3, PB_ZR - 0.2, PB_RF - 1.0, PB_PASSO, seg=96), 'DIFFERENCE')
-occh = cyl(OCCH[0], -OCCH[2] / 2, OCCH[2] / 2, "occh", seg=48)
-boolean(occh, cyl(OCCH[1], -OCCH[2] / 2 - 1, OCCH[2] / 2 + 1, "occh_f", seg=48), 'DIFFERENCE')
-occh.data.transform(Matrix.Translation((0, 0, OCCH[3])) @ Matrix.Rotation(math.pi / 2, 4, 'Y'))   # foro lungo X
-boolean(pal_sopra, occh, 'UNION')
-paint(pal_sotto, M_ROSSO); paint(pal_sopra, M_ROSSO)
+
+
+def occhiello(seg):
+    oc = cyl(OCCH[0], -OCCH[2] / 2, OCCH[2] / 2, "occh", seg=seg)
+    boolean(oc, cyl(OCCH[1], -OCCH[2] / 2 - 1, OCCH[2] / 2 + 1, "occh_f", seg=seg), 'DIFFERENCE')
+    oc.data.transform(Matrix.Translation((0, 0, OCCH[3])) @ Matrix.Rotation(math.pi / 2, 4, 'Y'))   # foro lungo X
+    return oc
+
+
+def pallina_meta(sopra, name, c, seg, step, seg_occh):
+    """Metà della pallina, come si stampa."""
+    if sopra:   # «madrevite»: bordo piano sul giunto, svasatura a 45°, anello filettato, poi la cupola vuota
+        o = lathe([(PB_RL, PB_S)] + arco_rz(PALLA_R, a_s, 88, step) + [(0, PALLA_R), (0, PB_RI)] +
+                  arco_rz(PB_RI, 88, a_r, step)[1:] + [(PB_RF, PB_ZR), (PB_RF, PB_Z0)], name, c, seg=seg)
+        boolean(o, filetto(PB_RF - 0.2, PB_H + 0.2, PB_Z0 - 0.3, PB_ZR - 0.2, PB_RF - 1.0, PB_PASSO, seg=seg), 'DIFFERENCE')
+        boolean(o, occhiello(seg_occh), 'UNION')
+    else:       # «vite»: calotta dal polo al giunto, bordo, cono a 45°, collare filettato forato; dentro cono parallelo
+        o = lathe([(0, -PALLA_R)] + arco_rz(PALLA_R, -88, a_s, step)[1:] +
+                  [(PB_RL - PB_CONO_G, PB_S), (PB_RC, PB_Z0), (PB_RC, PB_ZC), (PB_BORE, PB_ZC), (PB_BORE, c_in - PB_BORE),
+                   (c_in - z_m, z_m)] + arco_rz(PB_RI, a_m, -88, step)[1:] + [(0, -PB_RI)], name, c, seg=seg)
+        boolean(o, filetto(PB_RC - 0.2, PB_H + 0.2, PB_Z0 + 0.3, PB_ZC - 0.5, PB_BORE + 0.6, PB_PASSO, seg=seg), 'UNION')
+    paint(o, M_ROSSO)
+    return o
+
+
+pal_sotto = pallina_meta(False, "P14_Pallina_sotto", C_STAMPA, 96, 3.0, 48)
+pal_sopra = pallina_meta(True, "P10_Pallina_sopra", C_STAMPA, 96, 3.0, 48)
+# viste: da fuori la pallina è una sfera; ogni metà è una calotta chiusa dal disco del giunto (più l'occhiello)
+r_g = math.sqrt(PALLA_R ** 2 - PB_S ** 2)
+viste[pal_sotto.name] = lathe([(0, -PALLA_R)] + arco_rz(PALLA_R, -88, a_s, 7.5)[1:] + [(r_g, PB_S), (0, PB_S)],
+                              "vista_sotto", C_TMP, seg=32)
+viste[pal_sopra.name] = lathe([(0, PB_S), (r_g, PB_S)] + arco_rz(PALLA_R, a_s, 88, 7.5)[1:] + [(0, PALLA_R)],
+                              "vista_sopra", C_TMP, seg=32)
+boolean(viste[pal_sopra.name], occhiello(16), 'UNION')
 pieces[pal_sopra.name] = (pal_sopra, Matrix())                                       # giunto sul piatto
 pieces[pal_sotto.name] = (pal_sotto, Matrix.Rotation(math.pi, 4, 'X'))               # capovolta, collare sul piatto
 
 # gancio a vite: perno filettato (nel nastro), collarino, piolo con gola dove si appoggia l'occhiello
 G_GOLA = (1.5, 2.0, -4.0, -9.3)                    # raggio della gola, raggio del piolo, inizio e fine della gola
-gancio = lathe([(0, -12.0), (1.4, -12.0), (2.0, -11.4), (2.0, G_GOLA[3] - 0.5), (G_GOLA[0], G_GOLA[3]),
-                (G_GOLA[0], G_GOLA[2]), (2.0, G_GOLA[2] + 0.5), (4.5, -1.0), (4.5, 0.0), (PAL_R, 0.0),
-                (PAL_R, PAL_PERNO), (0, PAL_PERNO)], "P15_Gancio", C_STAMPA, seg=48)
+G_PROF = [(0, -12.0), (1.4, -12.0), (2.0, -11.4), (2.0, G_GOLA[3] - 0.5), (G_GOLA[0], G_GOLA[3]),
+          (G_GOLA[0], G_GOLA[2]), (2.0, G_GOLA[2] + 0.5), (4.5, -1.0), (4.5, 0.0), (PAL_R, 0.0),
+          (PAL_R, PAL_PERNO), (0, PAL_PERNO)]
+gancio = lathe(G_PROF, "P15_Gancio", C_STAMPA, seg=48)
+viste[gancio.name] = lathe(G_PROF, "vista_gancio", C_TMP, seg=24)     # il perno filettato sta dentro il nastro
 boolean(gancio, filetto(PAL_R - 0.2, PAL_H + 0.2, 0.4, PAL_PERNO - 0.3, 1.0, PAL_PASSO, seg=48), 'UNION')
 paint(gancio, M_ORO)
 pieces[gancio.name] = (gancio, Matrix())                                             # punta del piolo sul piatto
@@ -895,39 +960,157 @@ for x in (-12.0, 12.0):
     boolean(base, p, 'UNION')
 paint(base, M_NEVE)
 pieces[base.name] = (base, Matrix())
-montato(base, None, "Base")
 
 
-# regalo: cubo con nastri in rilievo
-def regalo(L, name):
-    o = box(-L / 2, -L / 2, 0, L / 2, L / 2, L, name, C_TMP)
-    n1 = box(-L / 2 - 0.6, -1.5, -0.0, L / 2 + 0.6, 1.5, L + 0.6, "n1")
-    n2 = box(-1.5, -L / 2 - 0.6, 0.0, 1.5, L / 2 + 0.6, L + 0.6, "n2")
-    boolean(o, n1, 'UNION'); boolean(o, n2, 'UNION')
+# regalo: cubo con un solco a croce (fianchi e cielo) in cui si infila dall'alto il nastro, stampato a parte
+NA_W, NA_P, NA_S, NA_G = 3.0, 0.8, 0.6, 0.15     # nastro: larghezza, profondità del solco, sporgenza, gioco laterale
+
+
+def croce(L, w, fuori, dentro, z_core, z0, name):
+    """Due fasce larghe w che avvolgono il cubo L fino a `fuori` dal fianco, svuotate fino a `dentro` dal fianco."""
+    a = box(-L / 2 - fuori, -w / 2, z0, L / 2 + fuori, w / 2, L + fuori, "c1")
+    b = box(-w / 2, -L / 2 - fuori, z0, w / 2, L / 2 + fuori, L + fuori, "c2")
+    boolean(a, b, 'UNION')
+    boolean(a, box(-L / 2 + dentro, -L / 2 + dentro, -2, L / 2 - dentro, L / 2 - dentro, z_core, "core"), 'DIFFERENCE')
+    a.name = name
+    return a
+
+
+def regalo(L, name, c=None):
+    o = box(-L / 2, -L / 2, 0, L / 2, L / 2, L, name, c or C_TMP)
+    boolean(o, croce(L, NA_W + 2 * NA_G, 1.0, NA_P, L - NA_P, -1, "solco"), 'DIFFERENCE')
     return o
 
 
-# pupazzo di neve
-pup_prof = [(0, 0), (7.2, 0)] + [(9 * math.cos(math.radians(a)), 7.5 + 9 * math.sin(math.radians(a))) for a in np.linspace(-53, 50, 25)] + \
-           [(6.5 * math.cos(math.radians(a)), 20.5 + 6.5 * math.sin(math.radians(a))) for a in np.linspace(-45, 50, 20)][1:] + \
-           [(4.5, 25.5), (4.5, 26.5), (3.2, 26.5), (3.2, 32.0), (0, 32.0)]     # cappello a cilindro nello stesso profilo
-pup = lathe(pup_prof, "pupazzo", C_TMP, seg=64)
-naso = cyl(0.9, 0, 6.5, "naso", seg=16); naso.data.transform(Matrix.Translation((0, -4.0, 21.0)) @ Matrix.Rotation(math.pi / 2, 4, 'X'))
-boolean(pup, naso, 'UNION')
+def nastro_regalo(L, name):
+    n = croce(L, NA_W, NA_S, NA_P - 0.05, L - NA_P + 0.05, 0, name)    # 0,05 d'aria sul fondo del solco
+    C_TMP.objects.unlink(n); C_STAMPA.objects.link(n)
+    return n
 
-# la base è un pezzo unico con regali e pupazzo: affondano 0,2 mm nella base, lo slicer li unisce
+
+# pupazzo di neve: testa piatta in cima con un perno per il cappello (a parte, nero), foro per il naso (a parte, giallo)
+PUP_TESTA = 25.5                                   # quota del taglio piatto della testa
+CAP_PERNO, CAP_FORO = (3.0, 2.0), (3.2, 2.2)       # perno sulla testa e foro nel cappello: diametro, altezza
+# naso e occhi si avvitano nella testa: filetto Ø3 passo 1 (dente 0,4, gioco radiale 0,2), il più piccolo che viene
+# con l'ugello 0,4. Testa: centro a 20,5, raggio 6,5. Le direzioni tengono le madreviti separate e gli occhi sotto la tesa.
+PF_D, PF_P, PF_H, PF_G = 3.0, 1.0, 0.4, 0.2        # cresta del maschio, passo, dente, gioco radiale
+TESTA_C, TESTA_R = 20.5, 6.5
+NASO = (2.2, 2.4, 1.8, 4.5)                        # codolo, foro, raggio della base della carota, lunghezza della carota
+NASO_Z = 21.0                                      # quota del naso (dritto in avanti)
+OCCHI = (2.0, 2.2, 1.2, 36, 30)                    # codolo, profondità del foro, raggio del bottone, angolo di lato, in alto
+OCCHI_D = 1.7                                      # occhi a incastro a forza: codolo e foro uguali (i fori piccoli escono stretti)
+r_t = math.sqrt(6.5 ** 2 - (PUP_TESTA - 20.5) ** 2)
+pup_prof = [(0, 0), (7.2, 0)] + [(9 * math.cos(math.radians(a)), 7.5 + 9 * math.sin(math.radians(a))) for a in np.linspace(-53, 50, 40)] + \
+           [(6.5 * math.cos(math.radians(a)), 20.5 + 6.5 * math.sin(math.radians(a))) for a in np.linspace(-45, 50, 32)][1:-1] + \
+           [(r_t, PUP_TESTA), (CAP_PERNO[0] / 2, PUP_TESTA), (CAP_PERNO[0] / 2, PUP_TESTA + CAP_PERNO[1]), (0, PUP_TESTA + CAP_PERNO[1])]
+pup = lathe(pup_prof, "pupazzo", C_TMP, seg=96)
+
+
+def asse_testa(d, prof):
+    """Riferimento con +Z verso fuori lungo d e origine a `prof` sotto la superficie della testa."""
+    d = Vector(d).normalized()
+    c = Vector((0, 0, TESTA_C))
+    if abs(d.y + 1) < 1e-9:                         # naso: dritto in avanti, il punto è a NASO_Z
+        p = Vector((0, -math.sqrt(TESTA_R ** 2 - (NASO_Z - TESTA_C) ** 2), NASO_Z))
+    else:
+        p = c + d * TESTA_R
+    return Matrix.Translation(p - d * prof) @ Vector((0, 0, 1)).rotation_difference(d).to_matrix().to_4x4()
+
+
+def madrevite(prof, M):
+    """Foro filettato profondo prof (dalla superficie verso dentro), per il maschio PF_*."""
+    rf = PF_D / 2 - PF_H + PF_G                     # cresta della femmina = nocciolo del maschio + gioco
+    f = cyl(rf, 0, prof + 1.5, "fb", seg=32)
+    boolean(f, filetto(rf - 0.2, PF_H + 0.2, 0, prof + 1.5, 0.3, PF_P, seg=32), 'UNION')
+    f.data.transform(M)
+    return f
+
+
+def vite_codolo(lung, testa_prof, name):
+    """Codolo filettato da z = 0 (punta) a z = lung, poi la testa (profilo lathe sopra lung)."""
+    r0 = PF_D / 2 - PF_H                            # nocciolo del maschio
+    o = lathe([(0, 0), (r0, 0)] + [(r, lung + z) for r, z in testa_prof] + [(0, lung + testa_prof[-1][1])], name, C_STAMPA, seg=32)
+    boolean(o, filetto(r0 - 0.2, PF_H + 0.2, 0.3, lung - 0.2, max(0.3, r0 - 0.8), PF_P, seg=32), 'UNION')
+    return o
+
+
+d_naso = (0, -1, 0)
+a_o, e_o = math.radians(OCCHI[3]), math.radians(OCCHI[4])
+d_occhi = [(sx * math.cos(e_o) * math.sin(a_o), -math.cos(e_o) * math.cos(a_o), math.sin(e_o)) for sx in (-1, 1)]
+# ogni foro arriva alla profondità indicata e sbuca 1,5 fuori dalla testa
+fori_occhi = []
+for d in d_occhi:
+    f = cyl(OCCHI_D / 2, 0, OCCHI[1] + 1.5, "fo", seg=24)
+    f.data.transform(asse_testa(d, OCCHI[1]))
+    fori_occhi.append(f)
+for f in [madrevite(NASO[1], asse_testa(d_naso, NASO[1]))] + fori_occhi:
+    boolean(pup, f, 'DIFFERENCE')
+cappello = lathe([(CAP_FORO[0] / 2, 0), (4.5, 0), (4.5, 1.0), (3.2, 1.0), (3.2, 6.5), (0, 6.5), (0, CAP_FORO[1]),
+                  (CAP_FORO[0] / 2, CAP_FORO[1])], "P18_Cappello", C_STAMPA, seg=48)
+paint(cappello, mat("Nero", (0.02, 0.02, 0.02)))
+pieces[cappello.name] = (cappello, Matrix())                         # tesa sul piatto, foro in basso
+r0_v = PF_D / 2 - PF_H
+naso = vite_codolo(NASO[0], [(r0_v, 0), (NASO[2], 0), (0.3, NASO[3])], "P19_Naso")
+paint(naso, M_ORO)
+pieces[naso.name] = (naso, Matrix())                                 # in piedi sul codolo (brim consigliato)
+cupola = [(OCCHI[2] * math.cos(math.radians(a)), 0.3 + 0.5 * math.sin(math.radians(a))) for a in range(0, 90, 15)]
+occhio = lathe([(0, 0), (OCCHI_D / 2 - 0.15, 0), (OCCHI_D / 2, 0.15)] + [(r, OCCHI[0] + z) for r, z in [(OCCHI_D / 2, 0), (OCCHI[2], 0)] + cupola] +
+               [(0, OCCHI[0] + 0.3 + 0.5)], "P21_Occhio", C_STAMPA, seg=24)   # punta smussata per entrare
+paint(occhio, mat("Nero", (0.02, 0.02, 0.02)))
+pieces[occhio.name] = (occhio, Matrix())                             # in piedi sul codolo, cupola in alto
+
+# regali a parte (si stampano nel loro colore: davanti a destra verde, gli altri due rossi), ognuno fermato da
+# due perni in diagonale in fori ciechi del regalo e della base: si centra e non ruota
+REG_L = 14.0
+REG_POS = ((-50, -26, 15), (48, -24, -20), (70, 30, 5))       # x (dal tronco), y, rotazione; il secondo è il verde (REG_VERDE)
+REG_VERDE = 1                                                 # davanti a destra
+REG_PERNI = ((-3.5, -3.5), (3.5, 3.5))                      # posizione dei perni nel riferimento del regalo
+REG_FORO = (DIAM_FORO, 3.0)                                  # fori nel regalo e nella base: diametro, profondità
+REG_PERNO = (PERNO_D, 2 * REG_FORO[1] - 0.4)                 # perno: 0,2 d'aria in fondo a ciascun foro
+def foro_regalo(z0, z1, M):
+    f = cyl(REG_FORO[0] / 2, z0, z1, "f", seg=32)
+    f.data.transform(M)
+    return f
+
+
+reg = regalo(REG_L, "P12_Regalo", C_STAMPA)
+boolean(reg, merge([foro_regalo(-1, REG_FORO[1], Matrix.Translation((px, py, 0))) for px, py in REG_PERNI],
+                   "fori_regalo", C_TMP), 'DIFFERENCE')
+paint(reg, M_ROSSO)
+pieces[reg.name] = (reg, Matrix())                                   # fondo forato sul piatto
+M_reg = [Matrix.Translation((TR_X + x, y, BASE[2])) @ Matrix.Rotation(math.radians(rz), 4, 'Z') for x, y, rz in REG_POS]
+boolean(base, merge([foro_regalo(-REG_FORO[1], 1, M @ Matrix.Translation((px, py, 0))) for M in M_reg for px, py in REG_PERNI],
+                    "fori_base", C_TMP), 'DIFFERENCE')
+r_p, l_p = REG_PERNO[0] / 2, REG_PERNO[1]
+perno_reg = lathe([(0, 0), (r_p - 0.3, 0), (r_p, 0.3), (r_p, l_p - 0.3), (r_p - 0.3, l_p), (0, l_p)],
+                  "P17_Perno_regalo", C_STAMPA, seg=32)
+paint(perno_reg, M_NEVE)
+pieces[perno_reg.name] = (perno_reg, Matrix())
+nastro_r = nastro_regalo(REG_L, "P20_Nastro_regalo")
+paint(nastro_r, M_VERDE_CH)
+pieces[nastro_r.name] = (nastro_r, Matrix.Rotation(math.pi, 4, 'X'))   # capovolto: la croce sul piatto, gambe in alto
+for i, M in enumerate(M_reg):
+    d = montato(reg, None, f"Regalo_{i}", M)
+    if i == REG_VERDE:                             # stesso STL, ma questo si stampa verde
+        d.material_slots[0].link = 'OBJECT'
+        d.material_slots[0].material = M_VERDE_CH
+    d = montato(nastro_r, None, f"Nastro_regalo_{i}", M)
+    if i == REG_VERDE:                             # sul regalo verde il nastro è rosso, sugli altri verde
+        d.material_slots[0].link = 'OBJECT'
+        d.material_slots[0].material = M_ROSSO
+    for k, (px, py) in enumerate(REG_PERNI):
+        montato(perno_reg, None, f"Perno_regalo_{i}_{k}", M @ Matrix.Translation((px, py, -REG_FORO[1] + 0.2)))
+
+# il pupazzo resta unito alla base: affonda 0,2 mm, lo slicer lo unisce (bianco come la base)
 AFFONDO = 0.2
-decori = []
-reg = regalo(14.0, "regalo")
-for i, (x, y, rz) in enumerate(((-50, -26, 15), (48, -24, -20), (70, 30, 5))):
-    o = bpy.data.objects.new("r", reg.data.copy()); C_TMP.objects.link(o)
-    o.matrix_world = Matrix.Translation((TR_X + x, y, BASE[2] - AFFONDO)) @ Matrix.Rotation(math.radians(rz), 4, 'Z')
-    decori.append(o)
-bpy.data.objects.remove(reg)
 pup.matrix_world = Matrix.Translation((TR_X - 50, 50, BASE[2] - AFFONDO))
-join_into(base, decori, 1)                         # regali rossi
-join_into(base, [pup], 0)                          # pupazzo bianco come la neve
-base.data.materials.append(M_ROSSO)
+join_into(base, [pup], 0)
+montato(base, None, "Base")
+M_pup = Matrix.Translation((TR_X - 50, 50, BASE[2] - AFFONDO))
+montato(cappello, None, "Cappello", M_pup @ Matrix.Translation((0, 0, PUP_TESTA)))
+montato(naso, None, "Naso", M_pup @ asse_testa(d_naso, NASO[0]))
+for k, d in enumerate(d_occhi):
+    montato(occhio, None, f"Occhio_{k}", M_pup @ asse_testa(d, OCCHI[0]))
 
 # ===========================================================================
 # Controlli
@@ -980,6 +1163,13 @@ cz["mappa_chiave_vs_fessura_mm"] = [CH_MAPPA, FESSURA[1], CH_S, FESSURA[0]]
 cz["mappa_trattenuta_ruotata"] = CH_MAPPA > FESSURA[0] + 2
 cz["gioco_cassetto_mm"] = CASS_GIOCO
 cz["perni_fori_mm"] = [PERNO_D, DIAM_FORO]
+cz["regali_mm"] = {"foro": list(REG_FORO), "perno": [PERNO_D, round(REG_PERNO[1], 2)], "fondo_sotto_foro_base": round(BASE[2] - REG_FORO[1], 2),
+                   "aria_in_fondo_ai_fori": round((2 * REG_FORO[1] - REG_PERNO[1]) / 2, 2)}
+cz["nastro_regalo_mm"] = {"larghezza": NA_W, "solco": [NA_W + 2 * NA_G, NA_P], "sporgenza": NA_S, "spessore": round(NA_P - 0.05 + NA_S, 2)}
+cz["pupazzo_mm"] = {"perno_cappello": list(CAP_PERNO), "foro_cappello": list(CAP_FORO),
+                    "filetto_viso": {"diametro": PF_D, "passo": PF_P, "dente": PF_H, "gioco_radiale": PF_G},
+                    "naso": {"codolo": NASO[0], "foro": NASO[1], "base_d": 2 * NASO[2], "carota": NASO[3]},
+                    "occhi": {"codolo": [OCCHI_D, OCCHI[0]], "foro": [OCCHI_D, OCCHI[1]], "bottone_d": 2 * OCCHI[2], "angoli": [OCCHI[3], OCCHI[4]]}}
 
 # --- pose di stampa, controlli per pezzo, STL ---------------------------------
 for n, (o, mp) in pieces.items():
@@ -1000,6 +1190,12 @@ for n, (o, mp) in pieces.items():
     if SCRIVI:
         os.makedirs(STL, exist_ok=True)
         write_stl(o, mp, os.path.join(STL, n + ".stl"))
+        os.makedirs(os.path.join(ROOT, "dati", "vista"), exist_ok=True)
+        if n in viste:   # mesh solo per la vista della guida, nella stessa posa del file di stampa
+            write_stl(viste[n], mp, os.path.join(ROOT, "dati", "vista", n + ".stl"))
+        for cn, (ov, pn) in comuni.items():     # mesh comuni a più pezzi, nella posa del primo che la usa
+            if pn == n:
+                write_stl(ov, mp, os.path.join(ROOT, "dati", "vista", cn + ".stl"))
     o.matrix_world = saved
 p = geo["pezzi"]["P01_Nastro"]["size"]
 cz["nastro_sta_sul_piatto_250"] = p[0] <= 250 and p[1] <= 250 and p[2] <= 250

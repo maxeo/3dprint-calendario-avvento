@@ -82,6 +82,35 @@ facoltativi `P16_Numero_01…25` (`numero_inserto()`: rientro 0,1 con `inset_reg
 curva FONT dava spigoli aperti), stampati capovolti. Repo `maxeo/3dprint-calendario-avvento` pubblico; guida
 pubblicata su 3dprint-guide (`calendario-avvento`). La guida ha `guida_stl.js` (STL compressi) per lo zip della selezione.
 
+**Viewer della guida alleggerito (2026-11-13, sera):** solo la vista, gli STL di stampa sono identici.
+`costruisci.py` scrive in `dati/vista/` mesh con le sole superfici visibili (`viste`, `comuni`): palline = calotte
+sferiche chiuse dal disco del giunto (+ occhiello), ganci e capsule senza filetto, tappi = cielo con il numero
+inciso (`vista_tappo_cielo`) + corpo comune `tappo_corpo.stl` (`vista_tappo_corpo`), numeri con il font a
+`resolution_u` 5 (`V_RES`). `scrivi_spec.py` le passa con `view_file`, `view_shared` (corpo dei tappi), `smooth` 35
+e `cull` (tutte le mesh chiuse, anche nastro e base). Opzioni nuove della skill guida-stampa-3d (template +
+`build_guide.py` + `references/spec.md`; copia dei file originali nello scratchpad della sessione). Risultato:
+triangoli 296k → 86k, guida 6,8 → 1,9 MB, un fotogramma ~80 → ~34 ms (Chrome headless, canvas 862 × 520).
+Isolato, un pezzo con vista leggera si mostra con lo STL di stampa (`full`, decompresso da `guida_stl.js`).
+Gruppi della guida: base bianca, tronco marrone, chiave e ganci gialli, tappo 25 tra i «Tappi rossi», N25 oro
+nel gruppo «Capsula 25» con il suo corpo. Sigle spente all'apertura (`"labels": False`).
+
+**Regali staccati dalla base (2026-11-13, sera):** come nel taglio fatto dall'utente nello slicer (base.3mf con
+6 connettori). `P12_Regalo` (3 copie: davanti a destra verde, `REG_VERDE`, gli altri rossi; `REG_POS`), due fori Ø3,6 × 3
+sotto ogni regalo e nella base (`REG_PERNI` in diagonale), `P17_Perno_regalo` Ø3,4 × 5,6 (6 copie). Il pupazzo
+resta unito alla base. Nella guida: R1–R3, PR e il passaggio «Regali sulla base».
+Poi (stessa sera): verde spostato davanti a destra (`REG_VERDE = 1`). Nastri a croce `P20_Nastro_regalo` (3, si
+infilano dall'alto nel solco 3,3 × 0,8 del regalo, sporgono 0,6; verdi sui regali rossi, rosso sul verde; colore per
+oggetto in Blender con `material_slots[0].link = 'OBJECT'`). Pupazzo: testa piatta a 25,5 con perno Ø3 per
+`P18_Cappello` (nero); `P19_Naso` (giallo) e 2 × `P21_Occhio` (neri, bottone) avvitati: filetto Ø3 passo 1 dente 0,4
+gioco 0,2 (`PF_*`, `madrevite()`, `vite_codolo()`, `asse_testa()`); occhi a 48° di lato e 26° in alto, fori 2,2 e
+naso 2,4: calcolato che le madreviti non si toccano e gli occhi stanno sotto la tesa. Cassetto rosso anche nella guida.
+I fori della testa vanno tagliati uno per volta e cilindro + filetto uniti con un booleano: fusi con `merge` il
+booleano svuotava il pupazzo.
+Occhi rifatti più piccoli su richiesta: a incastro a forza (`OCCHI_D` 1,7 codolo = foro), bottone Ø2,4, a 36° di
+lato e 30° in alto; solo il naso è avvitato. Pupazzo a 96 spicchi; nella guida la base non si decima (20000) e ha
+`smooth` 35.
+Rigenerare con Blender riscrive i `P16_Numero_*` con lo stesso contenuto in ordine diverso: `git checkout -- stl/`.
+
 ## Cosa ha funzionato
 
 - ffmpeg: `%LOCALAPPDATA%\Microsoft\WinGet\Links`; mosaico `ffmpeg -i <video> -vf "fps=2,scale=360:-1,tile=8x4" tile_%d.png`.
