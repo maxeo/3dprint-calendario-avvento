@@ -21,7 +21,7 @@
    },
    {
     "value": "25 bussolotti",
-    "label": "Ø20 × 48,2 mm, tappo a vite"
+    "label": "Ø20 × 47,6 mm, tappo a vite"
    },
    {
     "value": "≈ 913 g",
@@ -58,6 +58,15 @@
    "color": "#c0392b"
   },
   "Stella": {
+   "color": "#e0b040"
+  },
+  "Numeri rossi": {
+   "color": "#a8241c"
+  },
+  "Numeri bianchi": {
+   "color": "#f4f2ec"
+  },
+  "Numero oro": {
    "color": "#e0b040"
   }
  },
@@ -246,7 +255,7 @@
   {
    "title": "Riempi e carica i bussolotti",
    "short": "dall'ingresso in alto · prima la 1",
-   "text": "Riempi i corpi (bocca Ø12,8, interno lungo 44,4 mm: cioccolatini piccoli, caramelle, un biglietto) e avvita i tappi. Carica dall'ingresso in alto a sinistra, coricati e con il tappo davanti: <b>prima la 1</b>, che rotola fino al fermo in basso, poi la 2, la 3… fino alla 24. Ognuno spinge e scende dietro al precedente.",
+   "text": "Riempi i corpi (bocca Ø12,8, interno lungo 44,4 mm: cioccolatini piccoli, caramelle, un biglietto) e avvita i tappi. Se hai stampato i numeri da inserire, premili a filo nel solco del tappo (rossi nei tappi bianchi, bianchi nei rossi; una goccia di colla se sono lenti). Carica dall'ingresso in alto a sinistra, coricati e con il tappo davanti: <b>prima la 1</b>, che rotola fino al fermo in basso, poi la 2, la 3… fino alla 24. Ognuno spinge e scende dietro al precedente.",
    "parts": [
     "C",
     "T01",
@@ -272,7 +281,31 @@
     "T21",
     "T22",
     "T23",
-    "T24"
+    "T24",
+    "N01",
+    "N02",
+    "N03",
+    "N04",
+    "N05",
+    "N06",
+    "N07",
+    "N08",
+    "N09",
+    "N10",
+    "N11",
+    "N12",
+    "N13",
+    "N14",
+    "N15",
+    "N16",
+    "N17",
+    "N18",
+    "N19",
+    "N20",
+    "N21",
+    "N22",
+    "N23",
+    "N24"
    ],
    "built": [
     "B",
@@ -316,7 +349,31 @@
     "T21",
     "T22",
     "T23",
-    "T24"
+    "T24",
+    "N01",
+    "N02",
+    "N03",
+    "N04",
+    "N05",
+    "N06",
+    "N07",
+    "N08",
+    "N09",
+    "N10",
+    "N11",
+    "N12",
+    "N13",
+    "N14",
+    "N15",
+    "N16",
+    "N17",
+    "N18",
+    "N19",
+    "N20",
+    "N21",
+    "N22",
+    "N23",
+    "N24"
    ],
    "moving": [
     "C",
@@ -343,7 +400,31 @@
     "T21",
     "T22",
     "T23",
-    "T24"
+    "T24",
+    "N01",
+    "N02",
+    "N03",
+    "N04",
+    "N05",
+    "N06",
+    "N07",
+    "N08",
+    "N09",
+    "N10",
+    "N11",
+    "N12",
+    "N13",
+    "N14",
+    "N15",
+    "N16",
+    "N17",
+    "N18",
+    "N19",
+    "N20",
+    "N21",
+    "N22",
+    "N23",
+    "N24"
    ],
    "dir": [
     0,
@@ -355,10 +436,11 @@
   {
    "title": "Per ultima la 25",
    "short": "con la chiave",
-   "text": "Metti la chiave nel bussolotto rosso 25 (la chiave è lunga 21,9 mm), avvita il tappo con il numero d'oro e caricalo per ultimo: resta all'ingresso, sotto la stella.",
+   "text": "Metti la chiave nel bussolotto rosso 25 (la chiave è lunga 21,9 mm), avvita il tappo rosso con il 25 e caricalo per ultimo: resta all'ingresso, sotto la stella.",
    "parts": [
     "C25",
-    "T25"
+    "T25",
+    "N25"
    ],
    "built": [
     "B",
@@ -404,11 +486,37 @@
     "T23",
     "T24",
     "C25",
-    "T25"
+    "T25",
+    "N01",
+    "N02",
+    "N03",
+    "N04",
+    "N05",
+    "N06",
+    "N07",
+    "N08",
+    "N09",
+    "N10",
+    "N11",
+    "N12",
+    "N13",
+    "N14",
+    "N15",
+    "N16",
+    "N17",
+    "N18",
+    "N19",
+    "N20",
+    "N21",
+    "N22",
+    "N23",
+    "N24",
+    "N25"
    ],
    "moving": [
     "C25",
-    "T25"
+    "T25",
+    "N25"
    ],
    "dir": [
     0,
@@ -472,7 +580,32 @@
     "T24",
     "C25",
     "T25",
-    "K"
+    "K",
+    "N01",
+    "N02",
+    "N03",
+    "N04",
+    "N05",
+    "N06",
+    "N07",
+    "N08",
+    "N09",
+    "N10",
+    "N11",
+    "N12",
+    "N13",
+    "N14",
+    "N15",
+    "N16",
+    "N17",
+    "N18",
+    "N19",
+    "N20",
+    "N21",
+    "N22",
+    "N23",
+    "N24",
+    "N25"
    ]
   }
  ],
@@ -616,19 +749,47 @@
     "rows": [
      [
       "Layer",
-      "0,16 (0,20 l'ultimo strato)"
+      "0,16"
      ],
      [
       "Orientamento",
       "bocca sul piatto, numero in alto"
      ],
      [
-      "Cambio colore",
-      "a 7,6 mm (inizio del numero)"
+      "Colore",
+      "uno solo: bianco, rosso per 5, 10, 15, 20 e 25"
      ]
     ],
-    "why": "Il numero è in rilievo di 0,6 mm sul cielo. Con una pausa a 7,6 mm il numero esce in un altro colore: rosso sui tappi bianchi, bianco sui tappi rossi (5, 10, 15, 20), oro sul 25. La parete del tappo attorno al filetto è 1,3 mm: almeno 3 perimetri.",
-    "summary": "cambio colore a 7,6 mm"
+    "why": "Il numero è inciso 0,8 mm nel cielo del tappo (sotto restano 0,8 mm): niente cambi filamento, si legge per l'ombra del solco. Se lo vuoi colorato, ripassa il solco con un pennarello indelebile e pulisci la superficie. La parete del tappo attorno al filetto è 1,3 mm: almeno 3 perimetri.",
+    "summary": "numero inciso · un colore"
+   },
+   {
+    "key": "numeri",
+    "title": "Numeri da inserire (facoltativi)",
+    "rows": [
+     [
+      "Layer",
+      "0,16 o 0,20"
+     ],
+     [
+      "Orientamento",
+      "stesi sul piatto"
+     ],
+     [
+      "Pareti",
+      "2"
+     ],
+     [
+      "Infill",
+      "100%"
+     ],
+     [
+      "Colore",
+      "rossi (bianchi per 5, 10, 15, 20; oro il 25)"
+     ]
+    ],
+    "why": "Spessi 0,8 mm come il solco e più stretti di 0,1 mm per lato: si premono a filo con il pollice. Se entrano lenti, una goccia di colla; se sono duri, riduci l'espansione orizzontale nello slicer (−0,05). Il primo strato liscio finisce a vista: piatto pulito.",
+    "summary": "stesi · 100% · facoltativi"
    },
    {
     "key": "filetti",
@@ -2461,6 +2622,931 @@
      1.0
     ]
    ]
+  },
+  {
+   "id": "N01",
+   "label": "Numero 1 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_01.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -71.9476
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     81.0079
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N02",
+   "label": "Numero 2 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_02.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -51.5601
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     81.7199
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N03",
+   "label": "Numero 3 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_03.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -31.1725
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     82.4318
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N04",
+   "label": "Numero 4 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_04.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -10.7849
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     83.1438
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N05",
+   "label": "Numero 5 da inserire",
+   "group": "Numeri bianchi",
+   "file": "stl/P16_Numero_05.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     9.6026
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     83.8557
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N06",
+   "label": "Numero 6 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_06.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     29.9902
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     84.5677
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N07",
+   "label": "Numero 7 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_07.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     50.3778
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     85.2796
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N08",
+   "label": "Numero 8 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_08.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     70.5683
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     88.27
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N09",
+   "label": "Numero 9 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_09.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     76.0005
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     107.8373
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N10",
+   "label": "Numero 10 da inserire",
+   "group": "Numeri bianchi",
+   "file": "stl/P16_Numero_10.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     56.5509
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     113.8758
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N11",
+   "label": "Numero 11 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_11.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     36.1634
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     114.5877
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N12",
+   "label": "Numero 12 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_12.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     15.7758
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     115.2997
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N13",
+   "label": "Numero 13 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_13.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -4.6118
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     116.0116
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N14",
+   "label": "Numero 14 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_14.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -24.9994
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     116.7236
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N15",
+   "label": "Numero 15 da inserire",
+   "group": "Numeri bianchi",
+   "file": "stl/P16_Numero_15.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -45.3869
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     117.4355
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N16",
+   "label": "Numero 16 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_16.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -65.6246
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     119.8819
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N17",
+   "label": "Numero 17 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_17.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -72.4395
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     139.0117
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N18",
+   "label": "Numero 18 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_18.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -53.3505
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     146.0383
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N19",
+   "label": "Numero 19 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_19.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -32.9629
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     146.7503
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N20",
+   "label": "Numero 20 da inserire",
+   "group": "Numeri bianchi",
+   "file": "stl/P16_Numero_20.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -12.5753
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     147.4622
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N21",
+   "label": "Numero 21 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_21.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     7.8123
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     148.1742
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N22",
+   "label": "Numero 22 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_22.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     28.2393
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     149.9818
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N23",
+   "label": "Numero 23 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_23.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     36.9299
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     168.3357
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N24",
+   "label": "Numero 24 da inserire",
+   "group": "Numeri rossi",
+   "file": "stl/P16_Numero_24.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     18.3498
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     176.7971
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
+  },
+  {
+   "id": "N25",
+   "label": "Numero 25 da inserire",
+   "group": "Numero oro",
+   "file": "stl/P16_Numero_25.stl",
+   "quantity": 1,
+   "print": "numeri",
+   "mode": "mesh",
+   "max_triangles": 3000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -2.0377
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     4.75
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     177.509
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "note_html": "Facoltativo: si preme a filo nel numero inciso del tappo."
   }
  ]
 }

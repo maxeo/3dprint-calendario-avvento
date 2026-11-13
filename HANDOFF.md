@@ -77,6 +77,11 @@ il canale passante staccava i rami; si ricavano togliendole dal solido del canal
 spigoli aperti). Chiave: l'utente vuole solo maniglia, nessuna serratura. Guida in alta definizione (tappi a
 piena risoluzione, multipli di 5 nel gruppo «Tappi rossi»), 5,8 MB. STL rigenerati, 0 spigoli aperti.
 
+**Numeri incisi (2026-11-13, sera):** solco 0,8 nel cielo del tappo (`NUM_H`), tappi di un colore. Numeri da inserire
+facoltativi `P16_Numero_01…25` (`numero_inserto()`: rientro 0,1 con `inset_region` sulla faccia piana; l'offset della
+curva FONT dava spigoli aperti), stampati capovolti. Repo `maxeo/3dprint-calendario-avvento` pubblico; guida
+pubblicata su 3dprint-guide (`calendario-avvento`). La guida ha `guida_stl.js` (STL compressi) per lo zip della selezione.
+
 ## Cosa ha funzionato
 
 - ffmpeg: `%LOCALAPPDATA%\Microsoft\WinGet\Links`; mosaico `ffmpeg -i <video> -vf "fps=2,scale=360:-1,tile=8x4" tile_%d.png`.

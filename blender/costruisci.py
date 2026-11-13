@@ -36,7 +36,8 @@ R_COLLO = CAP_D / 2 - 2.4                         # fondo del filetto maschio (c
 PARETE_COLLO = 1.2                                # parete sotto il fondo del filetto
 GIOCO_TAPPO = 0.3                                 # gioco radiale del filetto tappo/collo
 TAPPO_CIELO = 1.6
-NUM_H = 0.6               # rilievo dei numeri sul tappo
+NUM_H = 0.8               # profondità dei numeri incisi nel cielo del tappo (resta 0,8 di cielo)
+NUM_GIOCO = 0.1           # numeri da inserire (facoltativi): contorno più stretto del solco, per lato
 CAP_LEN = CORPO_L + COLLO_L + TAPPO_CIELO          # lunghezza della capsula chiusa
 
 # scivolo (profilo nel piano XZ, estruso lungo Y)
@@ -292,6 +293,34 @@ def testo(s, size, depth, name):
     bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=1e-4)
     bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
     return obj_from_bm(bm, name, C_TMP)
+
+
+def numero_inserto(s, size, depth, gioco, name):
+    """Numero da inserire nel solco: stesso testo del solco con il contorno rientrato di `gioco` (anche i buchi
+    di 4, 6, 8, 9, 0 si allargano), spessore depth. Il rientro sulla faccia piana resta chiuso; l'offset della curva no."""
+    cu = bpy.data.curves.new(name, 'FONT')
+    cu.body = s
+    try:
+        cu.font = bpy.data.fonts.load(FONT, check_existing=True)
+    except Exception:
+        pass
+    cu.size = size
+    cu.align_x, cu.align_y = 'CENTER', 'CENTER'
+    cu.fill_mode = 'BOTH'
+    o = bpy.data.objects.new(name, cu)
+    C_TMP.objects.link(o)
+    dg = bpy.context.evaluated_depsgraph_get()
+    me = bpy.data.meshes.new_from_object(o.evaluated_get(dg))
+    bpy.data.objects.remove(o); bpy.data.curves.remove(cu)
+    bm = bmesh.new(); bm.from_mesh(me); bpy.data.meshes.remove(me)
+    bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=1e-4)
+    r = bmesh.ops.inset_region(bm, faces=list(bm.faces), thickness=gioco, depth=0, use_even_offset=True, use_boundary=True)
+    bmesh.ops.delete(bm, geom=r["faces"], context='FACES')
+    bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context='VERTS')
+    ex = bmesh.ops.extrude_face_region(bm, geom=list(bm.faces))
+    bmesh.ops.translate(bm, verts=[e for e in ex["geom"] if isinstance(e, bmesh.types.BMVert)], vec=Vector((0, 0, depth)))
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    return obj_from_bm(bm, name, C_STAMPA)
 
 
 def join_into(target, objs, mat_index=0):
@@ -668,12 +697,16 @@ def tappo_base(dia):
     return o
 
 
+def num_size(dia, numero):
+    return dia * (0.5 if numero < 10 else 0.42)
+
+
 def tappo(base, dia, numero, name):
     o = bpy.data.objects.new(name, base.data.copy())
     C_STAMPA.objects.link(o)
-    t = testo(str(numero), dia * (0.5 if numero < 10 else 0.42), NUM_H + 0.2, "num")
-    t.data.transform(Matrix.Translation((0, 0, H_TAPPO - 0.2)))
-    join_into(o, [t], 1)
+    t = testo(str(numero), num_size(dia, numero), NUM_H + 1.0, "num")
+    t.data.transform(Matrix.Translation((0, 0, H_TAPPO - NUM_H)))
+    boolean(o, t, 'DIFFERENCE')                    # numero inciso: tappo di un colore solo
     return o, H_TAPPO
 
 
@@ -689,11 +722,16 @@ for n, x, zc, d, _ in capsule:
     rosso = n % 5 == 0                             # multipli di 5 (e la 25): tappo rosso
     o.data.materials.clear()
     o.data.materials.append(M_ROSSO if rosso else M_BIANCO)
-    o.data.materials.append(M_ORO if n == 25 else (M_BIANCO if rosso else M_ROSSO))   # numero
     pieces[o.name] = (o, Matrix())
+    # numero da inserire nel solco (facoltativo, altro colore): a filo del cielo, stampato steso
+    ni = numero_inserto(str(n), num_size(d, n), NUM_H, NUM_GIOCO, f"P16_Numero_{n:02d}")
+    ni.data.transform(Matrix.Translation((0, 0, H - NUM_H)))
+    ni.data.materials.append(M_ORO if n == 25 else (M_BIANCO if rosso else M_ROSSO))
+    pieces[ni.name] = (ni, Matrix.Rotation(math.pi, 4, 'X'))   # capovolto: la faccia a vista sul piatto
     # montaggio: asse lungo Y, tappo davanti (verso -Y)
     rot = Matrix.Rotation(math.pi / 2, 4, 'X')     # +Z -> -Y
     montato(o, None, f"Tappo_{n:02d}", Matrix.Translation((x, Y_CAP + H, zc)) @ rot)
+    montato(ni, None, f"Numero_{n:02d}", Matrix.Translation((x, Y_CAP + H, zc)) @ rot @ Matrix.Translation((0, 0, 0.05)))  # 0,05 fuori: niente facce coincidenti nella vista
     cb = corpo_25 if n == 25 else corpo_p
     y_fondo = Y_CAP + TAPPO_CIELO + COLLO_L + CORPO_L
     montato(cb, None, f"Corpo_{n:02d}", Matrix.Translation((x, y_fondo, zc)) @ rot)
@@ -911,6 +949,9 @@ cz["colonnine_per_lato"] = len(COL_POS)
 cz["colonnine_posizioni_ramo_mm"] = COL_POS
 cz["colonnine_aria_bussolotto_mm"] = [round(Y_CAP - (Y_LIP - COL_GIOCO), 2),
                                       round((D_TOT - Y_LIP + COL_GIOCO) - (Y_CAP + CAP_LEN), 2)]
+cz["numero_inciso_mm"] = NUM_H
+cz["numero_da_inserire_gioco_mm"] = NUM_GIOCO
+cz["cielo_sotto_numero_mm"] = round(TAPPO_CIELO - NUM_H, 2)
 cz["chiave_lunghezza_mm"] = round(2 * CH_R + GAMBO_L + CH_S, 1)
 cz["chiave_entra_capsula25"] = (2 * CH_R + GAMBO_L + CH_S) < cz["interno_capsula_l_mm"] and 2 * CH_R + 0.5 < cz["bocca_capsula_d_mm"]
 cz["mappa_chiave_vs_fessura_mm"] = [CH_MAPPA, FESSURA[1], CH_S, FESSURA[0]]

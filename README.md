@@ -15,13 +15,14 @@ Oppure apri **[guida.html](guida.html)** (offline) per la vista 3D, i passaggi d
 |---|---|---|
 | P01_Nastro | nastro a scivolo, si stampa sul retro | 1 |
 | P02_Corpo_capsula | corpo dei bussolotti 1–24 | 24 |
-| P03_Tappo_01…24 | tappi numerati a vite | 1 ciascuno |
-| P04_Corpo_capsula_25, P05_Tappo_25 | bussolotto 25 (rosso, numero oro) | 1 |
+| P03_Tappo_01…24 | tappi a vite con il numero inciso | 1 ciascuno |
+| P04_Corpo_capsula_25, P05_Tappo_25 | bussolotto 25 (rosso) | 1 |
 | P06_Tronco, P07_Cassetto | tronco con tenone, cassetto con serratura | 1 |
 | P08_Chiave | chiave del cassetto | 1 |
 | P09_Stella | stella | 1 |
 | P10_Pallina_sopra, P14_Pallina_sotto | palline in due metà avvitate | 4 |
 | P15_Gancio | gancio a vite per appendere le palline | 4 |
+| P16_Numero_01…25 | numeri da inserire nel solco dei tappi (facoltativi, altro colore) | 1 ciascuno |
 | P11_Base | base con regali e pupazzo, pezzo unico | 1 |
 
 Stampante di riferimento: Anycubic Kobra S1 (piatto 250 × 250). Nessun pezzo richiede supporti.

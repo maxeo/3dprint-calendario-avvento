@@ -53,7 +53,12 @@ parts += [
     part("T25", "P05_Tappo_25", "Tappo 25", "Capsula 25", "tappi", tri=9000),
     part("K", "P08_Chiave", "Chiave", "Capsula 25", "piccoli", tri=800),
 ]
+for i in range(1, 26):                             # numeri da inserire nel solco (facoltativi, altro colore)
+    parts.append(part(f"N{i:02d}", f"P16_Numero_{i:02d}", f"Numero {i} da inserire",
+                      "Numero oro" if i == 25 else ("Numeri bianchi" if i % 5 == 0 else "Numeri rossi"), "numeri", tri=3000,
+                      note="Facoltativo: si preme a filo nel numero inciso del tappo."))
 tappi = [f"T{i:02d}" for i in range(1, 25)]
+numeri = [f"N{i:02d}" for i in range(1, 26)]
 ganci = [f"G{i + 1}" for i in range(N_PAL)]
 palline = [f"PS{i + 1}" for i in range(N_PAL)] + [f"PT{i + 1}" for i in range(N_PAL)]
 
@@ -63,7 +68,6 @@ larg = round(P["P11_Base"]["size"][0])
 prof = round(P["P11_Base"]["size"][1])
 peso = round(sum(v["peso_PETG_g"] * len(POSE[k]) for k, v in P.items()))
 tappo_h = P["P03_Tappo_01"]["size"][2]
-cambio = round(tappo_h - 0.6, 1)
 cap_l = P["P02_Corpo_capsula"]["size"][2] + tappo_h - 6.0
 fil = C["filetto_mm"]
 nastro = P["P01_Nastro"]["size"]
@@ -94,7 +98,8 @@ spec = {
                        f"(si stampa coricato sul retro) · base {larg} × {prof} mm</p>",
     "groups": {"Base e tronco": {"color": "#8a5a3c"}, "Albero": {"color": "#2e8b57"},
                "Palline": {"color": "#c0392b"}, "Capsule": {"color": "#7fbf8a"},
-               "Tappi": {"color": "#e8e6e0"}, "Tappi rossi": {"color": "#c0392b"}, "Capsula 25": {"color": "#c0392b"}, "Stella": {"color": "#e0b040"}},
+               "Tappi": {"color": "#e8e6e0"}, "Tappi rossi": {"color": "#c0392b"}, "Capsula 25": {"color": "#c0392b"}, "Stella": {"color": "#e0b040"},
+               "Numeri rossi": {"color": "#a8241c"}, "Numeri bianchi": {"color": "#f4f2ec"}, "Numero oro": {"color": "#e0b040"}},
     "steps_section": {
         "eyebrow": "01 / Montaggio", "h2": "Dal tronco alla stella, poi i bussolotti.",
         "intro_html": "Davanti = il lato dei tappi. Destra e sinistra guardando l'albero da davanti.",
@@ -130,15 +135,16 @@ spec = {
          "parts": palline, "built": ["B", "TR", "CA", "N", "S"] + ganci + palline, "moving": palline, "dir": [0, 0, -1], "travel": 18},
         {"title": "Riempi e carica i bussolotti", "short": "dall'ingresso in alto · prima la 1",
          "text": f"Riempi i corpi (bocca Ø{n(C['bocca_capsula_d_mm'])}, interno lungo {n(C['interno_capsula_l_mm'])} mm: cioccolatini piccoli, "
-                 "caramelle, un biglietto) e avvita i tappi. Carica dall'ingresso in alto a sinistra, coricati e con il tappo davanti: "
+                 "caramelle, un biglietto) e avvita i tappi. Se hai stampato i numeri da inserire, premili a filo nel solco del tappo "
+                 "(rossi nei tappi bianchi, bianchi nei rossi; una goccia di colla se sono lenti). Carica dall'ingresso in alto a sinistra, coricati e con il tappo davanti: "
                  "<b>prima la 1</b>, che rotola fino al fermo in basso, poi la 2, la 3… fino alla 24. "
                  "Ognuno spinge e scende dietro al precedente.",
-         "parts": ["C"] + tappi, "built": ["B", "TR", "CA", "N", "S"] + ganci + palline + ["C"] + tappi,
-         "moving": ["C"] + tappi, "dir": [0, -1, 0], "travel": 60},
+         "parts": ["C"] + tappi + numeri[:24], "built": ["B", "TR", "CA", "N", "S"] + ganci + palline + ["C"] + tappi + numeri[:24],
+         "moving": ["C"] + tappi + numeri[:24], "dir": [0, -1, 0], "travel": 60},
         {"title": "Per ultima la 25", "short": "con la chiave",
-         "text": f"Metti la chiave nel bussolotto rosso 25 (la chiave è lunga {n(C['chiave_lunghezza_mm'])} mm), avvita il tappo con il numero d'oro "
+         "text": f"Metti la chiave nel bussolotto rosso 25 (la chiave è lunga {n(C['chiave_lunghezza_mm'])} mm), avvita il tappo rosso con il 25 "
                  "e caricalo per ultimo: resta all'ingresso, sotto la stella.",
-         "parts": ["C25", "T25"], "built": [p["id"] for p in parts if p["id"] != "K"], "moving": ["C25", "T25"], "dir": [0, -1, 0], "travel": 60},
+         "parts": ["C25", "T25", "N25"], "built": [p["id"] for p in parts if p["id"] != "K"], "moving": ["C25", "T25", "N25"], "dir": [0, -1, 0], "travel": 60},
         {"title": "Ogni giorno", "short": "dall'uscita in basso a sinistra",
          "text": "Il bussolotto del giorno è in basso a sinistra, contro il fermo: lì il bordino davanti è tagliato, quindi si sfila "
                  "in avanti. Il successivo rotola al suo posto. Il 25 dicembre la chiave apre il cassetto: infila la mappa in "
@@ -179,12 +185,20 @@ spec = {
                     "Stampa i 24 corpi verdi in un piatto e il 25 in rosso.",
              "summary": "0,16 · fondo sul piatto"},
             {"key": "tappi", "title": "Tappi numerati",
-             "rows": [["Layer", "0,16 (0,20 l'ultimo strato)"], ["Orientamento", "bocca sul piatto, numero in alto"],
-                      ["Cambio colore", f"a {n(cambio)} mm (inizio del numero)"]],
-             "why": f"Il numero è in rilievo di 0,6 mm sul cielo. Con una pausa a {n(cambio)} mm il numero esce in un altro colore: "
-                    "rosso sui tappi bianchi, bianco sui tappi rossi (5, 10, 15, 20), oro sul 25. "
+             "rows": [["Layer", "0,16"], ["Orientamento", "bocca sul piatto, numero in alto"],
+                      ["Colore", "uno solo: bianco, rosso per 5, 10, 15, 20 e 25"]],
+             "why": f"Il numero è inciso {n(C['numero_inciso_mm'])} mm nel cielo del tappo (sotto restano "
+                    f"{n(C['cielo_sotto_numero_mm'])} mm): niente cambi filamento, si legge per l'ombra del solco. "
+                    "Se lo vuoi colorato, ripassa il solco con un pennarello indelebile e pulisci la superficie. "
                     f"La parete del tappo attorno al filetto è {n(fil['parete_tappo'])} mm: almeno 3 perimetri.",
-             "summary": f"cambio colore a {n(cambio)} mm"},
+             "summary": "numero inciso · un colore"},
+            {"key": "numeri", "title": "Numeri da inserire (facoltativi)",
+             "rows": [["Layer", "0,16 o 0,20"], ["Orientamento", "stesi sul piatto"], ["Pareti", "2"], ["Infill", "100%"],
+                      ["Colore", "rossi (bianchi per 5, 10, 15, 20; oro il 25)"]],
+             "why": f"Spessi {n(C['numero_inciso_mm'])} mm come il solco e più stretti di {n(C['numero_da_inserire_gioco_mm'])} mm "
+                    "per lato: si premono a filo con il pollice. Se entrano lenti, una goccia di colla; se sono duri, riduci "
+                    "l'espansione orizzontale nello slicer (−0,05). Il primo strato liscio finisce a vista: piatto pulito.",
+             "summary": "stesi · 100% · facoltativi"},
             {"key": "filetti", "title": "Ganci e palline",
              "rows": [["Layer", "0,12"], ["Pareti", "4"], ["Infill", "100% (ganci)"], ["Orientamento", "come nello STL"]],
              "why": "Pezzi piccoli con filetti fini (passo 1,5): layer basso e pieni. La metà sopra della pallina si stampa sul giunto "
