@@ -24,7 +24,7 @@
     "label": "Ø20 × 47,6 mm, tappo a vite"
    },
    {
-    "value": "≈ 913 g",
+    "value": "≈ 895 g",
     "label": "PETG in tutto"
    }
   ]
@@ -812,7 +812,7 @@
       "come nello STL"
      ]
     ],
-    "why": "Pezzi piccoli con filetti fini (passo 1,5): layer basso e pieni. La metà sopra della pallina si stampa sul giunto con l'occhiello in alto; la metà sotto capovolta, sul collare; il gancio in piedi, punta del piolo sul piatto.",
+    "why": "Pezzi piccoli con filetti fini (passo 1,5): layer basso. Le palline sono vuote come quelle per il gatto: guscio da 1,6 mm, filetto Ø18 vicino al giunto, collare forato (con 4 pareti il guscio esce pieno di perimetri, niente infill dentro). La metà sopra si stampa sul giunto con l'occhiello in alto (svasatura a 45° e cupola senza supporti); la metà sotto capovolta, sul collare; il gancio in piedi, punta del piolo sul piatto.",
     "summary": "0,12 · 4 pareti"
    },
    {
@@ -849,7 +849,7 @@
    },
    {
     "title": "Filetti",
-    "html": "<ul><li>Tappo: passo 2, dente 0,8, gioco radiale 0,3 mm</li><li>Pallina: passo 1,5, cono a 45° che centra le due metà</li><li>Gancio: passo 1,5 nel foro del nastro, 7 mm in presa</li></ul><p>Avvita sempre a mano: se un filetto è duro, non forzarlo con la pinza.</p>"
+    "html": "<ul><li>Tappo: passo 2, dente 0,8, gioco radiale 0,3 mm</li><li>Pallina: vuota, passo 1,5 su Ø18 vicino al giunto, cono a 45° che centra le due metà</li><li>Gancio: passo 1,5 nel foro del nastro, 7 mm in presa</li></ul><p>Avvita sempre a mano: se un filetto è duro, non forzarlo con la pinza.</p>"
    },
    {
     "title": "Chiave e serratura",
@@ -1120,7 +1120,7 @@
      0.0,
      0.0,
      1.0,
-     148.8705
+     145.8705
     ],
     [
      0.0,
@@ -1156,7 +1156,7 @@
      0.0,
      -0.0,
      -1.0,
-     157.4706
+     151.0895
     ],
     [
      0.0,
@@ -1229,7 +1229,7 @@
      0.0,
      0.0,
      1.0,
-     118.0769
+     115.0769
     ],
     [
      0.0,
@@ -1265,7 +1265,7 @@
      0.0,
      -0.0,
      -1.0,
-     126.6769
+     120.2958
     ],
     [
      0.0,
@@ -1338,7 +1338,7 @@
      0.0,
      0.0,
      1.0,
-     58.95
+     55.95
     ],
     [
      0.0,
@@ -1374,7 +1374,7 @@
      0.0,
      -0.0,
      -1.0,
-     67.55
+     61.169
     ],
     [
      0.0,
@@ -1447,7 +1447,7 @@
      0.0,
      0.0,
      1.0,
-     49.1079
+     46.1079
     ],
     [
      0.0,
@@ -1483,7 +1483,7 @@
      0.0,
      -0.0,
      -1.0,
-     57.7079
+     51.3269
     ],
     [
      0.0,

@@ -814,13 +814,18 @@ montato(stella, None, "Stella", M_st)
 # --- palline: due semisfere avvitate (come le palline per i gatti), occhiello in cima ---
 # metà sotto («vite»): collare filettato su un cono a 45°; metà sopra («madrevite»): svasatura a 45° e filetto interno.
 # Si stampano senza supporti: la sopra sul piano del giunto (occhiello in alto), la sotto capovolta sul collare.
-PALLA_R = 12.0
+PALLA_R, PB_W = 12.0, 1.6                         # pallina Ø24, guscio vuoto spesso 1,6 (come le palline del gatto)
+PB_RI = PALLA_R - PB_W
+PB_S = -3.0                                       # giunto sotto l'equatore: il filetto largo sta dove la sfera è ampia
 PB_LIP, PB_CONO_G = 0.8, 0.3                      # bordo piano al giunto, gioco fra cono e svasatura
-PB_TM, PB_H, PB_PASSO, PB_L, PB_G = 6.0, 0.7, 1.5, 3.0, 0.3   # filetto: cresta maschio, dente, passo, lunghezza, gioco
+PB_TM, PB_H, PB_PASSO, PB_L, PB_G = 9.0, 0.7, 1.5, 3.0, 0.3   # filetto: cresta maschio, dente, passo, lunghezza, gioco
 PB_RC = PB_TM - PB_H                              # nocciolo del collare
-PB_ZC = (PALLA_R - PB_LIP - PB_CONO_G) - PB_RC    # quota dove il cono incontra il collare
-PB_RF = PB_RC + PB_G                              # cresta del filetto femmina
-PB_ZT = PB_ZC + PB_L + 0.4                        # cielo del foro nella metà sopra
+PB_RF = PB_RC + PB_G                              # cresta del filetto femmina (foro della metà sopra)
+PB_RL = math.sqrt(PALLA_R ** 2 - PB_S ** 2) - PB_LIP   # dove il bordo piano diventa svasatura a 45°
+PB_Z0 = PB_S + PB_RL - PB_RF                      # inizio del filetto (fine della svasatura)
+PB_ZC = PB_Z0 + PB_L                              # cima del collare
+PB_ZR = PB_ZC + 0.4                               # cima dell'anello filettato della metà sopra
+PB_BORE = PB_RC - PB_W                            # foro del collare: le due metà fanno un solo vuoto
 OCCH = (3.8, 2.2, 3.0, PALLA_R + 2.6)             # occhiello: raggio esterno, foro, spessore, quota del centro
 
 
@@ -828,14 +833,27 @@ def arco_rz(r, a0, a1, step=3.0):
     return [(r * math.cos(math.radians(a)), r * math.sin(math.radians(a))) for a in np.linspace(a0, a1, int(abs(a1 - a0) / step) + 1)]
 
 
-pal_sotto = lathe([(0, -PALLA_R)] + arco_rz(PALLA_R, -88, 0)[1:] +
-                  [(PALLA_R - PB_LIP - PB_CONO_G, 0), (PB_RC, PB_ZC), (PB_RC, PB_ZC + PB_L), (0, PB_ZC + PB_L)],
-                  "P14_Pallina_sotto", C_STAMPA, seg=64)
-boolean(pal_sotto, filetto(PB_RC - 0.2, PB_H + 0.2, PB_ZC + 0.3, PB_ZC + PB_L - 0.5, PB_RC - 1.0, PB_PASSO, seg=64), 'UNION')
-pal_sopra = lathe([(PALLA_R - PB_LIP, 0), (PALLA_R, 0)] + arco_rz(PALLA_R, 0, 88)[1:] +
-                  [(0, PALLA_R), (0, PB_ZT), (PB_RF, PB_ZT), (PB_RF, (PALLA_R - PB_LIP) - PB_RF)],
-                  "P10_Pallina_sopra", C_STAMPA, seg=64)
-boolean(pal_sopra, filetto(PB_RF - 0.2, PB_H + 0.2, PB_ZC - 0.3, PB_ZT - 0.2, PB_RF - 1.0, PB_PASSO, seg=64), 'DIFFERENCE')
+def incontro_45(c):
+    """z (sotto il giunto) dove la retta a 45° r = c - z incontra la sfera interna."""
+    return (c - math.sqrt(2 * PB_RI ** 2 - c ** 2)) / 2
+
+
+a_s = math.degrees(math.asin(PB_S / PALLA_R))
+# metà sotto («vite»): calotta dal polo al giunto, bordo, cono a 45°, collare filettato forato; dentro cono parallelo
+c_in = (PB_RL - PB_CONO_G + PB_S) - PB_W * math.sqrt(2)          # cono interno a PB_W dal cono esterno
+z_m = incontro_45(c_in)
+a_m = math.degrees(math.asin(z_m / PB_RI))
+pal_sotto = lathe([(0, -PALLA_R)] + arco_rz(PALLA_R, -88, a_s)[1:] +
+                  [(PB_RL - PB_CONO_G, PB_S), (PB_RC, PB_Z0), (PB_RC, PB_ZC), (PB_BORE, PB_ZC), (PB_BORE, c_in - PB_BORE),
+                   (c_in - z_m, z_m)] + arco_rz(PB_RI, a_m, -88)[1:] + [(0, -PB_RI)],
+                  "P14_Pallina_sotto", C_STAMPA, seg=96)
+boolean(pal_sotto, filetto(PB_RC - 0.2, PB_H + 0.2, PB_Z0 + 0.3, PB_ZC - 0.5, PB_BORE + 0.6, PB_PASSO, seg=96), 'UNION')
+# metà sopra («madrevite»): bordo piano sul giunto, svasatura a 45°, anello filettato, poi la cupola vuota
+a_r = math.degrees(math.asin(PB_ZR / PB_RI))
+pal_sopra = lathe([(PB_RL, PB_S)] + arco_rz(PALLA_R, a_s, 88) + [(0, PALLA_R), (0, PB_RI)] +
+                  arco_rz(PB_RI, 88, a_r)[1:] + [(PB_RF, PB_ZR), (PB_RF, PB_Z0)],
+                  "P10_Pallina_sopra", C_STAMPA, seg=96)
+boolean(pal_sopra, filetto(PB_RF - 0.2, PB_H + 0.2, PB_Z0 - 0.3, PB_ZR - 0.2, PB_RF - 1.0, PB_PASSO, seg=96), 'DIFFERENCE')
 occh = cyl(OCCH[0], -OCCH[2] / 2, OCCH[2] / 2, "occh", seg=48)
 boolean(occh, cyl(OCCH[1], -OCCH[2] / 2 - 1, OCCH[2] / 2 + 1, "occh_f", seg=48), 'DIFFERENCE')
 occh.data.transform(Matrix.Translation((0, 0, OCCH[3])) @ Matrix.Rotation(math.pi / 2, 4, 'Y'))   # foro lungo X
@@ -952,6 +970,10 @@ cz["colonnine_aria_bussolotto_mm"] = [round(Y_CAP - (Y_LIP - COL_GIOCO), 2),
 cz["numero_inciso_mm"] = NUM_H
 cz["numero_da_inserire_gioco_mm"] = NUM_GIOCO
 cz["cielo_sotto_numero_mm"] = round(TAPPO_CIELO - NUM_H, 2)
+cz["pallina_mm"] = {"diametro": 2 * PALLA_R, "guscio": PB_W, "filetto_cresta_d": 2 * PB_TM,
+                    "parete_anello_sopra": round(math.sqrt(PALLA_R ** 2 - PB_ZR ** 2) - (PB_RF + PB_H), 2),
+                    "margine_vuoto_sopra": round(math.sqrt(PB_RI ** 2 - PB_ZR ** 2) - (PB_RF + PB_H), 2),
+                    "gioco_collare_cima": round(PB_ZR - PB_ZC, 2)}
 cz["chiave_lunghezza_mm"] = round(2 * CH_R + GAMBO_L + CH_S, 1)
 cz["chiave_entra_capsula25"] = (2 * CH_R + GAMBO_L + CH_S) < cz["interno_capsula_l_mm"] and 2 * CH_R + 0.5 < cz["bocca_capsula_d_mm"]
 cz["mappa_chiave_vs_fessura_mm"] = [CH_MAPPA, FESSURA[1], CH_S, FESSURA[0]]

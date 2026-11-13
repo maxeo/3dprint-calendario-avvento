@@ -201,8 +201,11 @@ spec = {
              "summary": "stesi · 100% · facoltativi"},
             {"key": "filetti", "title": "Ganci e palline",
              "rows": [["Layer", "0,12"], ["Pareti", "4"], ["Infill", "100% (ganci)"], ["Orientamento", "come nello STL"]],
-             "why": "Pezzi piccoli con filetti fini (passo 1,5): layer basso e pieni. La metà sopra della pallina si stampa sul giunto "
-                    "con l'occhiello in alto; la metà sotto capovolta, sul collare; il gancio in piedi, punta del piolo sul piatto.",
+             "why": f"Pezzi piccoli con filetti fini (passo 1,5): layer basso. Le palline sono vuote come quelle per il gatto: "
+                    f"guscio da {n(C['pallina_mm']['guscio'])} mm, filetto Ø{n(C['pallina_mm']['filetto_cresta_d'])} vicino al giunto, "
+                    "collare forato (con 4 pareti il guscio esce pieno di perimetri, niente infill dentro). "
+                    "La metà sopra si stampa sul giunto con l'occhiello in alto (svasatura a 45° e cupola senza supporti); "
+                    "la metà sotto capovolta, sul collare; il gancio in piedi, punta del piolo sul piatto.",
              "summary": "0,12 · 4 pareti"},
             {"key": "piccoli", "title": "Stella e chiave",
              "rows": [["Pareti", "3"], ["Infill", "20%"], ["Velocità", "ridotta"]],
@@ -225,7 +228,7 @@ spec = {
                   "<li>All'ingresso i gradini dei bordini diventano rampe: il bussolotto entra senza impuntarsi</li></ul>"},
                   {"title": "Filetti", "html":
                    f"<ul><li>Tappo: passo {n(fil['passo'])}, dente {n(fil['dente'])}, gioco radiale {n(fil['gioco_radiale'])} mm</li>"
-                   "<li>Pallina: passo 1,5, cono a 45° che centra le due metà</li>"
+                   "<li>Pallina: vuota, passo 1,5 su Ø18 vicino al giunto, cono a 45° che centra le due metà</li>"
                    "<li>Gancio: passo 1,5 nel foro del nastro, 7 mm in presa</li></ul>"
                    "<p>Avvita sempre a mano: se un filetto è duro, non forzarlo con la pinza.</p>"},
                   {"title": "Chiave e serratura", "html":
