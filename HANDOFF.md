@@ -2,159 +2,124 @@
 
 ## Obiettivo
 
-Rifare in Blender (UI visibile tramite il server BlenderMCP, porta 9876) un progetto stampabile simile al video
-`C:\Users\matteo\Downloads\Video\New advent calendar🎄 #3dprint ... _1080p.mp4`: calendario dell'Avvento ad albero di Natale.
-Poi il pacchetto solito (skill `progetto-stampa-3d`): STL in `stl/`, `blender/costruisci.py` parametrico,
-`dati/geometria.json`, `guida.html` (skill `guida-stampa-3d`), README, repo git (commit solo quando l'utente lo dice).
-Stampante: Anycubic Kobra S1, piatto 250 × 250 × 250, PETG. Rispondere in italiano.
+Calendario dell'Avvento ad albero di Natale, stampabile, rifatto in Blender da un video
+(`originale/foto_video.png`, `originale/mosaico_video.png`). È un distributore a gravità: un nastro verde a serpentina
+fa da scivolo chiuso. Si carica dall'alto e si prende in basso a sinistra. Il pacchetto è quello solito (skill
+`progetto-stampa-3d`):
+- STL in `stl/`
+- `blender/costruisci.py` parametrico
+- `dati/geometria.json`
+- `guida.html` (skill `guida-stampa-3d`)
+- README
+- repo git `maxeo/3dprint-calendario-avvento`
 
-## Com'è l'originale
+Stampante: Anycubic Kobra S1, piatto 250 × 250. Ogni pezzo deve stare in **230 × 230** ("stai un po' sotto").
+Materiale PETG.
 
-Vedi `originale/foto_video.png` e `originale/mosaico_video.png` (fotogrammi del video, 2 al secondo).
-Distributore a gravità: nastro verde a serpentina = scivolo chiuso; si carica dall'alto, si prende in basso a sinistra.
-Dal retro si vedono i fondi verdi dei bussolotti (canale passante). Numeri: ramo basso 2…9 da sinistra, sopra 15…10, ecc.
+Regole per l'utente:
+- Rispondere in italiano.
+- Fare domande quando qualcosa non è chiaro.
+- Mostrare le modifiche nel Blender aperto prima di rigenerare.
+- Commit solo su richiesta: in italiano, senza Co-Authored-By, senza force-push.
 
-## Decisioni prese con l'utente (2026-11-13)
+## Stato attuale (2026-11-14): tutto fatto e pubblicato
 
-- **Retro aperto**: canale passante da davanti a dietro, niente parete di fondo. Bordino **a 3 gradini** (4 mm, 45°)
-  sia davanti sia dietro: tiene il bussolotto centrato in profondità. ("anche dietro bordato", "il fondo deve essere passante")
-- **Sagoma "come prima"**: rami spessi + mezzi dischi nelle curve + cunei fra i rami (primo render). L'unione di
-  inviluppi convessi (tutto pieno fra le curve) è stata **rifiutata**: "non sembra più un albero".
-- **Pendenza 2°** (cuneo fra i livelli leggero, ~5 → 12 mm).
-- **Bussolotti tutti uguali Ø20**, anche la 25 (rossa, numero oro).
-- **Colori**: corpo dei bussolotti verde (chiaro); tappi bianchi con numero rosso; **multipli di 5 rossi** con numero
-  bianco; 25 rossa con numero oro.
-- **Tappo avvitato** al bussolotto: filetto passo 2, dente 0,8, gioco radiale 0,3; parete del tappo 1,3 mm.
-- L'utente vuole **essere interpellato con domande** quando qualcosa non è chiaro, invece di indovinare.
-- **Fermo d'uscita** alto 12 mm (sopra il centro della capsula 1).
-- **Ingresso in alto**: negli ultimi 20 mm i gradini dei bordini diventano rampe morbide (`imbocco()`, un solo
-  solido per l'ultimo ramo: gradini → rampa → bocca aperta).
-- **Palline appese**, non davanti: gancio a vite (`P15_Gancio`: perno filettato M≈6 passo 1,5, collarino, piolo con
-  gola) avvitato nel nastro; la pallina ha un occhiello in cima che si infila sul piolo e resta nella gola.
-  Attacchi: fianco destro della curva alta e fianco sinistro della curva di mezzo (foro radiale orizzontale in un
-  rinforzo sul profilo), sul fianco sinistro del fermo d'uscita (stesso tipo, foro orizzontale), sotto il ramo
-  basso a destra (aletta sotto lo smusso, foro che entra dal davanti lungo Y). Quattro palline in tutto;
-  pupazzo spostato dietro a sinistra del tronco.
-- **Palline tonde Ø24 in due metà avvitate** come le palline per i gatti (`D:\3D Print\Palline Traforate`):
-  sotto «vite» (cono 45° + collare filettato, si stampa capovolta sul collare), sopra «madrevite» (svasatura +
-  filetto interno + occhiello, si stampa sul giunto).
+**Ingrandito per il Ferrero Rocher.** Il Ferrero misura circa 30 mm (nessun dato ufficiale) e va nella sola stagnola.
+- Bussolotti: `CAP_D = 42` (bocca Ø34,8), `CORPO_L = 32`, spazio interno alto 36,4 mm.
+- Albero: 7 livelli, tracciato `X_USCITA=-75`, `X_CURVE=[68,-55,56,-42,42,-27]`, `X_INGRESSO=0`.
+- Percorso 1126,6 mm: 25 capsule più 55 mm liberi all'ingresso. Altezza circa 526 mm con la stella.
+- Base 230 × 150. Pupazzo ×1,6. Regali `REG_L=22`. Palline Ø36 (×1,5). Stella `RS=36`.
 
-## Stato attuale
+**Nastro in 10 pezzi**, perni stampati nel pezzo (niente perni staccati: `P22` e `PERNI_N` eliminati):
+- `P01_Nastro_1..4`: corpi, cioè le sole pareti del canale. Tagli a metà delle curve di destra (`TAGLI=[0,2,4]`),
+  a scalino (`SCALINI`, `corpo_di()`): il muro fra il ramo k e il k+1 va sempre intero nel corpo sopra. Così il
+  corpo 1 è un pezzo solo; i corpi 2–4 restano due metà incastrate (i due "pettini" divisi dal canale passante),
+  tenute insieme dai telai.
+- `P23_Telaio_davanti_1..3` e `P24_Telaio_dietro_1..3`: bordini, colonnine e bottoni. Tagli a metà delle curve di
+  sinistra (`TAGLI_TELAI=[1,3]`). Ogni telaio scavalca un taglio dei corpi.
+- Piani di separazione: `Y_TF=Y_LIP+0.3` e `Y_TD=Y_LIP_DIETRO-0.3`.
+- Tronco liscio (venature tolte il 2026-11-14): si stampa senza supporti. Base bianca e bussolotti già stampati:
+  non toccarli.
+- Perni Ø2,6 × 3 in fori Ø3 × 3,4 (`PT_*`), 40 davanti e 40 dietro. Davanti stanno sui corpi, dietro sui telai.
+  Tutti i pezzi si stampano con `Rx(-90)`, quindi i perni restano sempre in alto.
+- `SMUSSO_TAGLIO=0.8` sul canale del corpo sotto, dove due corpi si toccano.
+- Il pezzo più grande è 230,5 mm. Tutti i pezzi hanno 0 spigoli non-manifold. Nessun perno volante (controllo
+  union-find sui componenti degli STL).
 
-`blender/costruisci.py` riscritto e funzionante nel Blender aperto (exec via MCP; in GUI costruisce solo la scena,
-i file li scrive solo con `-b`). Controlli (tutti ok): canale 23 mm (gioco 3), percorso 520 mm, 25 capsule +
-1 posto libero all'ingresso, nastro 181 × 136 × 57,4 (sta sul piatto, si stampa sul retro), baricentro x −1,9
-col tronco a x −1, bocca capsula Ø12,8, chiave (anello R6) entra nella 25.
+**Palline:** 10, tutte rosse, con il gancio a piolo lungo (`G_PUNTA=-24`).
+- 6 sui fianchi delle curve: `FIANCHI` (indice curva, dz).
+- 2 davanti su bottoni: `DAVANTI`, `BOTTONE=6`.
+- 1 sotto il ramo basso, anche questa con un bottone davanti.
+- 1 sul fermo d'uscita.
+- Distanza minima dal nastro: 3,2 mm.
 
-- Tracciato: `X_USCITA -72`, curve `[62, -58, 22]`, ingresso `-32`; 4 livelli, 3 curve a U (raggio mediana 14).
-- Uscita: il canale finisce sul fermo (capsula 1); tetto del ramo basso solo dopo `TETTO_USCITA`; davanti alla
-  capsula 1 il bordino è tagliato (finestra) per sfilarla in avanti.
-- Tronco 52 × 57,4 × 60 con **tenone 36 × 4** che entra dal retro in una scanalatura sotto il nastro (si ferma contro
-  il bordino davanti). Cassetto con serratura 3,2 × 9 e chiave come prima.
-- Palline: fori Ø2,4 passanti in Y nella parete esterna delle 3 curve (filo).
-- Stella con linguetta nella fessura di una cresta sul tetto del ramo alto.
+**Guida:** 108 pezzi, 15 passaggi, nessun errore JavaScript. I passaggi del nastro sono tre: corpi sul tronco,
+telai dietro, telai davanti.
 
-Canale: **un solo solido spazzato lungo tutto il percorso** (`canale_intero()`: stazioni sui rami e ogni 3° nelle
-curve, sezione a gradini nel piano (y, normale a sinistra del verso di percorrenza); "aperto" = niente bordino da quel
-lato, fra stazione a gradini e aperta i gradini diventano rampe). Tagli separati per rami e curve sovrapposti davano
-decine di spigoli aperti per facce dei gradini coincidenti: non tornare indietro.
-Uscita rifinita: fermo spesso 9 mm alto 12,5 con raccordi R3, gancio della pallina nel suo fianco sinistro (niente
-rinforzo); tetto del ramo basso con punta arrotondata e gradini in rampa per 12 mm (`RAMPA_TETTO`).
+**Commit:**
+- Progetto `e85016b` «Ingranditi bussolotti e albero per il Ferrero Rocher», pushato.
+- 3dprint-guide `c74d1ad` «Aggiornata la guida del Calendario ingrandito», pushato.
+- Guida online: https://maxeo.github.io/3dprint-guide/calendario-avvento/guida.html
 
-Base: **pezzo unico** con regali (rossi, `material_index` 1) e pupazzo uniti con `join_into` (affondano 0,2 mm,
-li unisce lo slicer): `P12_Regalo` e `P13_Pupazzo` non esistono più (cancellare i vecchi STL quando si rigenera).
-Chiave staccata dal modello: nel montaggio è sul tavolo davanti alla base.
+## Come si lavora
 
-**Rigenerato il 2026-11-13** (su richiesta dell'utente): 36 STL in `stl/`, tutti con 0 spigoli non-manifold
-(l'ultimo si è chiuso inclinando di 0,6 mm il cielo del fermo), `dati/geometria.json`, `.blend`.
-Gli STL del primo tentativo sono stati spostati fuori dal progetto (scratchpad della sessione), non cancellati.
-`dati/scrivi_spec.py` riscritto → `dati/guida_spec.json` → `guida.html` (9 passaggi, 45 pezzi; ganci e palline
-hanno rotazioni diverse, quindi una riga per copia invece di `instances`). Verificata con `shoot.py`: forma giusta,
-nessun errore JavaScript. Scritti `README.md` e `.gitignore` (`*.blend1`). Nessun repo git ancora.
-
-**Aggiornato il 2026-11-13 (dopo):** colonnine 3 mm davanti e dietro nei bordini (`COL_*`, 9 per lato) perché
-il canale passante staccava i rami; si ricavano togliendole dal solido del canale (unirle al nastro dava 367
-spigoli aperti). Chiave: l'utente vuole solo maniglia, nessuna serratura. Guida in alta definizione (tappi a
-piena risoluzione, multipli di 5 nel gruppo «Tappi rossi»), 5,8 MB. STL rigenerati, 0 spigoli aperti.
-
-**Numeri incisi (2026-11-13, sera):** solco 0,8 nel cielo del tappo (`NUM_H`), tappi di un colore. Numeri da inserire
-facoltativi `P16_Numero_01…25` (`numero_inserto()`: rientro 0,1 con `inset_region` sulla faccia piana; l'offset della
-curva FONT dava spigoli aperti), stampati capovolti. Repo `maxeo/3dprint-calendario-avvento` pubblico; guida
-pubblicata su 3dprint-guide (`calendario-avvento`). La guida ha `guida_stl.js` (STL compressi) per lo zip della selezione.
-
-**Viewer della guida alleggerito (2026-11-13, sera):** solo la vista, gli STL di stampa sono identici.
-`costruisci.py` scrive in `dati/vista/` mesh con le sole superfici visibili (`viste`, `comuni`): palline = calotte
-sferiche chiuse dal disco del giunto (+ occhiello), ganci e capsule senza filetto, tappi = cielo con il numero
-inciso (`vista_tappo_cielo`) + corpo comune `tappo_corpo.stl` (`vista_tappo_corpo`), numeri con il font a
-`resolution_u` 5 (`V_RES`). `scrivi_spec.py` le passa con `view_file`, `view_shared` (corpo dei tappi), `smooth` 35
-e `cull` (tutte le mesh chiuse, anche nastro e base). Opzioni nuove della skill guida-stampa-3d (template +
-`build_guide.py` + `references/spec.md`; copia dei file originali nello scratchpad della sessione). Risultato:
-triangoli 296k → 86k, guida 6,8 → 1,9 MB, un fotogramma ~80 → ~34 ms (Chrome headless, canvas 862 × 520).
-Isolato, un pezzo con vista leggera si mostra con lo STL di stampa (`full`, decompresso da `guida_stl.js`).
-Gruppi della guida: base bianca, tronco marrone, chiave e ganci gialli, tappo 25 tra i «Tappi rossi», N25 oro
-nel gruppo «Capsula 25» con il suo corpo. Sigle spente all'apertura (`"labels": False`).
-
-**Regali staccati dalla base (2026-11-13, sera):** come nel taglio fatto dall'utente nello slicer (base.3mf con
-6 connettori). `P12_Regalo` (3 copie: davanti a destra verde, `REG_VERDE`, gli altri rossi; `REG_POS`), due fori Ø3,6 × 3
-sotto ogni regalo e nella base (`REG_PERNI` in diagonale), `P17_Perno_regalo` Ø3,4 × 5,6 (6 copie). Il pupazzo
-resta unito alla base. Nella guida: R1–R3, PR e il passaggio «Regali sulla base».
-Poi (stessa sera): verde spostato davanti a destra (`REG_VERDE = 1`). Nastri a croce `P20_Nastro_regalo` (3, si
-infilano dall'alto nel solco 3,3 × 0,8 del regalo, sporgono 0,6; verdi sui regali rossi, rosso sul verde; colore per
-oggetto in Blender con `material_slots[0].link = 'OBJECT'`). Pupazzo: testa piatta a 25,5 con perno Ø3 per
-`P18_Cappello` (nero); `P19_Naso` (giallo) e 2 × `P21_Occhio` (neri, bottone) avvitati: filetto Ø3 passo 1 dente 0,4
-gioco 0,2 (`PF_*`, `madrevite()`, `vite_codolo()`, `asse_testa()`); occhi a 48° di lato e 26° in alto, fori 2,2 e
-naso 2,4: calcolato che le madreviti non si toccano e gli occhi stanno sotto la tesa. Cassetto rosso anche nella guida.
-I fori della testa vanno tagliati uno per volta e cilindro + filetto uniti con un booleano: fusi con `merge` il
-booleano svuotava il pupazzo.
-Occhi rifatti più piccoli su richiesta: a incastro a forza (`OCCHI_D` 1,7 codolo = foro), bottone Ø2,4, a 36° di
-lato e 30° in alto; solo il naso è avvitato. Pupazzo a 96 spicchi; nella guida la base non si decima (20000) e ha
-`smooth` 35.
-Rigenerare con Blender riscrive i `P16_Numero_*` con lo stesso contenuto in ordine diverso: `git checkout -- stl/`.
+- **Rigenerare:**
+  `"/c/Program Files/Blender Foundation/Blender 5.2/blender.exe" -b --factory-startup --python blender/costruisci.py`.
+  Questo scrive gli STL, `geometria.json`, `dati/vista/` e il `.blend`. Poi eliminare da `stl/` gli STL non più prodotti.
+- **Ripristinare i numeri:** rigenerare riscrive i `P16_Numero_*` in ordine diverso. Riportarli com'erano con
+  `git checkout -- stl/P16_*`.
+- **Mostrare in Blender:**
+  - Aprire la GUI col `.blend`; l'addon MCP apre da solo la porta 9876.
+  - Eseguire lo script con `exec(open(...).read(), {"__name__": "__main__"})`.
+  - L'exec può andare in timeout ("No data received") ma finisce lo stesso.
+  - I risultati stanno in `builtins._cal_out` e `builtins._cal_g`.
+- **Generare la guida:**
+  1. `python dati/scrivi_spec.py`
+  2. `python ~/.claude/skills/guida-stampa-3d/scripts/build_guide.py dati/guida_spec.json`
+  3. `shoot.py` per screenshot ed errori JavaScript.
+- **Pubblicare:**
+  1. In `D:\3D Print\3dprint-guide` lanciare `./aggiorna_guide.sh`.
+  2. In `index.html` ripristinare le date `data-aggiornata` di skinkocchiali e supporto-tablet, che lo script cambia
+     senza motivo.
+  3. Commit e push.
 
 ## Cosa ha funzionato
 
-- ffmpeg: `%LOCALAPPDATA%\Microsoft\WinGet\Links`; mosaico `ffmpeg -i <video> -vf "fps=2,scale=360:-1,tile=8x4" tile_%d.png`.
-- Blender: avviarlo in GUI con il .blend (`blender.exe blender/Calendario_Avvento.blend`): l'addon apre la porta
-  9876 da solo (auto-start). Eseguire lo script con `exec(open(...).read(), {"__name__": "__main__"})` dentro
-  `contextlib.redirect_stdout` per leggere i controlli stampati.
-- Profilo 2D nel piano XZ estruso in Y; unione dei pieni con un solo booleano EXACT `use_self=True`, poi un solo
-  DIFFERENCE con tutti i taglienti uniti (`merge`), `use_self=True`.
-- Bordini a gradini: un unico solido per ramo/curva con `loft_multi` (sezioni successive, due sezioni alla stessa y
-  = gradino). Tagliare i gradini con pezzi separati sovrapposti dava ~200 spigoli aperti.
-- I rami entrano 0,6 mm (`EXT`) nelle curve: niente lamelle al raccordo.
-- Filetto: `filetto()` costruisce un tubo con raggio funzione di (z − passo·θ/2π); maschio = UNION sul collo,
-  femmina = DIFFERENCE nel tappo. Il tappo si gira con una **rotazione** di 180° su X (non con scala −1: lo
-  specchio inverte il verso del filetto). Tappo base costruito una volta, i numeri si uniscono a copie.
-- Numeri: font `ariblk.ttf`, `new_from_object` + `join_into` con `material_index`.
-- Prima degli STL: `remove_doubles(1e-3)` + `dissolve_degenerate`.
+- **Booleani:**
+  - Booleani EXACT con taglienti **disgiunti** (un box per lato) e `self_int=True`.
+  - Prima un'unica UNION dei pieni, poi un'unica DIFFERENCE dei taglienti uniti con `merge`.
+- **Canale:** un unico solido spazzato lungo tutto il percorso (`canale_intero()`). Le colonnine si ricavano
+  togliendole dal solido del canale.
+- **Buchi dopo i tagli:** i piccoli buchi ai nuclei delle curve a U si chiudono all'export con
+  `bmesh.ops.holes_fill(..., sides=16)`.
+- **Posizione dei perni:** `dentro()` usa BVH `find_nearest` per il margine, poi tre raggi obliqui con voto a
+  maggioranza e dedup dei doppi colpi. Il candidato deve stare dentro sia il corpo (6 mm dalla faccia) sia il telaio
+  (metà spessore). La scelta è greedy, con passo 30.
+- **Baricentro:** si calcola con `baricentro_x()` prima di dividere il nastro.
+- **Filetti:**
+  - Il tappo si gira con una rotazione, mai con uno specchio: lo specchio inverte il verso del filetto.
+  - I fori della testa del pupazzo vanno tagliati uno alla volta.
+- **Capienza:** simulazione del percorso nello scratchpad (`percorso.py`) prima di toccare il modello.
 
 ## Cosa non ha funzionato
 
-- Primo tentativo a ripiani piatti (le capsule non scendono, nastro a sbalzo su due perni).
-- Volume pieno come unione di inviluppi convessi: profilo pulito ma non sembra un albero (rifiutato).
-- Heredoc Python da Bash: `python3` non esiste e il fallback ha aperto la REPL interattiva bloccando la shell.
-  Usare Edit/Write o `sed`.
+- **INTERSECT EXACT con tolleranza:** svuotava i pezzi.
+- **Box di taglio sovrapposti fusi in un solo tagliente:** davano geometria spazzatura.
+- **Pulizia della mesh prima dei tagli:** rompeva i booleani.
+- **`dentro()` con un solo raggio, o col segno della normale:** falsi positivi vicino al tetto inclinato di 2°.
+  Ne uscivano perni volanti.
+- **Ganci e bottoni sui piani di taglio dei telai:** spezzavano i telai. Sono stati spostati sulle pareti delle curve
+  di destra.
+- **Finestra e scanalatura fino al piano del telaio:** lasciavano lamelle da 0,2–0,3 mm. Ora arrivano a
+  `Y_LIP+0.8/0.9`.
+- **Taglio dei telai alla curva 5:** staccava la striscia in cima, quindi è stato tolto.
+- **Primi tentativi rifiutati:** il primo tentativo a ripiani piatti e la sagoma fatta di inviluppi convessi
+  ("non sembra un albero").
+- **Python in heredoc da Bash:** `python3` non esiste. Usare Edit/Write o script nello scratchpad.
 
-## Prossimi passi (aggiornati)
+## Prossimi passi
 
-1. Prova di stampa consigliata all'utente: un bussolotto con tappo, una pallina, un gancio, un tratto di curva.
-2. `git init` + commit solo quando l'utente lo chiede (italiano, niente Co-Authored-By); poi eventuale pubblicazione
-   nel repo delle guide (vedi memoria "Pubblicare le guide").
-
-## Prossimi passi (storici, già fatti)
-
-1. Chiudere l'ultimo spigolo aperto del nastro (fermo d'uscita).
-2. Far confermare all'utente la forma in Blender (vista davanti e dietro); chiedere se vanno bene palline, cresta
-   della stella, finestra della capsula 1.
-3. Rigenerare con `blender -b --factory-startup --python blender/costruisci.py` (STL + geometria.json + .blend);
-   eliminare da `stl/` gli STL non più prodotti se ce ne sono.
-4. Prova di stampa consigliata: un bussolotto + un tappo (filetto) e un pezzo di curva per lo scorrimento.
-5. Aggiornare `dati/scrivi_spec.py` (caricare dall'ingresso in alto **prima la 1, ultima la 25**; prendere
-   dall'uscita in basso a sinistra; tappi avvitati; tenone del tronco dal retro), eseguirlo, `build_guide.py`,
-   screenshot con `shoot.py`, README, `.gitignore`. `git init` + commit solo su richiesta (italiano, niente Co-Authored-By).
-
-**ZIP per colore (2026-11-13, sera):** nuova opzione della skill guida-stampa-3d: `filaments` nello spec + `filament`
-per pezzo → riquadro «Scarica per colore · ZIP» nella lista di stampa, con la scelta «un file per copia» (pezzi
-uguali ripetuti, `_01`, `_02`…) o un file per pezzo + quantita.txt (scelta ricordata nel browser). In `scrivi_spec.py`
-`FILAMENTI` e `FIL_GRUPPO` (un solo verde; giallo anche per stella, chiave, ganci, naso e N25; perni dei regali bianchi):
-verde 28, rosso 38, bianco 31, giallo 8, marrone 1, nero 3 = 109 pezzi. Provato con Chrome headless (cliccando i pulsanti).
+1. Aspettare il riscontro dell'utente sulla guida pubblicata e sulle stampe.
+2. Prova di stampa consigliata: un telaio piccolo più il suo corpo, per sentire come entrano i perni. Se entrano duri,
+   aumentare la compensazione dei fori di 0,1 o regolare `PT_FORO`. Poi un bussolotto con tappo e un Ferrero dentro.
+3. Peso del nastro: circa 785 g di PETG in totale.

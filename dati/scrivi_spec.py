@@ -196,8 +196,8 @@ spec = {
         {"title": "Corpi del nastro sul tronco", "short": f"{N_LIV} corpi · uno sull'altro",
          "text": f"Sopra il tronco c'è un tenone {n(C['tenone_scanalatura_mm'][0])} × {n(C['tenone_scanalatura_mm'][2])} mm; "
                  "sotto il corpo 1, una scanalatura aperta sul retro: appoggia il corpo 1 sul tronco con il tenone nella scanalatura. "
-                 f"Poi impila gli altri corpi, dal 2 al {N_LIV}: si toccano sui tagli piani a metà delle curve di destra. "
-                 "Per ora stanno solo appoggiati; i telai li bloccano.",
+                 f"Poi impila gli altri corpi, dal 2 al {N_LIV}: si toccano a metà delle curve di destra, con uno scalino: "
+                 "il muro fra due rami sta sempre intero nel corpo sopra. Per ora stanno solo appoggiati; i telai li bloccano.",
          "parts": CORPI, "built": BASE_OK + ["TR", "CA"] + CORPI, "moving": CORPI, "dir": [0, 0, 1], "travel": 40},
         {"title": "Telai dietro", "short": "perni del telaio nei fori del corpo",
          "text": f"I telai portano i bordini e le colonnine. Quelli dietro hanno i perni (Ø{n(pt['perno'][0])} × {n(pt['perno'][1])} mm, "
@@ -285,7 +285,8 @@ spec = {
              "summary": "3 pareti · 15%"},
             {"key": "grandi", "title": "Tronco e cassetto",
              "rows": [["Pareti", "3"], ["Infill", "15% Gyroid"], ["Orientamento", "come nello STL"]],
-             "why": "Il tronco si stampa sul retro con l'apertura in alto e il tenone che sale dal piatto; il cassetto sul frontale. Niente ponti lunghi.",
+             "why": "Il tronco è liscio: si stampa sul retro con l'apertura in alto e il tenone che sale dal piatto, senza supporti; "
+                    "il cassetto sul frontale. Niente ponti lunghi.",
              "summary": "3 pareti · 15%"},
             {"key": "capsule", "title": "Corpi dei bussolotti",
              "rows": [["Layer", "0,16"], ["Pareti", "3"], ["Infill", "0% (parete piena)"], ["Orientamento", "fondo sul piatto"]],

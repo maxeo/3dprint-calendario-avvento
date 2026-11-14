@@ -710,7 +710,63 @@ def livelli(src, prefisso, bordi):
 
 bc = [LO] + Z_TAGLI + [HI]
 bt = [LO] + Z_TAGLI_T + [HI]
-corpi = livelli(strato("corpo", Y_TF, Y_TD), "P01_Nastro", bc)
+
+
+# Nello strato dei corpi il canale passante divide il nastro in due pettini incastrati: dorso a destra (fuori dalle
+# curve di destra) con i denti verso sinistra, dorso a sinistra con i denti verso destra. Il taglio orizzontale a metà
+# della curva k di destra taglierebbe anche il dente del pettine di sinistra che finisce lì (il muro fra il ramo k e il
+# ramo k+1): un pezzo di dente resterebbe staccato nel corpo sotto. Il taglio fa quindi uno scalino: il dente va tutto
+# nel corpo sopra. Sotto il dente il taglio passa sulla mediana del ramo k (nell'aria del canale), a destra scende
+# nell'aria della curva, a sinistra sale tagliando la radice del dente (per k = 0: nella finestra dell'uscita).
+def scalino(j):
+    """Profilo del taglio j (fra il corpo j e il j+1), da sinistra a destra: [(x, z), ...]."""
+    k = TAGLI[j]
+    (xc, zc), s = turns[k]
+    zt = Z_TAGLI[j]
+    xa = X_FERMO + 6.0 if k == 0 else X_CURVE[k - 1] + s * 3.0
+    xb = xc + s * RT
+    return [(-400.0, zt), (xa, zt), (xa, z_on(legs[k], xa)), (xb, z_on(legs[k], xb)), (xb, zt), (400.0, zt)]
+
+
+SCALINI = [scalino(j) for j in range(len(TAGLI))]
+
+
+def corpo_di(x, z):
+    """Indice del corpo che contiene il punto (x, z) dello strato dei corpi."""
+    for j, p in enumerate(SCALINI):
+        zl = p[2][1] + (p[3][1] - p[2][1]) * (x - p[2][0]) / (p[3][0] - p[2][0]) if p[2][0] <= x <= p[3][0] else p[0][1]
+        if z < zl:
+            return j
+    return len(SCALINI)
+
+
+def dist_scalini(x, z):
+    d = 1e9
+    for p in SCALINI:
+        for a, b in zip(p, p[1:]):
+            ab = (b[0] - a[0], b[1] - a[1])
+            t = max(0.0, min(1.0, ((x - a[0]) * ab[0] + (z - a[1]) * ab[1]) / (ab[0] ** 2 + ab[1] ** 2)))
+            d = min(d, math.dist((x, z), (a[0] + ab[0] * t, a[1] + ab[1] * t)))
+    return d
+
+
+def corpi_a_scalini(src):
+    out = []
+    for i in range(len(SCALINI) + 1):
+        via = []
+        if i > 0:                                 # sotto lo scalino i-1
+            via.append(extrude_xz([(-400.0, -1000.0), (400.0, -1000.0)] + SCALINI[i - 1][::-1], -100, D_TOT + 100))
+        if i < len(SCALINI):                      # sopra lo scalino i
+            via.append(extrude_xz(SCALINI[i] + [(400.0, 2000.0), (-400.0, 2000.0)], -100, D_TOT + 100))
+        o = bpy.data.objects.new(f"P01_Nastro_{i + 1}", src.data.copy())
+        C_STAMPA.objects.link(o)
+        boolean(o, merge(via, "fuori", C_TMP), 'DIFFERENCE', self_int=True)
+        out.append(o)
+    bpy.data.objects.remove(src)
+    return out
+
+
+corpi = corpi_a_scalini(strato("corpo", Y_TF, Y_TD))
 tel_d = livelli(strato("tel_d", LO, Y_TF), "P23_Telaio_davanti", bt)
 tel_r = livelli(strato("tel_r", Y_TD, HI), "P24_Telaio_dietro", bt)
 bpy.data.objects.remove(nastro)
@@ -720,7 +776,7 @@ for i, o in enumerate(corpi[:-1]):
     zp, e = bc[i + 1], SMUSSO_TAGLIO
     xo, xi = xc + s * (RT + RC), xc + s * (RT - RC)
     boolean(o, merge([extrude_xz([(xb - v * 0.2, zp - e - 0.2), (xb + v * (e + 1), zp + 1), (xb - v * 0.2, zp + 1)],
-                                 Y_TF - 1, Y_TD + 1) for xb, v in ((xo, s), (xi, -s))], "smussi", C_TMP), 'DIFFERENCE', True)
+                                 Y_TF - 1, Y_TD + 1) for xb, v in ((xo, s),)], "smussi", C_TMP), 'DIFFERENCE', True)   # il dente interno ora è intero sopra
 
 # posizioni dei perni: dove c'è materiale attorno sia nel corpo sia nel telaio, ben distanziati
 from mathutils.bvhtree import BVHTree
@@ -766,9 +822,9 @@ for lato, yf, B_T in ((-1, Y_TF, B_TD), (1, Y_TD, B_TR)):
     cand = []
     for x in np.arange(min(xs_c), max(xs_c), 1.0):
         for z in np.arange(min(zs_c), max(zs_c), 1.0):
-            if min(abs(z - zt) for zt in Z_TAGLI + Z_TAGLI_T) < PT_D:
+            if min(abs(z - zt) for zt in Z_TAGLI_T) < PT_D or dist_scalini(x, z) < PT_D:
                 continue
-            ic, it = quale(bc, z), quale(bt, z)
+            ic, it = corpo_di(x, z), quale(bt, z)
             pc = Vector((x, yf - lato * 6.0, z))                   # nel corpo, oltre il fondo del foro
             pt = Vector((x, yf + lato * (Y_TF / 2), z))             # a metà del telaio
             if dentro(B_C[ic], pc, PT_MARGINE + PT_D / 2) and dentro(B_T[it], pt, PT_MARGINE_TELAIO):
@@ -799,8 +855,8 @@ def foro_t(lato, x, z):
 
 
 for i, o in enumerate(corpi):
-    davanti = [(x, z) for l, x, z in PERNI_T if l < 0 and quale(bc, z) == i]
-    dietro = [(x, z) for l, x, z in PERNI_T if l > 0 and quale(bc, z) == i]
+    davanti = [(x, z) for l, x, z in PERNI_T if l < 0 and corpo_di(x, z) == i]
+    dietro = [(x, z) for l, x, z in PERNI_T if l > 0 and corpo_di(x, z) == i]
     if davanti:
         boolean(o, merge([perno_t(-1, x, z) for x, z in davanti], "perni", C_TMP), 'UNION', self_int=True)
     if dietro:
@@ -976,14 +1032,7 @@ TR_Y0 = 0.0
 tronco = box(TR_X - TR_W / 2, TR_Y0, BASE[2], TR_X + TR_W / 2, TR_Y0 + TR_D, Z_PIANO, "P06_Tronco", C_STAMPA)
 cav = box(TR_X - TR_W / 2 + TR_PARETE, TR_Y0 - 1, BASE[2] + TR_FONDO, TR_X + TR_W / 2 - TR_PARETE, TR_Y0 + TR_D - TR_PARETE,
           Z_PIANO - TR_CIELO, "cav")
-ven = []                                           # venature della corteccia sui fianchi e sul retro
-for k, x in enumerate(np.linspace(-TR_W / 2 + 7, TR_W / 2 - 7, 5)):
-    ven.append(box(TR_X + x - 0.8, TR_Y0 + TR_D - 0.8, BASE[2] + 8 + 3 * (k % 2), TR_X + x + 0.8, TR_Y0 + TR_D + 1,
-                   Z_PIANO - 6 - 4 * (k % 2), "v"))
-for side in (-1, 1):
-    for k, y in enumerate(np.linspace(TR_Y0 + 8, TR_Y0 + TR_D - 8, 5)):
-        x0 = TR_X + side * TR_W / 2
-        ven.append(box(x0 - 0.8, y - 0.8, BASE[2] + 7 + 4 * (k % 2), x0 + 0.8, y + 0.8, Z_PIANO - 7 - 3 * (k % 2), "v"))
+ven = []                                           # tronco liscio (niente venature): retro pulito sul piatto
 for x in (-12.0, 12.0):                            # fori dei perni della base
     f = cyl(DIAM_FORO / 2, BASE[2] - 1, BASE[2] + 3, "fb"); f.data.transform(Matrix.Translation((TR_X + x, TR_Y0 + TR_D / 2, 0)))
     ven.append(f)

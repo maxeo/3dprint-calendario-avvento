@@ -50,7 +50,7 @@
     "label": "Ø42 × 39,6 mm, ci sta un Ferrero Rocher"
    },
    {
-    "value": "≈ 1826 g",
+    "value": "≈ 1827 g",
     "label": "PETG in tutto"
    }
   ]
@@ -325,7 +325,7 @@
   {
    "title": "Corpi del nastro sul tronco",
    "short": "4 corpi · uno sull'altro",
-   "text": "Sopra il tronco c'è un tenone 60 × 6 mm; sotto il corpo 1, una scanalatura aperta sul retro: appoggia il corpo 1 sul tronco con il tenone nella scanalatura. Poi impila gli altri corpi, dal 2 al 4: si toccano sui tagli piani a metà delle curve di destra. Per ora stanno solo appoggiati; i telai li bloccano.",
+   "text": "Sopra il tronco c'è un tenone 60 × 6 mm; sotto il corpo 1, una scanalatura aperta sul retro: appoggia il corpo 1 sul tronco con il tenone nella scanalatura. Poi impila gli altri corpi, dal 2 al 4: si toccano a metà delle curve di destra, con uno scalino: il muro fra due rami sta sempre intero nel corpo sopra. Per ora stanno solo appoggiati; i telai li bloccano.",
    "parts": [
     "N1",
     "N2",
@@ -368,7 +368,7 @@
   {
    "title": "Telai dietro",
    "short": "perni del telaio nei fori del corpo",
-   "text": "I telai portano i bordini e le colonnine. Quelli dietro hanno i perni (Ø2,6 × 3 mm, 29 in tutto): premili nei fori del retro dei corpi. Ogni telaio scavalca un taglio dei corpi (i telai sono tagliati a metà delle curve di sinistra) e tiene insieme due corpi. Se vuoi l'albero fisso, un velo di colla.",
+   "text": "I telai portano i bordini e le colonnine. Quelli dietro hanno i perni (Ø2,6 × 3 mm, 36 in tutto): premili nei fori del retro dei corpi. Ogni telaio scavalca un taglio dei corpi (i telai sono tagliati a metà delle curve di sinistra) e tiene insieme due corpi. Se vuoi l'albero fisso, un velo di colla.",
    "parts": [
     "FR1",
     "FR2",
@@ -412,7 +412,7 @@
   {
    "title": "Telai davanti",
    "short": "perni del corpo nei fori del telaio",
-   "text": "Davanti i perni stanno sui corpi (29 in tutto) e i fori nei telai: premi i telai da davanti. Il telaio davanti 1 fa anche da battuta al tenone del tronco.",
+   "text": "Davanti i perni stanno sui corpi (36 in tutto) e i fori nei telai: premi i telai da davanti. Il telaio davanti 1 fa anche da battuta al tenone del tronco.",
    "parts": [
     "FD1",
     "FD2",
@@ -1348,7 +1348,7 @@
       "come nello STL"
      ]
     ],
-    "why": "Il tronco si stampa sul retro con l'apertura in alto e il tenone che sale dal piatto; il cassetto sul frontale. Niente ponti lunghi.",
+    "why": "Il tronco è liscio: si stampa sul retro con l'apertura in alto e il tenone che sale dal piatto, senza supporti; il cassetto sul frontale. Niente ponti lunghi.",
     "summary": "3 pareti · 15%"
    },
    {
