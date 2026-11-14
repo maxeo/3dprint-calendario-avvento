@@ -42,8 +42,16 @@ def part(pid, file, label, group, prt, qty=1, tri=1500, k=None, note="", vista=N
 LISCIO = {"smooth": 35, "cull": True}            # pezzi torniti: luce interpolata, spigoli vivi oltre 35°
 CHIUSO = {f: P[f].get("non_manifold_edges", 1) == 0 for f in P}
 N_PAL = len(POSE["P15_Gancio"])
-DOVE = ["fianco destro della curva alta", "fianco sinistro della curva di mezzo", "fianco del fermo d'uscita",
-        "sotto il ramo basso, a destra"]
+DOVE = ["fianco destro della curva 1 (la più bassa)", "fianco sinistro della curva 2", "fianco destro della curva 3",
+        "fianco sinistro della curva 4", "fianco destro della curva 5", "fianco sinistro della curva 6 (la più alta)",
+        "bottone davanti, fra il primo e il secondo ramo", "bottone davanti, fra il terzo e il quarto ramo",
+        "fianco del fermo d'uscita", "bottone davanti, sotto il ramo basso a destra"]
+N_LIV = len([f for f in P if f.startswith("P01_Nastro_")])
+CORPI = [f"N{i}" for i in range(1, N_LIV + 1)]
+N_TEL = len([f for f in P if f.startswith("P23_Telaio_davanti_")])
+TEL_D = [f"FD{i}" for i in range(1, N_TEL + 1)]
+TEL_R = [f"FR{i}" for i in range(1, N_TEL + 1)]
+NASTRO = CORPI + TEL_R + TEL_D
 parts = [
     dict(part("B", "P11_Base", "Base con pupazzo", "Base", "base", tri=20000), smooth=35, cull=True),   # pupazzo liscio
     part("R1", "P12_Regalo", "Regalo rosso · davanti a sinistra", "Regali rossi", "regali", k=0),
@@ -59,7 +67,6 @@ parts = [
     part("PR", "P17_Perno_regalo", "Perno dei regali", "Perni", "regali", qty=len(POSE["P17_Perno_regalo"]), tri=300),
     part("TR", "P06_Tronco", "Tronco", "Tronco", "grandi", tri=3000),
     part("CA", "P07_Cassetto", "Cassetto con serratura", "Cassetto", "grandi", tri=2000),
-    part("N", "P01_Nastro", "Nastro a scivolo", "Albero", "nastro", tri=24000),
     part("S", "P09_Stella", "Stella", "Stella", "piccoli", tri=1200),
 ]
 for i in range(N_PAL):                             # copie con rotazioni diverse: un pezzo per copia (stesso STL)
@@ -68,6 +75,11 @@ for i in range(N_PAL):                             # copie con rotazioni diverse
                    note=f"Si avvita nel {DOVE[i]}." if i < len(DOVE) else ""),
               part(f"PS{i + 1}", "P10_Pallina_sopra", f"Pallina {i + 1} · sopra", "Palline", "filetti", qty=q, k=i, vista=LISCIO),
               part(f"PT{i + 1}", "P14_Pallina_sotto", f"Pallina {i + 1} · sotto", "Palline", "filetti", qty=q, k=i, vista=LISCIO)]
+for i in range(1, N_LIV + 1):                     # nastro: corpi e telai, perni stampati nei pezzi
+    parts.append(part(f"N{i}", f"P01_Nastro_{i}", f"Corpo del nastro {i}", "Albero", "nastro", tri=9000))
+for i in range(1, N_TEL + 1):
+    parts += [part(f"FD{i}", f"P23_Telaio_davanti_{i}", f"Telaio davanti {i}", "Albero", "telai", tri=6000),
+              part(f"FR{i}", f"P24_Telaio_dietro_{i}", f"Telaio dietro {i}", "Albero", "telai", tri=6000)]
 parts.append(part("C", "P02_Corpo_capsula", "Corpo capsula 1–24", "Capsule", "capsule", qty=24, vista=LISCIO))
 for i in range(1, 25):
     parts.append(part(f"T{i:02d}", f"P03_Tappo_{i:02d}", f"Tappo {i}", "Tappi rossi" if i % 5 == 0 else "Tappi", "tappi",
@@ -98,7 +110,10 @@ peso = round(sum(v["peso_PETG_g"] * len(POSE[k]) for k, v in P.items()))
 tappo_h = P["P03_Tappo_01"]["size"][2]
 cap_l = P["P02_Corpo_capsula"]["size"][2] + tappo_h - 6.0
 fil = C["filetto_mm"]
-nastro = P["P01_Nastro"]["size"]
+nastro = max((P[f]["size"] for f in P if f.startswith(("P01_Nastro_", "P23_", "P24_"))), key=lambda s: s[0] * s[1])
+cap_d = P["P02_Corpo_capsula"]["size"][0]
+pt = C["nastro_perni_telai"]
+pal = C["pallina_mm"]
 base_h = 5.0
 
 # filamento di ogni pezzo (per gli ZIP «Scarica per colore»): un solo verde; il giallo vale anche per la stella
@@ -129,15 +144,15 @@ spec = {
         "facts": [
             {"value": f"{alt} mm", "label": "altezza con la stella"},
             {"value": f"{larg} × {prof} mm", "label": "base"},
-            {"value": "25 bussolotti", "label": f"Ø20 × {n(cap_l)} mm, tappo a vite"},
+            {"value": "25 bussolotti", "label": f"Ø{n(cap_d)} × {n(cap_l)} mm, ci sta un Ferrero Rocher"},
             {"value": f"≈ {peso} g", "label": "PETG in tutto"},
         ],
     },
     "camera": {"yaw": -0.35, "pitch": 0.22},
-    "caption": "Albero montato: 25 bussolotti nello scivolo, quattro palline appese, cassetto chiuso a chiave.",
+    "caption": f"Albero montato: 25 bussolotti nello scivolo, {N_PAL} palline appese, cassetto chiuso a chiave.",
     "labels": False,                               # 70 pezzi: sigle spente all'apertura, il pulsante «Sigle» le riaccende
-    "model_note_html": f"<span class='badge'>Quote del modello</span><p>Nastro {n(nastro[0])} × {n(nastro[1])} × {n(nastro[2])} mm "
-                       f"(si stampa coricato sul retro) · base {larg} × {prof} mm</p>",
+    "model_note_html": f"<span class='badge'>Quote del modello</span><p>Nastro in {N_LIV + 2 * N_TEL} pezzi, il più grande "
+                       f"{n(nastro[0])} × {n(nastro[1])} mm sul piatto · base {larg} × {prof} mm</p>",
     "groups": {"Base": {"color": "#efede6"}, "Tronco": {"color": "#8a5a3c"}, "Albero": {"color": "#2e8b57"},
                "Palline": {"color": "#c0392b"}, "Capsule": {"color": "#7fbf8a"},
                "Tappi": {"color": "#e8e6e0"}, "Tappi rossi": {"color": "#c0392b"}, "Capsula 25": {"color": "#c0392b"}, "Chiave": {"color": "#f2c418"}, "Regali rossi": {"color": "#c0392b"}, "Regalo verde": {"color": "#3fae5a"}, "Nastri verdi": {"color": "#3fae5a"}, "Nastro rosso": {"color": "#c0392b"}, "Cappello e occhi": {"color": "#26262a"}, "Cassetto": {"color": "#c0392b"}, "Naso": {"color": "#f2c418"}, "Perni": {"color": "#d8d4c8"}, "Ganci": {"color": "#f2c418"}, "Stella": {"color": "#e0b040"},
@@ -178,30 +193,40 @@ spec = {
         {"title": "Cassetto nel tronco", "short": "da davanti",
          "text": f"Infila il cassetto nel tronco finché il frontale va in battuta. Gioco {n(C['gioco_cassetto_mm'])} mm per lato.",
          "parts": ["CA"], "built": BASE_OK + ["TR", "CA"], "moving": ["CA"], "dir": [0, -1, 0], "travel": 45},
-        {"title": "Nastro sul tronco", "short": "tenone · da davanti verso il retro",
+        {"title": "Corpi del nastro sul tronco", "short": f"{N_LIV} corpi · uno sull'altro",
          "text": f"Sopra il tronco c'è un tenone {n(C['tenone_scanalatura_mm'][0])} × {n(C['tenone_scanalatura_mm'][2])} mm; "
-                 "sotto il nastro, una scanalatura aperta sul retro. Appoggia il nastro sul tronco spostato in avanti e fallo "
-                 "scorrere verso il retro: si ferma quando il tenone tocca il bordino davanti. Una goccia di colla se vuoi l'albero fisso.",
-         "parts": ["N"], "built": BASE_OK + ["TR", "CA", "N"], "moving": ["N"], "dir": [0, -1, 0], "travel": 50},
+                 "sotto il corpo 1, una scanalatura aperta sul retro: appoggia il corpo 1 sul tronco con il tenone nella scanalatura. "
+                 f"Poi impila gli altri corpi, dal 2 al {N_LIV}: si toccano sui tagli piani a metà delle curve di destra. "
+                 "Per ora stanno solo appoggiati; i telai li bloccano.",
+         "parts": CORPI, "built": BASE_OK + ["TR", "CA"] + CORPI, "moving": CORPI, "dir": [0, 0, 1], "travel": 40},
+        {"title": "Telai dietro", "short": "perni del telaio nei fori del corpo",
+         "text": f"I telai portano i bordini e le colonnine. Quelli dietro hanno i perni (Ø{n(pt['perno'][0])} × {n(pt['perno'][1])} mm, "
+                 f"{pt['dietro']} in tutto): premili nei fori del retro dei corpi. Ogni telaio scavalca un taglio dei corpi "
+                 "(i telai sono tagliati a metà delle curve di sinistra) e tiene insieme due corpi. Se vuoi l'albero fisso, un velo di colla.",
+         "parts": TEL_R, "built": BASE_OK + ["TR", "CA"] + CORPI + TEL_R, "moving": TEL_R, "dir": [0, 1, 0], "travel": 30},
+        {"title": "Telai davanti", "short": "perni del corpo nei fori del telaio",
+         "text": f"Davanti i perni stanno sui corpi ({pt['davanti']} in tutto) e i fori nei telai: premi i telai da davanti. "
+                 "Il telaio davanti 1 fa anche da battuta al tenone del tronco.",
+         "parts": TEL_D, "built": BASE_OK + ["TR", "CA"] + NASTRO, "moving": TEL_D, "dir": [0, -1, 0], "travel": 30},
         {"title": "Stella in cima", "short": "linguetta · dall'alto",
          "text": "Infila la linguetta della stella nella fessura della cresta in cima al nastro, con la punta della stella verso davanti.",
-         "parts": ["S"], "built": BASE_OK + ["TR", "CA", "N", "S"], "moving": ["S"], "dir": [0, 0, 1], "travel": 30},
+         "parts": ["S"], "built": BASE_OK + ["TR", "CA"] + NASTRO + ["S"], "moving": ["S"], "dir": [0, 0, 1], "travel": 30},
         {"title": "Ganci a vite", "short": f"{N_PAL} ganci",
-         "text": "Avvita i ganci a mano nei fori filettati finché il collarino tocca il nastro: due sui fianchi delle curve, "
-                 "uno nel fianco del fermo d'uscita e uno sotto il ramo basso a destra (questo entra dal davanti). "
+         "text": "Avvita i ganci a mano nei fori filettati finché il collarino tocca il nastro: sei sui fianchi delle curve, "
+                 "uno nel fianco del fermo d'uscita e tre nei bottoni davanti (due fra i rami, uno sotto il ramo basso a destra). "
                  "La gola del piolo deve restare libera.",
-         "parts": ganci, "built": BASE_OK + ["TR", "CA", "N", "S"] + ganci, "moving": ganci, "dir": [0, -1, 0], "travel": 14},
+         "parts": ganci, "built": BASE_OK + ["TR", "CA"] + NASTRO + ["S"] + ganci, "moving": ganci, "dir": [0, -1, 0], "travel": 26},
         {"title": "Palline appese", "short": "due metà · occhiello sul piolo",
          "text": "Avvita la metà sotto (quella con il collare) dentro la metà sopra (quella con l'occhiello) fino a chiuderle. "
                  "Infila l'occhiello sul piolo del gancio: passa sopra la punta e cade nella gola, dove resta appeso.",
-         "parts": palline, "built": BASE_OK + ["TR", "CA", "N", "S"] + ganci + palline, "moving": palline, "dir": [0, 0, -1], "travel": 18},
+         "parts": palline, "built": BASE_OK + ["TR", "CA"] + NASTRO + ["S"] + ganci + palline, "moving": palline, "dir": [0, 0, -1], "travel": 18},
         {"title": "Riempi e carica i bussolotti", "short": "dall'ingresso in alto · prima la 1",
          "text": f"Riempi i corpi (bocca Ø{n(C['bocca_capsula_d_mm'])}, interno lungo {n(C['interno_capsula_l_mm'])} mm: cioccolatini piccoli, "
-                 "caramelle, un biglietto) e avvita i tappi. Se hai stampato i numeri da inserire, premili a filo nel solco del tappo "
+                 "un Ferrero Rocher, caramelle, un biglietto) e avvita i tappi. Se hai stampato i numeri da inserire, premili a filo nel solco del tappo "
                  "(rossi nei tappi bianchi, bianchi nei rossi; una goccia di colla se sono lenti). Carica dall'ingresso in alto a sinistra, coricati e con il tappo davanti: "
                  "<b>prima la 1</b>, che rotola fino al fermo in basso, poi la 2, la 3… fino alla 24. "
                  "Ognuno spinge e scende dietro al precedente.",
-         "parts": ["C"] + tappi + numeri[:24], "built": BASE_OK + ["TR", "CA", "N", "S"] + ganci + palline + ["C"] + tappi + numeri[:24],
+         "parts": ["C"] + tappi + numeri[:24], "built": BASE_OK + ["TR", "CA"] + NASTRO + ["S"] + ganci + palline + ["C"] + tappi + numeri[:24],
          "moving": ["C"] + tappi + numeri[:24], "dir": [0, -1, 0], "travel": 60},
         {"title": "Per ultima la 25", "short": "con la chiave",
          "text": f"Metti la chiave nel bussolotto rosso 25 (la chiave è lunga {n(C['chiave_lunghezza_mm'])} mm), avvita il tappo rosso con il 25 "
@@ -216,7 +241,7 @@ spec = {
     ],
     "map": {"eyebrow": "02 / Sigle", "h2": "Uno scivolo, venticinque bussolotti.",
             "cards": [{"title": "Albero · vista frontale", "columns": 3, "top_label": "Alto", "bottom_label": "Basso",
-                       "ids": ["", "S", "", "C25", "T25", "K", "G1", "N", "G2", "PS1", "C", "PT1", "T01", "T24", "G4",
+                       "ids": ["", "S", "", "C25", "T25", "K", "G1", "N2", "G2", "PS1", "C", "PT1", "T01", "T24", "G4",
                                "TR", "CA", "B", "R1", "NR1", "PR", "CP", "NS", "OC1"],
                        "note_html": f"I bussolotti 1–24 hanno lo stesso corpo (C, 24 copie) e un tappo numerato ciascuno. "
                                     f"Ganci e palline sono {N_PAL} copie dello stesso pezzo (G, PS, PT)."}]},
@@ -225,13 +250,19 @@ spec = {
         "common_html": "<b>Punto di partenza da verificare:</b> PETG · ugello 0,4 · Anycubic Kobra S1 (piatto 250 × 250). "
                        "Nessun pezzo richiede supporti: gli STL sono già orientati per la stampa.",
         "profiles": [
-            {"key": "nastro", "title": "Nastro a scivolo",
+            {"key": "nastro", "title": "Corpi del nastro",
              "rows": [["Orientamento", "retro sul piatto (come nello STL)"], ["Layer", "0,20"], ["Pareti", "3"],
                       ["Infill", "15% Gyroid"], ["Brim", "5 mm"]],
-             "why": f"Coricato sul retro tutte le pareti del canale sono verticali e i bordini a gradini da 1,33 mm "
-                    f"escono a 45°. Ingombro {n(nastro[0])} × {n(nastro[1])} mm, alto {n(nastro[2])}. I fori filettati dei ganci "
-                    "sui fianchi restano orizzontali: diametro piccolo, si stampano senza supporti. Il brim tiene giù le punte delle curve.",
+             "why": f"Il corpo è solo la parete del canale, senza bordini: coricato sul retro ha tutte le pareti verticali. "
+                    f"Il più grande sta in {n(nastro[0])} × {n(nastro[1])} mm. I fori filettati dei ganci sui fianchi restano orizzontali: "
+                    "diametro piccolo, si stampano senza supporti. I perni davanti escono in alto. Il brim tiene giù le punte delle curve.",
              "summary": "retro sul piatto · 3 pareti · 15% · brim"},
+            {"key": "telai", "title": "Telai davanti e dietro",
+             "rows": [["Orientamento", "come nello STL (perni in alto)"], ["Layer", "0,20"], ["Pareti", "3"], ["Infill", "100%"]],
+             "why": "Lastre basse con i bordini a gradini a 45° e le colonnine. Il telaio davanti si stampa con la faccia interna "
+                    "sul piatto (i fori ciechi in basso, bottoni dei ganci in alto); quello dietro con la faccia esterna sul piatto "
+                    f"e i perni Ø{n(pt['perno'][0])} in alto. Fori Ø{n(pt['foro'][0])}: se i perni entrano duri, compensazione dei fori +0,1.",
+             "summary": "stesi · perni in alto"},
             {"key": "base", "title": "Base con pupazzo",
              "rows": [["Layer", "0,20"], ["Pareti", "3"], ["Infill", "15%"], ["Colore", "bianco"]],
              "why": f"Il pupazzo è unito alla base (lo unisce lo slicer). I sei fori dei regali sono ciechi, profondi "
@@ -278,11 +309,11 @@ spec = {
              "summary": "stesi · 100% · facoltativi"},
             {"key": "filetti", "title": "Ganci e palline",
              "rows": [["Layer", "0,12"], ["Pareti", "4"], ["Infill", "100% (ganci)"], ["Orientamento", "come nello STL"]],
-             "why": f"Pezzi piccoli con filetti fini (passo 1,5): layer basso. Le palline sono vuote come quelle per il gatto: "
+             "why": f"Filetti fini: layer basso. Le palline (Ø{n(pal['diametro_stampato'])}) sono vuote come quelle per il gatto: "
                     f"guscio da {n(C['pallina_mm']['guscio'])} mm, filetto Ø{n(C['pallina_mm']['filetto_cresta_d'])} vicino al giunto, "
                     "collare forato (con 4 pareti il guscio esce pieno di perimetri, niente infill dentro). "
                     "La metà sopra si stampa sul giunto con l'occhiello in alto (svasatura a 45° e cupola senza supporti); "
-                    "la metà sotto capovolta, sul collare; il gancio in piedi, punta del piolo sul piatto.",
+                    "la metà sotto capovolta, sul collare; il gancio in piedi, punta del piolo sul piatto (alto e sottile: brim).",
              "summary": "0,12 · 4 pareti"},
             {"key": "piccoli", "title": "Stella e chiave",
              "rows": [["Pareti", "3"], ["Infill", "20%"], ["Velocità", "ridotta"]],
@@ -295,17 +326,19 @@ spec = {
     "notes": {"eyebrow": "04 / Lo scivolo", "h2": "Perché i bussolotti scendono da soli.", "nav": "Scivolo",
               "cards": [
                   {"title": "Il canale", "html":
-                   f"<ul><li>Canale alto {n(C['canale_altezza_mm'])} mm: {n(C['gioco_capsula20_mm'])} mm d'aria sopra il bussolotto Ø20, "
+                   f"<ul><li>Canale alto {n(C['canale_altezza_mm'])} mm: {n(C['gioco_capsula20_mm'])} mm d'aria sopra il bussolotto Ø{n(cap_d)}, "
                    "due bussolotti non possono sovrapporsi</li>"
                    f"<li>Rami inclinati di {n(C['pendenza_rami_gradi'])}° verso la curva successiva; curve a U con raggio {n(C['raggio_mediana_curve_mm'])} mm in mezzeria</li>"
                    f"<li>Percorso lungo {n(C['lunghezza_percorso_mm'])} mm: 25 bussolotti e {n(C['spazio_libero_ingresso_mm'])} mm liberi all'ingresso</li>"
                    f"<li>Canale passante, con un bordino da {n(C['bordino_mm'][0])} mm davanti e dietro: il bussolotto resta centrato "
                    f"({n(C['aria_capsula_fra_i_bordini_mm'])} mm d'aria in profondità) e dal retro se ne vedono i fondi</li>"
                    f"<li>{C['colonnine_per_lato']} colonnine da 3 mm davanti e altrettante dietro uniscono i rami fra loro (il canale passante altrimenti li staccherebbe): stanno nello spessore dei bordini, {n(C['colonnine_aria_bussolotto_mm'][0])} mm prima del bussolotto</li>"
-                  "<li>All'ingresso i gradini dei bordini diventano rampe: il bussolotto entra senza impuntarsi</li></ul>"},
+                  "<li>All'ingresso i gradini dei bordini diventano rampe: il bussolotto entra senza impuntarsi</li>"
+                   "<li>Dove i corpi si toccano (a metà delle curve di destra) il canale del corpo sotto ha uno smusso da 0,8 mm: "
+                   "il bussolotto che scende non urta lo scalino</li></ul>"},
                   {"title": "Filetti", "html":
                    f"<ul><li>Tappo: passo {n(fil['passo'])}, dente {n(fil['dente'])}, gioco radiale {n(fil['gioco_radiale'])} mm</li>"
-                   "<li>Pallina: vuota, passo 1,5 su Ø18 vicino al giunto, cono a 45° che centra le due metà</li>"
+                   f"<li>Pallina: vuota, passo {n(1.5 * pal['scala_rispetto_alle_misure'], 2)} su Ø{n(pal['filetto_cresta_d'] * pal['scala_rispetto_alle_misure'])} vicino al giunto, cono a 45° che centra le due metà</li>"
                    "<li>Gancio: passo 1,5 nel foro del nastro, 7 mm in presa</li></ul>"
                    "<p>Avvita sempre a mano: se un filetto è duro, non forzarlo con la pinza.</p>"},
                   {"title": "Chiave e serratura", "html":

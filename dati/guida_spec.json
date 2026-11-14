@@ -38,19 +38,19 @@
   "intro_html": "<b>Il nastro verde è uno scivolo chiuso a serpentina.</b> I bussolotti si caricano dall'ingresso in alto, scendono da soli lungo i rami inclinati e le curve, e ogni giorno si sfila quello in basso a sinistra: il successivo rotola al suo posto. I tappi numerati si avvitano. Il 25 è rosso e contiene la chiave del cassetto nascosto nel tronco. Tutto si stampa <b>senza supporti</b>.",
   "facts": [
    {
-    "value": "242 mm",
+    "value": "526 mm",
     "label": "altezza con la stella"
    },
    {
-    "value": "190 × 115 mm",
+    "value": "230 × 150 mm",
     "label": "base"
    },
    {
     "value": "25 bussolotti",
-    "label": "Ø20 × 47,6 mm, tappo a vite"
+    "label": "Ø42 × 39,6 mm, ci sta un Ferrero Rocher"
    },
    {
-    "value": "≈ 895 g",
+    "value": "≈ 1826 g",
     "label": "PETG in tutto"
    }
   ]
@@ -59,9 +59,9 @@
   "yaw": -0.35,
   "pitch": 0.22
  },
- "caption": "Albero montato: 25 bussolotti nello scivolo, quattro palline appese, cassetto chiuso a chiave.",
+ "caption": "Albero montato: 25 bussolotti nello scivolo, 10 palline appese, cassetto chiuso a chiave.",
  "labels": false,
- "model_note_html": "<span class='badge'>Quote del modello</span><p>Nastro 186 × 142,6 × 57,4 mm (si stampa coricato sul retro) · base 190 × 115 mm</p>",
+ "model_note_html": "<span class='badge'>Quote del modello</span><p>Nastro in 10 pezzi, il più grande 189,2 × 158,6 mm sul piatto · base 230 × 150 mm</p>",
  "groups": {
   "Base": {
    "color": "#efede6"
@@ -323,11 +323,14 @@
    "travel": 45
   },
   {
-   "title": "Nastro sul tronco",
-   "short": "tenone · da davanti verso il retro",
-   "text": "Sopra il tronco c'è un tenone 36 × 4 mm; sotto il nastro, una scanalatura aperta sul retro. Appoggia il nastro sul tronco spostato in avanti e fallo scorrere verso il retro: si ferma quando il tenone tocca il bordino davanti. Una goccia di colla se vuoi l'albero fisso.",
+   "title": "Corpi del nastro sul tronco",
+   "short": "4 corpi · uno sull'altro",
+   "text": "Sopra il tronco c'è un tenone 60 × 6 mm; sotto il corpo 1, una scanalatura aperta sul retro: appoggia il corpo 1 sul tronco con il tenone nella scanalatura. Poi impila gli altri corpi, dal 2 al 4: si toccano sui tagli piani a metà delle curve di destra. Per ora stanno solo appoggiati; i telai li bloccano.",
    "parts": [
-    "N"
+    "N1",
+    "N2",
+    "N3",
+    "N4"
    ],
    "built": [
     "B",
@@ -344,17 +347,114 @@
     "OC2",
     "TR",
     "CA",
-    "N"
+    "N1",
+    "N2",
+    "N3",
+    "N4"
    ],
    "moving": [
-    "N"
+    "N1",
+    "N2",
+    "N3",
+    "N4"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "travel": 40
+  },
+  {
+   "title": "Telai dietro",
+   "short": "perni del telaio nei fori del corpo",
+   "text": "I telai portano i bordini e le colonnine. Quelli dietro hanno i perni (Ø2,6 × 3 mm, 29 in tutto): premili nei fori del retro dei corpi. Ogni telaio scavalca un taglio dei corpi (i telai sono tagliati a metà delle curve di sinistra) e tiene insieme due corpi. Se vuoi l'albero fisso, un velo di colla.",
+   "parts": [
+    "FR1",
+    "FR2",
+    "FR3"
+   ],
+   "built": [
+    "B",
+    "PR",
+    "R1",
+    "R2",
+    "R3",
+    "NR1",
+    "NR2",
+    "NR3",
+    "CP",
+    "NS",
+    "OC1",
+    "OC2",
+    "TR",
+    "CA",
+    "N1",
+    "N2",
+    "N3",
+    "N4",
+    "FR1",
+    "FR2",
+    "FR3"
+   ],
+   "moving": [
+    "FR1",
+    "FR2",
+    "FR3"
+   ],
+   "dir": [
+    0,
+    1,
+    0
+   ],
+   "travel": 30
+  },
+  {
+   "title": "Telai davanti",
+   "short": "perni del corpo nei fori del telaio",
+   "text": "Davanti i perni stanno sui corpi (29 in tutto) e i fori nei telai: premi i telai da davanti. Il telaio davanti 1 fa anche da battuta al tenone del tronco.",
+   "parts": [
+    "FD1",
+    "FD2",
+    "FD3"
+   ],
+   "built": [
+    "B",
+    "PR",
+    "R1",
+    "R2",
+    "R3",
+    "NR1",
+    "NR2",
+    "NR3",
+    "CP",
+    "NS",
+    "OC1",
+    "OC2",
+    "TR",
+    "CA",
+    "N1",
+    "N2",
+    "N3",
+    "N4",
+    "FR1",
+    "FR2",
+    "FR3",
+    "FD1",
+    "FD2",
+    "FD3"
+   ],
+   "moving": [
+    "FD1",
+    "FD2",
+    "FD3"
    ],
    "dir": [
     0,
     -1,
     0
    ],
-   "travel": 50
+   "travel": 30
   },
   {
    "title": "Stella in cima",
@@ -378,7 +478,16 @@
     "OC2",
     "TR",
     "CA",
-    "N",
+    "N1",
+    "N2",
+    "N3",
+    "N4",
+    "FR1",
+    "FR2",
+    "FR3",
+    "FD1",
+    "FD2",
+    "FD3",
     "S"
    ],
    "moving": [
@@ -393,13 +502,19 @@
   },
   {
    "title": "Ganci a vite",
-   "short": "4 ganci",
-   "text": "Avvita i ganci a mano nei fori filettati finché il collarino tocca il nastro: due sui fianchi delle curve, uno nel fianco del fermo d'uscita e uno sotto il ramo basso a destra (questo entra dal davanti). La gola del piolo deve restare libera.",
+   "short": "10 ganci",
+   "text": "Avvita i ganci a mano nei fori filettati finché il collarino tocca il nastro: sei sui fianchi delle curve, uno nel fianco del fermo d'uscita e tre nei bottoni davanti (due fra i rami, uno sotto il ramo basso a destra). La gola del piolo deve restare libera.",
    "parts": [
     "G1",
     "G2",
     "G3",
-    "G4"
+    "G4",
+    "G5",
+    "G6",
+    "G7",
+    "G8",
+    "G9",
+    "G10"
    ],
    "built": [
     "B",
@@ -416,25 +531,46 @@
     "OC2",
     "TR",
     "CA",
-    "N",
+    "N1",
+    "N2",
+    "N3",
+    "N4",
+    "FR1",
+    "FR2",
+    "FR3",
+    "FD1",
+    "FD2",
+    "FD3",
     "S",
     "G1",
     "G2",
     "G3",
-    "G4"
+    "G4",
+    "G5",
+    "G6",
+    "G7",
+    "G8",
+    "G9",
+    "G10"
    ],
    "moving": [
     "G1",
     "G2",
     "G3",
-    "G4"
+    "G4",
+    "G5",
+    "G6",
+    "G7",
+    "G8",
+    "G9",
+    "G10"
    ],
    "dir": [
     0,
     -1,
     0
    ],
-   "travel": 14
+   "travel": 26
   },
   {
    "title": "Palline appese",
@@ -445,10 +581,22 @@
     "PS2",
     "PS3",
     "PS4",
+    "PS5",
+    "PS6",
+    "PS7",
+    "PS8",
+    "PS9",
+    "PS10",
     "PT1",
     "PT2",
     "PT3",
-    "PT4"
+    "PT4",
+    "PT5",
+    "PT6",
+    "PT7",
+    "PT8",
+    "PT9",
+    "PT10"
    ],
    "built": [
     "B",
@@ -465,30 +613,69 @@
     "OC2",
     "TR",
     "CA",
-    "N",
+    "N1",
+    "N2",
+    "N3",
+    "N4",
+    "FR1",
+    "FR2",
+    "FR3",
+    "FD1",
+    "FD2",
+    "FD3",
     "S",
     "G1",
     "G2",
     "G3",
     "G4",
+    "G5",
+    "G6",
+    "G7",
+    "G8",
+    "G9",
+    "G10",
     "PS1",
     "PS2",
     "PS3",
     "PS4",
+    "PS5",
+    "PS6",
+    "PS7",
+    "PS8",
+    "PS9",
+    "PS10",
     "PT1",
     "PT2",
     "PT3",
-    "PT4"
+    "PT4",
+    "PT5",
+    "PT6",
+    "PT7",
+    "PT8",
+    "PT9",
+    "PT10"
    ],
    "moving": [
     "PS1",
     "PS2",
     "PS3",
     "PS4",
+    "PS5",
+    "PS6",
+    "PS7",
+    "PS8",
+    "PS9",
+    "PS10",
     "PT1",
     "PT2",
     "PT3",
-    "PT4"
+    "PT4",
+    "PT5",
+    "PT6",
+    "PT7",
+    "PT8",
+    "PT9",
+    "PT10"
    ],
    "dir": [
     0,
@@ -500,7 +687,7 @@
   {
    "title": "Riempi e carica i bussolotti",
    "short": "dall'ingresso in alto · prima la 1",
-   "text": "Riempi i corpi (bocca Ø12,8, interno lungo 44,4 mm: cioccolatini piccoli, caramelle, un biglietto) e avvita i tappi. Se hai stampato i numeri da inserire, premili a filo nel solco del tappo (rossi nei tappi bianchi, bianchi nei rossi; una goccia di colla se sono lenti). Carica dall'ingresso in alto a sinistra, coricati e con il tappo davanti: <b>prima la 1</b>, che rotola fino al fermo in basso, poi la 2, la 3… fino alla 24. Ognuno spinge e scende dietro al precedente.",
+   "text": "Riempi i corpi (bocca Ø34,8, interno lungo 36,4 mm: cioccolatini piccoli, un Ferrero Rocher, caramelle, un biglietto) e avvita i tappi. Se hai stampato i numeri da inserire, premili a filo nel solco del tappo (rossi nei tappi bianchi, bianchi nei rossi; una goccia di colla se sono lenti). Carica dall'ingresso in alto a sinistra, coricati e con il tappo davanti: <b>prima la 1</b>, che rotola fino al fermo in basso, poi la 2, la 3… fino alla 24. Ognuno spinge e scende dietro al precedente.",
    "parts": [
     "C",
     "T01",
@@ -567,20 +754,47 @@
     "OC2",
     "TR",
     "CA",
-    "N",
+    "N1",
+    "N2",
+    "N3",
+    "N4",
+    "FR1",
+    "FR2",
+    "FR3",
+    "FD1",
+    "FD2",
+    "FD3",
     "S",
     "G1",
     "G2",
     "G3",
     "G4",
+    "G5",
+    "G6",
+    "G7",
+    "G8",
+    "G9",
+    "G10",
     "PS1",
     "PS2",
     "PS3",
     "PS4",
+    "PS5",
+    "PS6",
+    "PS7",
+    "PS8",
+    "PS9",
+    "PS10",
     "PT1",
     "PT2",
     "PT3",
     "PT4",
+    "PT5",
+    "PT6",
+    "PT7",
+    "PT8",
+    "PT9",
+    "PT10",
     "C",
     "T01",
     "T02",
@@ -713,7 +927,6 @@
     "PR",
     "TR",
     "CA",
-    "N",
     "S",
     "G1",
     "PS1",
@@ -727,6 +940,34 @@
     "G4",
     "PS4",
     "PT4",
+    "G5",
+    "PS5",
+    "PT5",
+    "G6",
+    "PS6",
+    "PT6",
+    "G7",
+    "PS7",
+    "PT7",
+    "G8",
+    "PS8",
+    "PT8",
+    "G9",
+    "PS9",
+    "PT9",
+    "G10",
+    "PS10",
+    "PT10",
+    "N1",
+    "N2",
+    "N3",
+    "N4",
+    "FD1",
+    "FR1",
+    "FD2",
+    "FR2",
+    "FD3",
+    "FR3",
     "C",
     "T01",
     "T02",
@@ -817,7 +1058,6 @@
     "PR",
     "TR",
     "CA",
-    "N",
     "S",
     "G1",
     "PS1",
@@ -831,6 +1071,34 @@
     "G4",
     "PS4",
     "PT4",
+    "G5",
+    "PS5",
+    "PT5",
+    "G6",
+    "PS6",
+    "PT6",
+    "G7",
+    "PS7",
+    "PT7",
+    "G8",
+    "PS8",
+    "PT8",
+    "G9",
+    "PS9",
+    "PT9",
+    "G10",
+    "PS10",
+    "PT10",
+    "N1",
+    "N2",
+    "N3",
+    "N4",
+    "FD1",
+    "FR1",
+    "FD2",
+    "FR2",
+    "FD3",
+    "FR3",
     "C",
     "T01",
     "T02",
@@ -904,7 +1172,7 @@
      "T25",
      "K",
      "G1",
-     "N",
+     "N2",
      "G2",
      "PS1",
      "C",
@@ -922,7 +1190,7 @@
      "NS",
      "OC1"
     ],
-    "note_html": "I bussolotti 1–24 hanno lo stesso corpo (C, 24 copie) e un tappo numerato ciascuno. Ganci e palline sono 4 copie dello stesso pezzo (G, PS, PT)."
+    "note_html": "I bussolotti 1–24 hanno lo stesso corpo (C, 24 copie) e un tappo numerato ciascuno. Ganci e palline sono 10 copie dello stesso pezzo (G, PS, PT)."
    }
   ]
  },
@@ -933,7 +1201,7 @@
   "profiles": [
    {
     "key": "nastro",
-    "title": "Nastro a scivolo",
+    "title": "Corpi del nastro",
     "rows": [
      [
       "Orientamento",
@@ -956,8 +1224,32 @@
       "5 mm"
      ]
     ],
-    "why": "Coricato sul retro tutte le pareti del canale sono verticali e i bordini a gradini da 1,33 mm escono a 45°. Ingombro 186 × 142,6 mm, alto 57,4. I fori filettati dei ganci sui fianchi restano orizzontali: diametro piccolo, si stampano senza supporti. Il brim tiene giù le punte delle curve.",
+    "why": "Il corpo è solo la parete del canale, senza bordini: coricato sul retro ha tutte le pareti verticali. Il più grande sta in 189,2 × 158,6 mm. I fori filettati dei ganci sui fianchi restano orizzontali: diametro piccolo, si stampano senza supporti. I perni davanti escono in alto. Il brim tiene giù le punte delle curve.",
     "summary": "retro sul piatto · 3 pareti · 15% · brim"
+   },
+   {
+    "key": "telai",
+    "title": "Telai davanti e dietro",
+    "rows": [
+     [
+      "Orientamento",
+      "come nello STL (perni in alto)"
+     ],
+     [
+      "Layer",
+      "0,20"
+     ],
+     [
+      "Pareti",
+      "3"
+     ],
+     [
+      "Infill",
+      "100%"
+     ]
+    ],
+    "why": "Lastre basse con i bordini a gradini a 45° e le colonnine. Il telaio davanti si stampa con la faccia interna sul piatto (i fori ciechi in basso, bottoni dei ganci in alto); quello dietro con la faccia esterna sul piatto e i perni Ø2,6 in alto. Fori Ø3: se i perni entrano duri, compensazione dei fori +0,1.",
+    "summary": "stesi · perni in alto"
    },
    {
     "key": "base",
@@ -1152,7 +1444,7 @@
       "come nello STL"
      ]
     ],
-    "why": "Pezzi piccoli con filetti fini (passo 1,5): layer basso. Le palline sono vuote come quelle per il gatto: guscio da 1,6 mm, filetto Ø18 vicino al giunto, collare forato (con 4 pareti il guscio esce pieno di perimetri, niente infill dentro). La metà sopra si stampa sul giunto con l'occhiello in alto (svasatura a 45° e cupola senza supporti); la metà sotto capovolta, sul collare; il gancio in piedi, punta del piolo sul piatto.",
+    "why": "Filetti fini: layer basso. Le palline (Ø36) sono vuote come quelle per il gatto: guscio da 1,6 mm, filetto Ø18 vicino al giunto, collare forato (con 4 pareti il guscio esce pieno di perimetri, niente infill dentro). La metà sopra si stampa sul giunto con l'occhiello in alto (svasatura a 45° e cupola senza supporti); la metà sotto capovolta, sul collare; il gancio in piedi, punta del piolo sul piatto (alto e sottile: brim).",
     "summary": "0,12 · 4 pareti"
    },
    {
@@ -1185,11 +1477,11 @@
   "cards": [
    {
     "title": "Il canale",
-    "html": "<ul><li>Canale alto 23 mm: 3 mm d'aria sopra il bussolotto Ø20, due bussolotti non possono sovrapporsi</li><li>Rami inclinati di 2° verso la curva successiva; curve a U con raggio 14 mm in mezzeria</li><li>Percorso lungo 520,2 mm: 25 bussolotti e 20 mm liberi all'ingresso</li><li>Canale passante, con un bordino da 4 mm davanti e dietro: il bussolotto resta centrato (1,8 mm d'aria in profondità) e dal retro se ne vedono i fondi</li><li>9 colonnine da 3 mm davanti e altrettante dietro uniscono i rami fra loro (il canale passante altrimenti li staccherebbe): stanno nello spessore dei bordini, 1,2 mm prima del bussolotto</li><li>All'ingresso i gradini dei bordini diventano rampe: il bussolotto entra senza impuntarsi</li></ul>"
+    "html": "<ul><li>Canale alto 45 mm: 3 mm d'aria sopra il bussolotto Ø42, due bussolotti non possono sovrapporsi</li><li>Rami inclinati di 2° verso la curva successiva; curve a U con raggio 25 mm in mezzeria</li><li>Percorso lungo 1126,6 mm: 25 bussolotti e 55,4 mm liberi all'ingresso</li><li>Canale passante, con un bordino da 4 mm davanti e dietro: il bussolotto resta centrato (1,8 mm d'aria in profondità) e dal retro se ne vedono i fondi</li><li>11 colonnine da 3 mm davanti e altrettante dietro uniscono i rami fra loro (il canale passante altrimenti li staccherebbe): stanno nello spessore dei bordini, 1,2 mm prima del bussolotto</li><li>All'ingresso i gradini dei bordini diventano rampe: il bussolotto entra senza impuntarsi</li><li>Dove i corpi si toccano (a metà delle curve di destra) il canale del corpo sotto ha uno smusso da 0,8 mm: il bussolotto che scende non urta lo scalino</li></ul>"
    },
    {
     "title": "Filetti",
-    "html": "<ul><li>Tappo: passo 2, dente 0,8, gioco radiale 0,3 mm</li><li>Pallina: vuota, passo 1,5 su Ø18 vicino al giunto, cono a 45° che centra le due metà</li><li>Gancio: passo 1,5 nel foro del nastro, 7 mm in presa</li></ul><p>Avvita sempre a mano: se un filetto è duro, non forzarlo con la pinza.</p>"
+    "html": "<ul><li>Tappo: passo 2, dente 0,8, gioco radiale 0,3 mm</li><li>Pallina: vuota, passo 2,25 su Ø27 vicino al giunto, cono a 45° che centra le due metà</li><li>Gancio: passo 1,5 nel foro del nastro, 7 mm in presa</li></ul><p>Avvita sempre a mano: se un filetto è duro, non forzarlo con la pinza.</p>"
    },
    {
     "title": "Chiave e serratura",
@@ -1270,13 +1562,13 @@
      0.9659,
      -0.2588,
      0.0,
-     -51.0
+     -60.5
     ],
     [
      0.2588,
      0.9659,
      0.0,
-     -26.0
+     -38.0
     ],
     [
      0.0,
@@ -1308,13 +1600,13 @@
      0.9397,
      0.342,
      0.0,
-     47.0
+     63.5
     ],
     [
      -0.342,
      0.9397,
      0.0,
-     -24.0
+     -34.0
     ],
     [
      0.0,
@@ -1346,13 +1638,13 @@
      0.9962,
      -0.0872,
      0.0,
-     69.0
+     89.5
     ],
     [
      0.0872,
      0.9962,
      0.0,
-     30.0
+     45.0
     ],
     [
      0.0,
@@ -1384,19 +1676,19 @@
      0.9659,
      0.2588,
      -0.0,
-     -51.0
+     -60.5
     ],
     [
      0.2588,
      -0.9659,
      0.0,
-     -26.0
+     -38.0
     ],
     [
      0.0,
      -0.0,
      -1.0,
-     19.6
+     27.6
     ],
     [
      0.0,
@@ -1422,19 +1714,19 @@
      0.9397,
      -0.342,
      0.0,
-     47.0
+     63.5
     ],
     [
      -0.342,
      -0.9397,
      0.0,
-     -24.0
+     -34.0
     ],
     [
      0.0,
      -0.0,
      -1.0,
-     19.6
+     27.6
     ],
     [
      0.0,
@@ -1460,19 +1752,19 @@
      0.9962,
      0.0872,
      -0.0,
-     69.0
+     89.5
     ],
     [
      0.0872,
      -0.9962,
      0.0,
-     30.0
+     45.0
     ],
     [
      0.0,
      -0.0,
      -1.0,
-     19.6
+     27.6
     ],
     [
      0.0,
@@ -1498,19 +1790,19 @@
      1.0,
      0.0,
      0.0,
-     -51.0
+     -63.5
     ],
     [
      0.0,
      1.0,
      0.0,
-     50.0
+     62.0
     ],
     [
      0.0,
      0.0,
      1.0,
-     30.3
+     45.6
     ],
     [
      0.0,
@@ -1536,19 +1828,19 @@
      1.0,
      0.0,
      0.0,
-     -51.0
+     -63.5
     ],
     [
      0.0,
      0.0,
      -1.0,
-     45.7193
+     55.1508
     ],
     [
      0.0,
      1.0,
      0.0,
-     25.8
+     38.4
     ],
     [
      0.0,
@@ -1574,19 +1866,19 @@
      0.8273,
      -0.2378,
      -0.509,
-     -53.2907
+     -67.1651
     ],
     [
      -0.2378,
      0.6727,
      -0.7006,
-     46.8472
+     56.9555
     ],
     [
      0.509,
      0.7006,
      0.5,
-     27.55
+     41.2
     ],
     [
      0.0,
@@ -1612,19 +1904,19 @@
      0.8273,
      0.2378,
      0.509,
-     -48.7093
+     -59.8349
     ],
     [
      0.2378,
      0.6727,
      -0.7006,
-     46.8472
+     56.9555
     ],
     [
      -0.509,
      0.7006,
      0.5,
-     27.55
+     41.2
     ],
     [
      0.0,
@@ -1650,13 +1942,13 @@
      0.9659,
      -0.2588,
      0.0,
-     -53.4749
+     -64.3891
     ],
     [
      0.2588,
      0.9659,
      0.0,
-     -30.2866
+     -44.7361
     ],
     [
      0.0,
@@ -1678,28 +1970,28 @@
      0.0
     ],
     [
-     4.95,
-     8.573,
+     7.778,
+     13.472,
      0.0
     ],
     [
-     95.989,
-     4.195,
+     120.84,
+     7.449,
      0.0
     ],
     [
-     104.961,
-     8.378,
+     134.939,
+     14.023,
      0.0
     ],
     [
-     119.293,
-     56.495,
+     148.889,
+     83.778,
      0.0
     ],
     [
-     125.656,
-     64.078,
+     158.889,
+     95.695,
      0.0
     ]
    ],
@@ -1726,7 +2018,7 @@
      0.0,
      -0.0,
      -1.0,
-     57.4
+     49.4
     ],
     [
      0.0,
@@ -1783,44 +2075,6 @@
    "filament": "rosso"
   },
   {
-   "id": "N",
-   "label": "Nastro a scivolo",
-   "group": "Albero",
-   "file": "stl/P01_Nastro.stl",
-   "quantity": 1,
-   "print": "nastro",
-   "mode": "mesh",
-   "max_triangles": 24000,
-   "matrix": [
-    [
-     1.0,
-     0.0,
-     0.0,
-     0.0
-    ],
-    [
-     0.0,
-     -0.0,
-     -1.0,
-     57.4
-    ],
-    [
-     0.0,
-     1.0,
-     -0.0,
-     0.0
-    ],
-    [
-     0.0,
-     0.0,
-     0.0,
-     1.0
-    ]
-   ],
-   "cull": true,
-   "filament": "verde"
-  },
-  {
    "id": "S",
    "label": "Stella",
    "group": "Stella",
@@ -1834,19 +2088,19 @@
      1.0,
      0.0,
      0.0,
-     -1.0
+     -9.5
     ],
     [
      0.0,
      0.0,
      -1.0,
-     30.2
+     26.2
     ],
     [
      0.0,
      1.0,
      0.0,
-     220.2822
+     489.6964
     ],
     [
      0.0,
@@ -1872,19 +2126,19 @@
      -0.0,
      -0.0,
      -1.0,
-     69.5
+     145.5412
     ],
     [
      -1.0,
      0.0,
      0.0,
-     28.7
+     24.7
     ],
     [
      0.0,
      1.0,
      -0.0,
-     164.1705
+     113.5074
     ],
     [
      0.0,
@@ -1896,7 +2150,7 @@
    "view_file": "dati/vista/P15_Gancio.stl",
    "smooth": 35,
    "cull": true,
-   "note_html": "Si avvita nel fianco destro della curva alta.",
+   "note_html": "Si avvita nel fianco destro della curva 1 (la più bassa).",
    "filament": "giallo"
   },
   {
@@ -1913,19 +2167,19 @@
      -1.0,
      0.0,
      0.0,
-     64.15
+     140.1912
     ],
     [
      -0.0,
      -1.0,
      0.0,
-     28.7
+     24.7
     ],
     [
      0.0,
      0.0,
      1.0,
-     145.8705
+     85.8074
     ],
     [
      0.0,
@@ -1953,19 +2207,19 @@
      -1.0,
      -0.0,
      0.0,
-     64.15
+     140.1912
     ],
     [
      -0.0,
      1.0,
      -0.0,
-     28.7
+     24.7
     ],
     [
      0.0,
      -0.0,
      -1.0,
-     151.0895
+     93.6358
     ],
     [
      0.0,
@@ -1993,19 +2247,19 @@
      -0.0,
      0.0,
      1.0,
-     -105.5
+     -134.0025
     ],
     [
      1.0,
      0.0,
      0.0,
-     28.7
+     24.7
     ],
     [
      0.0,
      1.0,
      -0.0,
-     133.3769
+     203.8026
     ],
     [
      0.0,
@@ -2017,7 +2271,7 @@
    "view_file": "dati/vista/P15_Gancio.stl",
    "smooth": 35,
    "cull": true,
-   "note_html": "Si avvita nel fianco sinistro della curva di mezzo.",
+   "note_html": "Si avvita nel fianco sinistro della curva 2.",
    "filament": "giallo"
   },
   {
@@ -2034,19 +2288,19 @@
      1.0,
      0.0,
      0.0,
-     -100.15
+     -128.6525
     ],
     [
      0.0,
      1.0,
      0.0,
-     28.7
+     24.7
     ],
     [
      0.0,
      0.0,
      1.0,
-     115.0769
+     176.1026
     ],
     [
      0.0,
@@ -2074,19 +2328,19 @@
      1.0,
      0.0,
      0.0,
-     -100.15
+     -128.6525
     ],
     [
      0.0,
      -1.0,
      0.0,
-     28.7
+     24.7
     ],
     [
      0.0,
      -0.0,
      -1.0,
-     120.2958
+     183.9311
     ],
     [
      0.0,
@@ -2112,21 +2366,21 @@
    "matrix": [
     [
      -0.0,
-     0.0,
-     1.0,
-     -103.5
+     -0.0,
+     -1.0,
+     135.3115
     ],
     [
-     1.0,
+     -1.0,
      0.0,
      0.0,
-     28.7
+     24.7
     ],
     [
      0.0,
      1.0,
      -0.0,
-     74.25
+     256.6788
     ],
     [
      0.0,
@@ -2138,7 +2392,7 @@
    "view_file": "dati/vista/P15_Gancio.stl",
    "smooth": 35,
    "cull": true,
-   "note_html": "Si avvita nel fianco del fermo d'uscita.",
+   "note_html": "Si avvita nel fianco destro della curva 3.",
    "filament": "giallo"
   },
   {
@@ -2152,22 +2406,22 @@
    "max_triangles": 100000,
    "matrix": [
     [
-     1.0,
+     -1.0,
      0.0,
      0.0,
-     -98.15
+     129.9615
+    ],
+    [
+     -0.0,
+     -1.0,
+     0.0,
+     24.7
     ],
     [
      0.0,
-     1.0,
-     0.0,
-     28.7
-    ],
-    [
-     0.0,
      0.0,
      1.0,
-     55.95
+     228.9788
     ],
     [
      0.0,
@@ -2192,22 +2446,22 @@
    "max_triangles": 100000,
    "matrix": [
     [
-     1.0,
+     -1.0,
+     -0.0,
      0.0,
-     0.0,
-     -98.15
+     129.9615
     ],
     [
-     0.0,
-     -1.0,
-     0.0,
-     28.7
+     -0.0,
+     1.0,
+     -0.0,
+     24.7
     ],
     [
      0.0,
      -0.0,
      -1.0,
-     61.169
+     236.8073
     ],
     [
      0.0,
@@ -2232,22 +2486,22 @@
    "max_triangles": 100000,
    "matrix": [
     [
-     -1.0,
-     0.0,
      -0.0,
-     48.6954
-    ],
-    [
-     -0.0,
-     -0.0,
-     1.0,
-     -12.0
-    ],
-    [
      0.0,
      1.0,
+     -122.1102
+    ],
+    [
+     1.0,
      0.0,
-     64.4079
+     0.0,
+     24.7
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     283.1011
     ],
     [
      0.0,
@@ -2259,7 +2513,7 @@
    "view_file": "dati/vista/P15_Gancio.stl",
    "smooth": 35,
    "cull": true,
-   "note_html": "Si avvita nel sotto il ramo basso, a destra.",
+   "note_html": "Si avvita nel fianco sinistro della curva 4.",
    "filament": "giallo"
   },
   {
@@ -2273,22 +2527,22 @@
    "max_triangles": 100000,
    "matrix": [
     [
-     0.0,
-     -1.0,
-     0.0,
-     48.6954
-    ],
-    [
      1.0,
      0.0,
      0.0,
-     -6.65
+     -116.7602
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     24.7
     ],
     [
      0.0,
      0.0,
      1.0,
-     46.1079
+     255.4011
     ],
     [
      0.0,
@@ -2313,22 +2567,22 @@
    "max_triangles": 100000,
    "matrix": [
     [
-     0.0,
      1.0,
-     -0.0,
-     48.6954
+     0.0,
+     0.0,
+     -116.7602
     ],
     [
-     1.0,
-     -0.0,
      0.0,
-     -6.65
+     -1.0,
+     0.0,
+     24.7
     ],
     [
      0.0,
      -0.0,
      -1.0,
-     51.3269
+     263.2295
     ],
     [
      0.0,
@@ -2341,6 +2595,1112 @@
    "smooth": 35,
    "cull": true,
    "filament": "rosso"
+  },
+  {
+   "id": "G5",
+   "label": "Gancio 5",
+   "group": "Ganci",
+   "file": "stl/P15_Gancio.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     -0.0,
+     -0.0,
+     -1.0,
+     118.6681
+    ],
+    [
+     -1.0,
+     0.0,
+     0.0,
+     24.7
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     326.0344
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P15_Gancio.stl",
+   "smooth": 35,
+   "cull": true,
+   "note_html": "Si avvita nel fianco destro della curva 5.",
+   "filament": "giallo"
+  },
+  {
+   "id": "PS5",
+   "label": "Pallina 5 · sopra",
+   "group": "Palline",
+   "file": "stl/P10_Pallina_sopra.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     -1.0,
+     0.0,
+     0.0,
+     113.3181
+    ],
+    [
+     -0.0,
+     -1.0,
+     0.0,
+     24.7
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     298.3344
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P10_Pallina_sopra.stl",
+   "smooth": 35,
+   "cull": true,
+   "filament": "rosso"
+  },
+  {
+   "id": "PT5",
+   "label": "Pallina 5 · sotto",
+   "group": "Palline",
+   "file": "stl/P14_Pallina_sotto.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     -1.0,
+     -0.0,
+     0.0,
+     113.3181
+    ],
+    [
+     -0.0,
+     1.0,
+     -0.0,
+     24.7
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     306.1628
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P14_Pallina_sotto.stl",
+   "smooth": 35,
+   "cull": true,
+   "filament": "rosso"
+  },
+  {
+   "id": "G6",
+   "label": "Gancio 6",
+   "group": "Ganci",
+   "file": "stl/P15_Gancio.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     -0.0,
+     0.0,
+     1.0,
+     -108.156
+    ],
+    [
+     1.0,
+     0.0,
+     0.0,
+     24.7
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     406.444
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P15_Gancio.stl",
+   "smooth": 35,
+   "cull": true,
+   "note_html": "Si avvita nel fianco sinistro della curva 6 (la più alta).",
+   "filament": "giallo"
+  },
+  {
+   "id": "PS6",
+   "label": "Pallina 6 · sopra",
+   "group": "Palline",
+   "file": "stl/P10_Pallina_sopra.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -102.806
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     24.7
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     378.744
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P10_Pallina_sopra.stl",
+   "smooth": 35,
+   "cull": true,
+   "filament": "rosso"
+  },
+  {
+   "id": "PT6",
+   "label": "Pallina 6 · sotto",
+   "group": "Palline",
+   "file": "stl/P14_Pallina_sotto.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -102.806
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     24.7
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     386.5724
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P14_Pallina_sotto.stl",
+   "smooth": 35,
+   "cull": true,
+   "filament": "rosso"
+  },
+  {
+   "id": "G7",
+   "label": "Gancio 7",
+   "group": "Ganci",
+   "file": "stl/P15_Gancio.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     -1.0,
+     0.0,
+     -0.0,
+     -42.0
+    ],
+    [
+     -0.0,
+     -0.0,
+     1.0,
+     -30.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     133.5074
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P15_Gancio.stl",
+   "smooth": 35,
+   "cull": true,
+   "note_html": "Si avvita nel bottone davanti, fra il primo e il secondo ramo.",
+   "filament": "giallo"
+  },
+  {
+   "id": "PS7",
+   "label": "Pallina 7 · sopra",
+   "group": "Palline",
+   "file": "stl/P10_Pallina_sopra.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     0.0,
+     -1.0,
+     0.0,
+     -42.0
+    ],
+    [
+     1.0,
+     0.0,
+     0.0,
+     -24.65
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     105.8074
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P10_Pallina_sopra.stl",
+   "smooth": 35,
+   "cull": true,
+   "filament": "rosso"
+  },
+  {
+   "id": "PT7",
+   "label": "Pallina 7 · sotto",
+   "group": "Palline",
+   "file": "stl/P14_Pallina_sotto.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     0.0,
+     1.0,
+     -0.0,
+     -42.0
+    ],
+    [
+     1.0,
+     -0.0,
+     0.0,
+     -24.65
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     113.6358
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P14_Pallina_sotto.stl",
+   "smooth": 35,
+   "cull": true,
+   "filament": "rosso"
+  },
+  {
+   "id": "G8",
+   "label": "Gancio 8",
+   "group": "Ganci",
+   "file": "stl/P15_Gancio.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     -1.0,
+     0.0,
+     -0.0,
+     -20.0
+    ],
+    [
+     -0.0,
+     -0.0,
+     1.0,
+     -30.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     241.6788
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P15_Gancio.stl",
+   "smooth": 35,
+   "cull": true,
+   "note_html": "Si avvita nel bottone davanti, fra il terzo e il quarto ramo.",
+   "filament": "giallo"
+  },
+  {
+   "id": "PS8",
+   "label": "Pallina 8 · sopra",
+   "group": "Palline",
+   "file": "stl/P10_Pallina_sopra.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     0.0,
+     -1.0,
+     0.0,
+     -20.0
+    ],
+    [
+     1.0,
+     0.0,
+     0.0,
+     -24.65
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     213.9789
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P10_Pallina_sopra.stl",
+   "smooth": 35,
+   "cull": true,
+   "filament": "rosso"
+  },
+  {
+   "id": "PT8",
+   "label": "Pallina 8 · sotto",
+   "group": "Palline",
+   "file": "stl/P14_Pallina_sotto.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     0.0,
+     1.0,
+     -0.0,
+     -20.0
+    ],
+    [
+     1.0,
+     -0.0,
+     0.0,
+     -24.65
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     221.8073
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P14_Pallina_sotto.stl",
+   "smooth": 35,
+   "cull": true,
+   "filament": "rosso"
+  },
+  {
+   "id": "G9",
+   "label": "Gancio 9",
+   "group": "Ganci",
+   "file": "stl/P15_Gancio.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     -0.0,
+     0.0,
+     1.0,
+     -129.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0,
+     24.7
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     90.5
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P15_Gancio.stl",
+   "smooth": 35,
+   "cull": true,
+   "note_html": "Si avvita nel fianco del fermo d'uscita.",
+   "filament": "giallo"
+  },
+  {
+   "id": "PS9",
+   "label": "Pallina 9 · sopra",
+   "group": "Palline",
+   "file": "stl/P10_Pallina_sopra.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -124.15
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     24.7
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     62.8
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P10_Pallina_sopra.stl",
+   "smooth": 35,
+   "cull": true,
+   "filament": "rosso"
+  },
+  {
+   "id": "PT9",
+   "label": "Pallina 9 · sotto",
+   "group": "Palline",
+   "file": "stl/P14_Pallina_sotto.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     -124.15
+    ],
+    [
+     0.0,
+     -1.0,
+     0.0,
+     24.7
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     70.6284
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P14_Pallina_sotto.stl",
+   "smooth": 35,
+   "cull": true,
+   "filament": "rosso"
+  },
+  {
+   "id": "G10",
+   "label": "Gancio 10",
+   "group": "Ganci",
+   "file": "stl/P15_Gancio.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     -1.0,
+     0.0,
+     -0.0,
+     54.7323
+    ],
+    [
+     -0.0,
+     -0.0,
+     1.0,
+     -30.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0,
+     74.5728
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P15_Gancio.stl",
+   "smooth": 35,
+   "cull": true,
+   "note_html": "Si avvita nel bottone davanti, sotto il ramo basso a destra.",
+   "filament": "giallo"
+  },
+  {
+   "id": "PS10",
+   "label": "Pallina 10 · sopra",
+   "group": "Palline",
+   "file": "stl/P10_Pallina_sopra.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     0.0,
+     -1.0,
+     0.0,
+     54.7323
+    ],
+    [
+     1.0,
+     0.0,
+     0.0,
+     -24.65
+    ],
+    [
+     0.0,
+     0.0,
+     1.0,
+     46.8728
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P10_Pallina_sopra.stl",
+   "smooth": 35,
+   "cull": true,
+   "filament": "rosso"
+  },
+  {
+   "id": "PT10",
+   "label": "Pallina 10 · sotto",
+   "group": "Palline",
+   "file": "stl/P14_Pallina_sotto.stl",
+   "quantity": 1,
+   "print": "filetti",
+   "mode": "mesh",
+   "max_triangles": 100000,
+   "matrix": [
+    [
+     0.0,
+     1.0,
+     -0.0,
+     54.7323
+    ],
+    [
+     1.0,
+     -0.0,
+     0.0,
+     -24.65
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     54.7012
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "view_file": "dati/vista/P14_Pallina_sotto.stl",
+   "smooth": 35,
+   "cull": true,
+   "filament": "rosso"
+  },
+  {
+   "id": "N1",
+   "label": "Corpo del nastro 1",
+   "group": "Albero",
+   "file": "stl/P01_Nastro_1.stl",
+   "quantity": 1,
+   "print": "nastro",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     45.1
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true,
+   "filament": "verde"
+  },
+  {
+   "id": "N2",
+   "label": "Corpo del nastro 2",
+   "group": "Albero",
+   "file": "stl/P01_Nastro_2.stl",
+   "quantity": 1,
+   "print": "nastro",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     45.1
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true,
+   "filament": "verde"
+  },
+  {
+   "id": "N3",
+   "label": "Corpo del nastro 3",
+   "group": "Albero",
+   "file": "stl/P01_Nastro_3.stl",
+   "quantity": 1,
+   "print": "nastro",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     45.1
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true,
+   "filament": "verde"
+  },
+  {
+   "id": "N4",
+   "label": "Corpo del nastro 4",
+   "group": "Albero",
+   "file": "stl/P01_Nastro_4.stl",
+   "quantity": 1,
+   "print": "nastro",
+   "mode": "mesh",
+   "max_triangles": 9000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     45.1
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true,
+   "filament": "verde"
+  },
+  {
+   "id": "FD1",
+   "label": "Telaio davanti 1",
+   "group": "Albero",
+   "file": "stl/P23_Telaio_davanti_1.stl",
+   "quantity": 1,
+   "print": "telai",
+   "mode": "mesh",
+   "max_triangles": 6000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     4.3
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true,
+   "filament": "verde"
+  },
+  {
+   "id": "FR1",
+   "label": "Telaio dietro 1",
+   "group": "Albero",
+   "file": "stl/P24_Telaio_dietro_1.stl",
+   "quantity": 1,
+   "print": "telai",
+   "mode": "mesh",
+   "max_triangles": 6000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     49.4
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true,
+   "filament": "verde"
+  },
+  {
+   "id": "FD2",
+   "label": "Telaio davanti 2",
+   "group": "Albero",
+   "file": "stl/P23_Telaio_davanti_2.stl",
+   "quantity": 1,
+   "print": "telai",
+   "mode": "mesh",
+   "max_triangles": 6000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     4.3
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true,
+   "filament": "verde"
+  },
+  {
+   "id": "FR2",
+   "label": "Telaio dietro 2",
+   "group": "Albero",
+   "file": "stl/P24_Telaio_dietro_2.stl",
+   "quantity": 1,
+   "print": "telai",
+   "mode": "mesh",
+   "max_triangles": 6000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     49.4
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true,
+   "filament": "verde"
+  },
+  {
+   "id": "FD3",
+   "label": "Telaio davanti 3",
+   "group": "Albero",
+   "file": "stl/P23_Telaio_davanti_3.stl",
+   "quantity": 1,
+   "print": "telai",
+   "mode": "mesh",
+   "max_triangles": 6000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     4.3
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true,
+   "filament": "verde"
+  },
+  {
+   "id": "FR3",
+   "label": "Telaio dietro 3",
+   "group": "Albero",
+   "file": "stl/P24_Telaio_dietro_3.stl",
+   "quantity": 1,
+   "print": "telai",
+   "mode": "mesh",
+   "max_triangles": 6000,
+   "matrix": [
+    [
+     1.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -0.0,
+     -1.0,
+     49.4
+    ],
+    [
+     0.0,
+     1.0,
+     -0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "cull": true,
+   "filament": "verde"
   },
   {
    "id": "C",
@@ -2356,19 +3716,19 @@
      1.0,
      0.0,
      0.0,
-     -71.9476
+     -74.9476
     ],
     [
      0.0,
      0.0,
      -1.0,
-     52.4
+     44.4
     ],
     [
      0.0,
      1.0,
      0.0,
-     81.0079
+     102.0146
     ],
     [
      0.0,
@@ -2384,119 +3744,119 @@
      0.0
     ],
     [
-     20.387,
+     42.374,
      0.0,
-     0.712
+     1.48
     ],
     [
-     40.775,
+     84.748,
      0.0,
-     1.424
+     2.96
     ],
     [
-     61.163,
+     127.123,
      0.0,
-     2.136
+     4.439
     ],
     [
-     81.55,
+     166.707,
      0.0,
-     2.848
+     19.757
     ],
     [
-     101.938,
+     147.525,
      0.0,
-     3.56
+     57.595
     ],
     [
-     122.325,
+     105.118,
      0.0,
-     4.272
+     56.313
     ],
     [
-     142.516,
+     62.744,
      0.0,
-     7.262
+     57.793
     ],
     [
-     147.948,
+     20.37,
      0.0,
-     26.829
+     59.272
     ],
     [
-     128.498,
+     -5.654,
      0.0,
-     32.868
+     92.631
     ],
     [
-     108.111,
+     33.192,
      0.0,
-     33.58
+     109.75
     ],
     [
-     87.723,
+     75.566,
      0.0,
-     34.292
+     111.229
     ],
     [
-     67.336,
+     117.94,
      0.0,
-     35.004
+     112.709
     ],
     [
-     46.948,
+     156.079,
      0.0,
-     35.716
+     131.258
     ],
     [
-     26.561,
+     131.944,
      0.0,
-     36.428
+     166.145
     ],
     [
-     6.323,
+     89.52,
      0.0,
-     38.874
+     164.61
     ],
     [
-     -0.492,
+     47.146,
      0.0,
-     58.004
+     166.09
     ],
     [
-     18.597,
+     8.405,
      0.0,
-     65.03
+     183.09
     ],
     [
-     38.985,
+     30.26,
      0.0,
-     65.742
+     219.45
     ],
     [
-     59.372,
+     72.576,
      0.0,
-     66.454
+     217.969
     ],
     [
-     79.76,
+     114.95,
      0.0,
-     67.166
+     219.449
     ],
     [
-     100.187,
+     142.934,
      0.0,
-     68.974
+     251.212
     ],
     [
-     108.877,
+     104.903,
      0.0,
-     87.328
+     269.939
     ],
     [
-     90.297,
+     62.528,
      0.0,
-     95.789
+     271.419
     ]
    ],
    "view_file": "dati/vista/P02_Corpo_capsula.stl",
@@ -2518,7 +3878,7 @@
      1.0,
      0.0,
      0.0,
-     -71.9476
+     -74.9476
     ],
     [
      0.0,
@@ -2530,7 +3890,7 @@
      0.0,
      1.0,
      0.0,
-     81.0079
+     102.0146
     ],
     [
      0.0,
@@ -2559,7 +3919,7 @@
      1.0,
      0.0,
      0.0,
-     -51.5601
+     -32.5735
     ],
     [
      0.0,
@@ -2571,7 +3931,7 @@
      0.0,
      1.0,
      0.0,
-     81.7199
+     103.4944
     ],
     [
      0.0,
@@ -2600,7 +3960,7 @@
      1.0,
      0.0,
      0.0,
-     -31.1725
+     9.8007
     ],
     [
      0.0,
@@ -2612,7 +3972,7 @@
      0.0,
      1.0,
      0.0,
-     82.4318
+     104.9741
     ],
     [
      0.0,
@@ -2641,7 +4001,7 @@
      1.0,
      0.0,
      0.0,
-     -10.7849
+     52.1749
     ],
     [
      0.0,
@@ -2653,7 +4013,7 @@
      0.0,
      1.0,
      0.0,
-     83.1438
+     106.4538
     ],
     [
      0.0,
@@ -2682,7 +4042,7 @@
      1.0,
      0.0,
      0.0,
-     9.6026
+     91.7595
     ],
     [
      0.0,
@@ -2694,7 +4054,7 @@
      0.0,
      1.0,
      0.0,
-     83.8557
+     121.7713
     ],
     [
      0.0,
@@ -2723,7 +4083,7 @@
      1.0,
      0.0,
      0.0,
-     29.9902
+     72.5771
     ],
     [
      0.0,
@@ -2735,7 +4095,7 @@
      0.0,
      1.0,
      0.0,
-     84.5677
+     159.6091
     ],
     [
      0.0,
@@ -2764,7 +4124,7 @@
      1.0,
      0.0,
      0.0,
-     50.3778
+     30.1707
     ],
     [
      0.0,
@@ -2776,7 +4136,7 @@
      0.0,
      1.0,
      0.0,
-     85.2796
+     158.3275
     ],
     [
      0.0,
@@ -2805,7 +4165,7 @@
      1.0,
      0.0,
      0.0,
-     70.5683
+     -12.2035
     ],
     [
      0.0,
@@ -2817,7 +4177,7 @@
      0.0,
      1.0,
      0.0,
-     88.27
+     159.8072
     ],
     [
      0.0,
@@ -2846,7 +4206,7 @@
      1.0,
      0.0,
      0.0,
-     76.0005
+     -54.5777
     ],
     [
      0.0,
@@ -2858,7 +4218,7 @@
      0.0,
      1.0,
      0.0,
-     107.8373
+     161.287
     ],
     [
      0.0,
@@ -2887,7 +4247,7 @@
      1.0,
      0.0,
      0.0,
-     56.5509
+     -80.6011
     ],
     [
      0.0,
@@ -2899,7 +4259,7 @@
      0.0,
      1.0,
      0.0,
-     113.8758
+     194.6461
     ],
     [
      0.0,
@@ -2928,7 +4288,7 @@
      1.0,
      0.0,
      0.0,
-     36.1634
+     -41.7557
     ],
     [
      0.0,
@@ -2940,7 +4300,7 @@
      0.0,
      1.0,
      0.0,
-     114.5877
+     211.7642
     ],
     [
      0.0,
@@ -2969,7 +4329,7 @@
      1.0,
      0.0,
      0.0,
-     15.7758
+     0.6185
     ],
     [
      0.0,
@@ -2981,7 +4341,7 @@
      0.0,
      1.0,
      0.0,
-     115.2997
+     213.244
     ],
     [
      0.0,
@@ -3010,7 +4370,7 @@
      1.0,
      0.0,
      0.0,
-     -4.6118
+     42.9926
     ],
     [
      0.0,
@@ -3022,7 +4382,7 @@
      0.0,
      1.0,
      0.0,
-     116.0116
+     214.7237
     ],
     [
      0.0,
@@ -3051,7 +4411,7 @@
      1.0,
      0.0,
      0.0,
-     -24.9994
+     81.1313
     ],
     [
      0.0,
@@ -3063,7 +4423,7 @@
      0.0,
      1.0,
      0.0,
-     116.7236
+     233.2725
     ],
     [
      0.0,
@@ -3092,7 +4452,7 @@
      1.0,
      0.0,
      0.0,
-     -45.3869
+     56.996
     ],
     [
      0.0,
@@ -3104,7 +4464,7 @@
      0.0,
      1.0,
      0.0,
-     117.4355
+     268.1601
     ],
     [
      0.0,
@@ -3133,7 +4493,7 @@
      1.0,
      0.0,
      0.0,
-     -65.6246
+     14.5729
     ],
     [
      0.0,
@@ -3145,7 +4505,7 @@
      0.0,
      1.0,
      0.0,
-     119.8819
+     266.6246
     ],
     [
      0.0,
@@ -3174,7 +4534,7 @@
      1.0,
      0.0,
      0.0,
-     -72.4395
+     -27.8013
     ],
     [
      0.0,
@@ -3186,7 +4546,7 @@
      0.0,
      1.0,
      0.0,
-     139.0117
+     268.1043
     ],
     [
      0.0,
@@ -3215,7 +4575,7 @@
      1.0,
      0.0,
      0.0,
-     -53.3505
+     -66.5422
     ],
     [
      0.0,
@@ -3227,7 +4587,7 @@
      0.0,
      1.0,
      0.0,
-     146.0383
+     285.1047
     ],
     [
      0.0,
@@ -3256,7 +4616,7 @@
      1.0,
      0.0,
      0.0,
-     -32.9629
+     -44.6876
     ],
     [
      0.0,
@@ -3268,7 +4628,7 @@
      0.0,
      1.0,
      0.0,
-     146.7503
+     321.4644
     ],
     [
      0.0,
@@ -3297,7 +4657,7 @@
      1.0,
      0.0,
      0.0,
-     -12.5753
+     -2.3718
     ],
     [
      0.0,
@@ -3309,7 +4669,7 @@
      0.0,
      1.0,
      0.0,
-     147.4622
+     319.984
     ],
     [
      0.0,
@@ -3338,7 +4698,7 @@
      1.0,
      0.0,
      0.0,
-     7.8123
+     40.0024
     ],
     [
      0.0,
@@ -3350,7 +4710,7 @@
      0.0,
      1.0,
      0.0,
-     148.1742
+     321.4637
     ],
     [
      0.0,
@@ -3379,7 +4739,7 @@
      1.0,
      0.0,
      0.0,
-     28.2393
+     67.9864
     ],
     [
      0.0,
@@ -3391,7 +4751,7 @@
      0.0,
      1.0,
      0.0,
-     149.9818
+     353.2265
     ],
     [
      0.0,
@@ -3420,7 +4780,7 @@
      1.0,
      0.0,
      0.0,
-     36.9299
+     29.955
     ],
     [
      0.0,
@@ -3432,7 +4792,7 @@
      0.0,
      1.0,
      0.0,
-     168.3357
+     371.9541
     ],
     [
      0.0,
@@ -3461,7 +4821,7 @@
      1.0,
      0.0,
      0.0,
-     18.3498
+     -12.4192
     ],
     [
      0.0,
@@ -3473,7 +4833,7 @@
      0.0,
      1.0,
      0.0,
-     176.7971
+     373.4339
     ],
     [
      0.0,
@@ -3502,19 +4862,19 @@
      1.0,
      0.0,
      0.0,
-     -2.0377
+     -51.3792
     ],
     [
      0.0,
      0.0,
      -1.0,
-     52.4
+     44.4
     ],
     [
      0.0,
      1.0,
      0.0,
-     177.509
+     390.0562
     ],
     [
      0.0,
@@ -3542,7 +4902,7 @@
      1.0,
      0.0,
      0.0,
-     -2.0377
+     -51.3792
     ],
     [
      0.0,
@@ -3554,7 +4914,7 @@
      0.0,
      1.0,
      0.0,
-     177.509
+     390.0562
     ],
     [
      0.0,
@@ -3583,13 +4943,13 @@
      0.9397,
      -0.342,
      0.0,
-     -31.0
+     -28.5
     ],
     [
      0.342,
      0.9397,
      0.0,
-     -64.0
+     -82.0
     ],
     [
      0.0,
@@ -3621,7 +4981,7 @@
      1.0,
      0.0,
      0.0,
-     -71.9476
+     -74.9476
     ],
     [
      0.0,
@@ -3633,7 +4993,7 @@
      0.0,
      -1.0,
      0.0,
-     81.0079
+     102.0146
     ],
     [
      0.0,
@@ -3661,7 +5021,7 @@
      1.0,
      0.0,
      0.0,
-     -51.5601
+     -32.5735
     ],
     [
      0.0,
@@ -3673,7 +5033,7 @@
      0.0,
      -1.0,
      0.0,
-     81.7199
+     103.4944
     ],
     [
      0.0,
@@ -3701,7 +5061,7 @@
      1.0,
      0.0,
      0.0,
-     -31.1725
+     9.8007
     ],
     [
      0.0,
@@ -3713,7 +5073,7 @@
      0.0,
      -1.0,
      0.0,
-     82.4318
+     104.9741
     ],
     [
      0.0,
@@ -3741,7 +5101,7 @@
      1.0,
      0.0,
      0.0,
-     -10.7849
+     52.1749
     ],
     [
      0.0,
@@ -3753,7 +5113,7 @@
      0.0,
      -1.0,
      0.0,
-     83.1438
+     106.4538
     ],
     [
      0.0,
@@ -3781,7 +5141,7 @@
      1.0,
      0.0,
      0.0,
-     9.6026
+     91.7595
     ],
     [
      0.0,
@@ -3793,7 +5153,7 @@
      0.0,
      -1.0,
      0.0,
-     83.8557
+     121.7713
     ],
     [
      0.0,
@@ -3821,7 +5181,7 @@
      1.0,
      0.0,
      0.0,
-     29.9902
+     72.5771
     ],
     [
      0.0,
@@ -3833,7 +5193,7 @@
      0.0,
      -1.0,
      0.0,
-     84.5677
+     159.6091
     ],
     [
      0.0,
@@ -3861,7 +5221,7 @@
      1.0,
      0.0,
      0.0,
-     50.3778
+     30.1707
     ],
     [
      0.0,
@@ -3873,7 +5233,7 @@
      0.0,
      -1.0,
      0.0,
-     85.2796
+     158.3275
     ],
     [
      0.0,
@@ -3901,7 +5261,7 @@
      1.0,
      0.0,
      0.0,
-     70.5683
+     -12.2035
     ],
     [
      0.0,
@@ -3913,7 +5273,7 @@
      0.0,
      -1.0,
      0.0,
-     88.27
+     159.8072
     ],
     [
      0.0,
@@ -3941,7 +5301,7 @@
      1.0,
      0.0,
      0.0,
-     76.0005
+     -54.5777
     ],
     [
      0.0,
@@ -3953,7 +5313,7 @@
      0.0,
      -1.0,
      0.0,
-     107.8373
+     161.287
     ],
     [
      0.0,
@@ -3981,7 +5341,7 @@
      1.0,
      0.0,
      0.0,
-     56.5509
+     -80.6011
     ],
     [
      0.0,
@@ -3993,7 +5353,7 @@
      0.0,
      -1.0,
      0.0,
-     113.8758
+     194.6461
     ],
     [
      0.0,
@@ -4021,7 +5381,7 @@
      1.0,
      0.0,
      0.0,
-     36.1634
+     -41.7557
     ],
     [
      0.0,
@@ -4033,7 +5393,7 @@
      0.0,
      -1.0,
      0.0,
-     114.5877
+     211.7642
     ],
     [
      0.0,
@@ -4061,7 +5421,7 @@
      1.0,
      0.0,
      0.0,
-     15.7758
+     0.6185
     ],
     [
      0.0,
@@ -4073,7 +5433,7 @@
      0.0,
      -1.0,
      0.0,
-     115.2997
+     213.244
     ],
     [
      0.0,
@@ -4101,7 +5461,7 @@
      1.0,
      0.0,
      0.0,
-     -4.6118
+     42.9926
     ],
     [
      0.0,
@@ -4113,7 +5473,7 @@
      0.0,
      -1.0,
      0.0,
-     116.0116
+     214.7237
     ],
     [
      0.0,
@@ -4141,7 +5501,7 @@
      1.0,
      0.0,
      0.0,
-     -24.9994
+     81.1313
     ],
     [
      0.0,
@@ -4153,7 +5513,7 @@
      0.0,
      -1.0,
      0.0,
-     116.7236
+     233.2725
     ],
     [
      0.0,
@@ -4181,7 +5541,7 @@
      1.0,
      0.0,
      0.0,
-     -45.3869
+     56.996
     ],
     [
      0.0,
@@ -4193,7 +5553,7 @@
      0.0,
      -1.0,
      0.0,
-     117.4355
+     268.1601
     ],
     [
      0.0,
@@ -4221,7 +5581,7 @@
      1.0,
      0.0,
      0.0,
-     -65.6246
+     14.5729
     ],
     [
      0.0,
@@ -4233,7 +5593,7 @@
      0.0,
      -1.0,
      0.0,
-     119.8819
+     266.6246
     ],
     [
      0.0,
@@ -4261,7 +5621,7 @@
      1.0,
      0.0,
      0.0,
-     -72.4395
+     -27.8013
     ],
     [
      0.0,
@@ -4273,7 +5633,7 @@
      0.0,
      -1.0,
      0.0,
-     139.0117
+     268.1043
     ],
     [
      0.0,
@@ -4301,7 +5661,7 @@
      1.0,
      0.0,
      0.0,
-     -53.3505
+     -66.5422
     ],
     [
      0.0,
@@ -4313,7 +5673,7 @@
      0.0,
      -1.0,
      0.0,
-     146.0383
+     285.1047
     ],
     [
      0.0,
@@ -4341,7 +5701,7 @@
      1.0,
      0.0,
      0.0,
-     -32.9629
+     -44.6876
     ],
     [
      0.0,
@@ -4353,7 +5713,7 @@
      0.0,
      -1.0,
      0.0,
-     146.7503
+     321.4644
     ],
     [
      0.0,
@@ -4381,7 +5741,7 @@
      1.0,
      0.0,
      0.0,
-     -12.5753
+     -2.3718
     ],
     [
      0.0,
@@ -4393,7 +5753,7 @@
      0.0,
      -1.0,
      0.0,
-     147.4622
+     319.984
     ],
     [
      0.0,
@@ -4421,7 +5781,7 @@
      1.0,
      0.0,
      0.0,
-     7.8123
+     40.0024
     ],
     [
      0.0,
@@ -4433,7 +5793,7 @@
      0.0,
      -1.0,
      0.0,
-     148.1742
+     321.4637
     ],
     [
      0.0,
@@ -4461,7 +5821,7 @@
      1.0,
      0.0,
      0.0,
-     28.2393
+     67.9864
     ],
     [
      0.0,
@@ -4473,7 +5833,7 @@
      0.0,
      -1.0,
      0.0,
-     149.9818
+     353.2265
     ],
     [
      0.0,
@@ -4501,7 +5861,7 @@
      1.0,
      0.0,
      0.0,
-     36.9299
+     29.955
     ],
     [
      0.0,
@@ -4513,7 +5873,7 @@
      0.0,
      -1.0,
      0.0,
-     168.3357
+     371.9541
     ],
     [
      0.0,
@@ -4541,7 +5901,7 @@
      1.0,
      0.0,
      0.0,
-     18.3498
+     -12.4192
     ],
     [
      0.0,
@@ -4553,7 +5913,7 @@
      0.0,
      -1.0,
      0.0,
-     176.7971
+     373.4339
     ],
     [
      0.0,
@@ -4581,7 +5941,7 @@
      1.0,
      0.0,
      0.0,
-     -2.0377
+     -51.3792
     ],
     [
      0.0,
@@ -4593,7 +5953,7 @@
      0.0,
      -1.0,
      0.0,
-     177.509
+     390.0562
     ],
     [
      0.0,

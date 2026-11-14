@@ -26,9 +26,9 @@ SEG = 96
 FONT = r"C:\Windows\Fonts\ariblk.ttf"
 
 # capsule
-CAP_D = 20.0              # diametro esterno capsule 1–24
+CAP_D = 42.0              # diametro esterno capsule 1–24 (bocca Ø34,8: ci entra un Ferrero Rocher Ø30 nella stagnola)
 CAP25_D = CAP_D           # capsula 25: stessa misura, rossa
-CORPO_L = 40.0            # lunghezza del corpo (senza tappo)
+CORPO_L = 32.0            # lunghezza del corpo (senza tappo)
 PARETE = 1.6              # parete del corpo
 COLLO_L = 6.0             # collo filettato su cui si avvita il tappo
 FIL_PASSO, FIL_H = 2.0, 0.8                       # filetto: passo e altezza del dente
@@ -49,40 +49,41 @@ S = 2 * RC + T                                    # interasse fra due livelli al
 RT = S / 2                                        # raggio della mediana nelle curve a U
 PEND = 2.0                                        # pendenza dei rami (gradi)
 TA = math.tan(math.radians(PEND))
-X_USCITA = -72.0                                  # mediana: uscita, curve, ingresso (da basso in alto)
-X_CURVE = [62.0, -58.0, 22.0]
-X_INGRESSO = -32.0
-TETTO_USCITA = 13.0                               # il tetto del ramo basso parte qui dopo l'uscita: capsula 1 libera sopra
-COL_W, COL_PASSO, COL_MARGINE = 3.0, 40.0, 15.0   # colonnine fra i bordini: larghezza, passo, distanza dalle curve
+X_USCITA = -75.0                                  # mediana: uscita, curve, ingresso (da basso in alto)
+X_CURVE = [68.0, -55.0, 56.0, -42.0, 42.0, -27.0]
+X_INGRESSO = 0.0
+TAGLI = [0, 2, 4]                                 # il nastro si divide a metà di queste curve (pezzi ≤ 230 sul piatto)
+TETTO_USCITA = 27.0                               # il tetto del ramo basso parte qui dopo l'uscita: capsula 1 libera sopra
+COL_W, COL_PASSO, COL_MARGINE = 3.0, 60.0, 25.0   # colonnine fra i bordini: larghezza, passo, distanza dalle curve
 COL_GIOCO = 0.4                                   # le colonnine finiscono così prima dello spazio dei bussolotti
 LIP = 4.0                                         # bordini davanti e dietro: 3 gradini (sporgono verso l'interno del canale)
 Y_LIP = 4.0                                       # spessore di ogni bordino
 Y_CAP = Y_LIP + 0.8                               # faccia dei tappi
 D_TOT = Y_CAP + CAP_LEN + 1.0 + Y_LIP             # profondità del nastro (canale passante, niente parete di fondo)
 Y_LIP_DIETRO = D_TOT - Y_LIP                      # inizio del bordino dietro
-FERMO = (9.0, 12.5)                               # fermo all'uscita (spessore: ci entra il gancio della pallina; altezza)
+FERMO = (9.0, 25.0)                               # fermo all'uscita (spessore: ci entra il gancio della pallina; altezza)
 PAL_R, PAL_H, PAL_PASSO = 2.4, 0.6, 1.5           # perno filettato delle palline (fondo, dente, passo)
 PAL_GIOCO = 0.3                                   # gioco radiale perno/foro
 PAL_PERNO, PAL_FORO = 7.0, 8.0                    # lunghezza del perno, profondità del foro
 RINFORZO = (8.0, 5.0)                             # rinforzo sul profilo attorno al foro (raggio, sporgenza)
 
 # tronco, cassetto, base
-TR_X = -1.0                                       # sotto il baricentro del nastro
-TR_W, TR_D, TR_H = 52.0, D_TOT, 60.0
+TR_X = 1.5                                        # sotto il baricentro del nastro
+TR_W, TR_D, TR_H = 80.0, D_TOT, 70.0
 TR_PARETE, TR_FONDO, TR_CIELO = 2.5, 4.0, 4.0
-TEN_W, TEN_H, TEN_G = 36.0, 4.0, 0.2              # tenone sul tronco, gioco nella scanalatura del nastro
+TEN_W, TEN_H, TEN_G = 60.0, 6.0, 0.2              # tenone sul tronco, gioco nella scanalatura del nastro
 CASS_GIOCO = 0.4
 PANN = 3.0                # spessore del frontale del cassetto
 FESSURA = (3.2, 9.0)      # serratura (larghezza, altezza)
-BASE = (190.0, 115.0, 5.0)
-BASE_Y0 = -42.0
+BASE = (230.0, 150.0, 5.0)
+BASE_Y0 = -60.0
 DIAM_FORO = 3.6           # fori per i perni (perni 3,40)
 PERNO_D, PERNO_H = 3.40, 2.6
 
 # chiave
 CH_S = 2.4                # sezione del gambo e della mappa
 CH_MAPPA = 7.6            # lunghezza della mappa (entra nella fessura da 9)
-CH_R = 6.0                # raggio esterno dell'anello (deve entrare nella capsula: bocca Ø12,8)
+CH_R = 6.0                # raggio esterno dell'anello (deve entrare nella capsula: bocca Ø34,8)
 
 if bpy.app.background:
     bpy.ops.wm.read_factory_settings(use_empty=True)
@@ -510,19 +511,40 @@ ch_a, ch_b = (xr - 28, Z_PIANO), (xr, zr - H_FUORI / COSA)          # smusso sot
 L_ch = math.dist(ch_a, ch_b)
 t_ch = ((ch_b[0] - ch_a[0]) / L_ch, (ch_b[1] - ch_a[1]) / L_ch)
 attacchi = []                                     # (bocca del foro, direzione verso l'interno del nastro), in 3D
-for p, n in (((turns[2][0][0] + R_EST, turns[2][0][1]), (1.0, 0.0)),
-             ((turns[1][0][0] - R_EST, turns[1][0][1]), (-1.0, 0.0))):
+# una pallina sul fianco esterno di ogni curva, a quote alternate sopra e sotto il centro (sulle curve tagliate
+# il foro e il rinforzo stanno tutti in un pezzo: |dz| >= 14)
+FIANCHI = [(0, -20.0), (1, 16.0), (2, 15.0), (3, -12.0), (4, -22.0), (5, 6.0)]   # (curva, quota rispetto al centro)
+for k, dz in FIANCHI:
+    (cx_t, cz_t), side = turns[k]
+    assert k not in TAGLI or abs(dz) >= 14.0, f"attacco della curva {k} sul taglio"
+    n = (float(side), 0.0)
+    p = (cx_t + n[0] * math.sqrt(R_EST ** 2 - dz ** 2), cz_t + dz)
     # fianchi delle curve: rinforzo sul profilo (per tutta la profondità) e foro radiale orizzontale a metà profondità
     cr = (p[0] - n[0] * (RINFORZO[0] - RINFORZO[1]), p[1] - n[1] * (RINFORZO[0] - RINFORZO[1]))
     pieni.append(extrude_xz(disco(cr, RINFORZO[0]), 0, D_TOT))
     attacchi.append((Vector((p[0] + n[0] * RINFORZO[1], D_TOT / 2, p[1] + n[1] * RINFORZO[1])), Vector((-n[0], 0, -n[1]))))
+# davanti: foro lungo Y nel muro fra il ramo che arriva a una curva di destra e quello che riparte (lì i telai non
+# sono tagliati: foro e bottone stanno tutti nel telaio davanti),
+# a metà del muro, dove è spesso almeno 10 (il foro filettato è Ø7 con i denti)
+DAVANTI = [(0, 110.0), (2, 76.0)]                 # (curva, distanza dal centro della curva verso sinistra)
+BOTTONE = 6.0                                     # sporgenza del bottone davanti attorno al foro
+for k, dd in DAVANTI:
+    (cx_t, cz_t), side = turns[k]
+    x = cx_t - side * dd
+    z_lo, z_hi = z_on(legs[k], x) + RC / COSA, z_on(legs[k + 1], x) - RC / COSA
+    assert z_hi - z_lo >= 10.0, f"muro troppo sottile per il gancio davanti alla curva {k}"
+    zm = (z_lo + z_hi) / 2                        # bottone sporgente: la pallina pende staccata dal nastro
+    pieni.append(extrude_xz(disco((x, zm), 7.0), -BOTTONE, 0.5))
+    attacchi.append((Vector((x, -BOTTONE, zm)), Vector((0, 1, 0))))
 # fianco sinistro del fermo d'uscita: il fermo è già spesso FERMO[0], il foro entra nel pieno (nessun rinforzo)
 attacchi.append((Vector((X_FERMO_SX, D_TOT / 2, (Z_PIANO + Z_FERMO_SU) / 2)), Vector((1, 0, 0))))
 # sotto il ramo basso: aletta sotto lo smusso, foro che entra dal davanti (lungo Y)
 ALETTA = (8.0, 1.0)                               # raggio, spostamento del centro oltre il fondo
 for pm, n_ch in ((((ch_a[0] + ch_b[0]) / 2, (ch_a[1] + ch_b[1]) / 2), (t_ch[1], -t_ch[0])),):  # sotto lo smusso a destra
     pieni.append(extrude_xz(disco((pm[0] + n_ch[0] * ALETTA[1], pm[1] + n_ch[1] * ALETTA[1]), ALETTA[0]), 0, D_TOT))
-    attacchi.append((Vector((pm[0] + n_ch[0] * 3.5, 0.0, pm[1] + n_ch[1] * 3.5)), Vector((0, 1, 0))))
+    pf = (pm[0] + n_ch[0] * 3.5, pm[1] + n_ch[1] * 3.5)
+    pieni.append(extrude_xz(disco(pf, 6.5), -BOTTONE, 0.5))     # bottone: il foro resta tutto nel telaio davanti
+    attacchi.append((Vector((pf[0], -BOTTONE, pf[1])), Vector((0, 1, 0))))
 
 nastro = pieni.pop(0)
 nastro.name = "P01_Nastro"
@@ -535,8 +557,8 @@ PROFONDITA = [(-1.0, RC - LIP), (GR, RC - LIP), (GR, RC - 2 * LIP / 3), (2 * GR,
               (2 * GR, RC - LIP / 3), (Y_LIP, RC - LIP / 3), (Y_LIP, RC), (Y_LIP_DIETRO, RC),
               (Y_LIP_DIETRO, RC - LIP / 3), (D_TOT - 2 * GR, RC - LIP / 3), (D_TOT - 2 * GR, RC - 2 * LIP / 3),
               (D_TOT - GR, RC - 2 * LIP / 3), (D_TOT - GR, RC - LIP), (D_TOT + 1.0, RC - LIP)]
-IMBOCCO = 20.0                                    # ingresso: lunghezza della rampa che sostituisce i gradini
-RAMPA_TETTO = 12.0                                # uscita: rampa dei gradini sotto la punta del tetto del ramo basso
+IMBOCCO = 40.0                                    # ingresso: lunghezza della rampa che sostituisce i gradini
+RAMPA_TETTO = 24.0                                # uscita: rampa dei gradini sotto la punta del tetto del ramo basso
 
 
 def canale_intero():
@@ -584,9 +606,9 @@ tagli = [canale_intero()]
 # finestra davanti alla capsula 1 (niente bordino: si sfila in avanti)
 xw0, xw1 = X_FERMO + 0.3, xe + CAP_D / 2 + 0.5
 zf = lambda x: Z_PAV_E + (x - xe) * TA + 0.2
-tagli.append(extrude_xz([(xw0, zf(xw0)), (xw1, zf(xw1)), (xw1, ze + RC + 3), (xw0, ze + RC + 3)], -1, Y_LIP + 0.1))
+tagli.append(extrude_xz([(xw0, zf(xw0)), (xw1, zf(xw1)), (xw1, ze + RC + 3), (xw0, ze + RC + 3)], -1, Y_LIP + 0.9))   # oltre il piano del telaio: niente lamelle
 # scanalatura per il tenone del tronco (aperta sul retro)
-tagli.append(box(TR_X - TEN_W / 2 - TEN_G, Y_LIP, Z_PIANO - 1, TR_X + TEN_W / 2 + TEN_G, D_TOT + 1, Z_PIANO + TEN_H + TEN_G, "scan"))
+tagli.append(box(TR_X - TEN_W / 2 - TEN_G, Y_LIP + 0.8, Z_PIANO - 1, TR_X + TEN_W / 2 + TEN_G, D_TOT + 1, Z_PIANO + TEN_H + TEN_G, "scan"))
 # fori filettati dei ganci delle palline
 def asse(bocca, dirz):
     """Matrice che porta l'asse +Z locale nel foro: origine sulla bocca, +Z verso l'interno del nastro.
@@ -615,6 +637,8 @@ for i, (pa, pb) in enumerate(legs):
     L, d, u = leg_frame(pa, pb)
     m0 = TETTO_USCITA + RAMPA_TETTO + 5 if i == 0 else COL_MARGINE
     m1 = IMBOCCO + 8 if i == len(legs) - 1 else COL_MARGINE
+    if L - m0 - m1 < 0:                                   # ramo troppo corto (in cima): niente colonnine
+        continue
     n = max(1, round((L - m0 - m1) / COL_PASSO) + 1)
     for s in (np.linspace(m0, L - m1, n) if n > 1 else [(m0 + L - m1) / 2]):
         c = (pa[0] + d[0] * s, pa[1] + d[1] * s)
@@ -627,8 +651,173 @@ for i, (pa, pb) in enumerate(legs):
 boolean(tagli[0], merge(colonne, "colonne", C_TMP), 'DIFFERENCE', True)
 boolean(nastro, merge(tagli, "tagli", C_TMP), 'DIFFERENCE', True, self_int=True)
 paint(nastro, M_VERDE)
-pieces[nastro.name] = (nastro, Matrix.Rotation(-math.pi / 2, 4, 'X'))   # retro sul piatto, bordino in alto
-montato(nastro, M_VERDE, "Nastro")
+
+
+def baricentro_x(o):
+    """x del baricentro (tetraedri dall'origine)."""
+    bm = bmesh.new(); bm.from_mesh(o.data)
+    bmesh.ops.triangulate(bm, faces=bm.faces)
+    V = acc = 0.0
+    for f in bm.faces:
+        a, b, c = (v.co for v in f.verts)
+        v6 = a.dot(b.cross(c))
+        V += v6; acc += v6 * (a.x + b.x + c.x) / 4
+    bm.free()
+    return acc / V
+
+
+BARI_X = baricentro_x(nastro)
+
+# --- nastro in pezzi --------------------------------------------------------
+# In profondità tre strati: telaio davanti (bordini, colonnine, bottoni), corpo (pareti del canale), telaio dietro.
+# Si stampano tutti stesi, senza gradini a sbalzo. In altezza i corpi si tagliano a metà delle curve TAGLI (destra),
+# i telai a metà delle curve TAGLI_TELAI (sinistra): ogni telaio scavalca un taglio dei corpi e tiene insieme due
+# livelli. Perni stampati nel pezzo (niente perni staccati): davanti sul corpo (entrano nel telaio, che si stampa
+# con la faccia interna sul piatto), dietro sul telaio (entrano nel corpo).
+TAGLI_TELAI = [1, 3]                             # il telaio in cima tiene intera la curva alta (la striscia sotto l'ultimo ramo non ha colonnine)
+Y_TF, Y_TD = Y_LIP + 0.3, Y_LIP_DIETRO - 0.3      # piani fra telai e corpo (0,3 oltre le facce dei gradini)
+PT_D, PT_H, PT_FORO, PT_PROF = 2.6, 3.0, 3.0, 3.4  # perni dei telai: diametro, altezza; fori: diametro, profondità
+PT_PASSO, PT_MARGINE, PT_MARGINE_TELAIO = 30.0, 1.1, 1.6   # distanza fra perni; materiale attorno nel corpo / nel telaio
+SMUSSO_TAGLIO = 0.8                               # smusso del canale sul corpo sotto: il bussolotto scende senza urti
+z_taglio = lambda k: turns[k][0][1] + 0.13        # un filo sopra la mediana: niente vertici del canale sul taglio
+Z_TAGLI = [z_taglio(k) for k in TAGLI]
+Z_TAGLI_T = [z_taglio(k) for k in TAGLI_TELAI]
+LO, HI = -1000.0, 2000.0
+
+
+def fetta(src, name, tagli_via):
+    """Copia di src senza le scatole in tagli_via (disgiunte fra loro: un solo booleano pulito)."""
+    o = bpy.data.objects.new(name, src.data.copy())
+    C_STAMPA.objects.link(o)
+    if tagli_via:
+        boolean(o, merge([box(*b, "via") for b in tagli_via], "fuori", C_TMP), 'DIFFERENCE', self_int=True)
+    return o
+
+
+def strato(name, y0, y1):
+    via = ([(-400, -100, -1000, 400, y0, 2000)] if y0 > LO else []) + ([(-400, y1, -1000, 400, D_TOT + 100, 2000)] if y1 < HI else [])
+    return fetta(nastro, name, via)
+
+
+def livelli(src, prefisso, bordi):
+    out = []
+    for i in range(len(bordi) - 1):
+        via = ([(-400, -100, bordi[i] - 2000, 400, D_TOT + 100, bordi[i])] if bordi[i] > LO else []) +               ([(-400, -100, bordi[i + 1], 400, D_TOT + 100, bordi[i + 1] + 2000)] if bordi[i + 1] < HI else [])
+        out.append(fetta(src, f"{prefisso}_{i + 1}", via))
+    bpy.data.objects.remove(src)
+    return out
+
+
+bc = [LO] + Z_TAGLI + [HI]
+bt = [LO] + Z_TAGLI_T + [HI]
+corpi = livelli(strato("corpo", Y_TF, Y_TD), "P01_Nastro", bc)
+tel_d = livelli(strato("tel_d", LO, Y_TF), "P23_Telaio_davanti", bt)
+tel_r = livelli(strato("tel_r", Y_TD, HI), "P24_Telaio_dietro", bt)
+bpy.data.objects.remove(nastro)
+# smusso sul bordo alto del canale dei corpi (pareti esterna e interna della curva tagliata)
+for i, o in enumerate(corpi[:-1]):
+    (xc, zc), s = turns[TAGLI[i]]
+    zp, e = bc[i + 1], SMUSSO_TAGLIO
+    xo, xi = xc + s * (RT + RC), xc + s * (RT - RC)
+    boolean(o, merge([extrude_xz([(xb - v * 0.2, zp - e - 0.2), (xb + v * (e + 1), zp + 1), (xb - v * 0.2, zp + 1)],
+                                 Y_TF - 1, Y_TD + 1) for xb, v in ((xo, s), (xi, -s))], "smussi", C_TMP), 'DIFFERENCE', True)
+
+# posizioni dei perni: dove c'è materiale attorno sia nel corpo sia nel telaio, ben distanziati
+from mathutils.bvhtree import BVHTree
+
+
+def bvh(o):
+    bm = bmesh.new(); bm.from_mesh(o.data)
+    t = BVHTree.FromBMesh(bm); bm.free()
+    return t
+
+
+def dentro(t, p, margine):
+    """Punto dentro il solido e lontano almeno margine dalla superficie. Dentro/fuori: tre raggi obliqui (lontani
+    dalle pendenze del nastro), attraversamenti dispari, a maggioranza; i colpi doppi sullo stesso punto non contano."""
+    hit = t.find_nearest(p)
+    if hit[0] is None or hit[3] < margine:
+        return False
+    voti = 0
+    for d in (Vector((1, 0.31, 0.47)), Vector((-0.6, 0.2, 1)), Vector((0.2, -0.4, -1))):
+        d = d.normalized()
+        n, q, prec = 0, p.copy(), None
+        for _ in range(200):
+            h = t.ray_cast(q, d)
+            if h[0] is None:
+                break
+            if prec is None or (h[0] - prec).length > 1e-3:
+                n += 1
+            prec = h[0]
+            q = h[0] + d * 1e-3
+        voti += n % 2
+    return voti >= 2
+
+
+def quale(bordi, z):
+    return next(i for i in range(len(bordi) - 1) if bordi[i] < z < bordi[i + 1])
+
+
+B_C, B_TD, B_TR = [bvh(o) for o in corpi], [bvh(o) for o in tel_d], [bvh(o) for o in tel_r]
+PERNI_T = []                                      # (lato, x, z): lato -1 davanti, +1 dietro
+xs_c = [v.co.x for o in corpi for v in o.data.vertices]
+zs_c = [v.co.z for o in corpi for v in o.data.vertices]
+for lato, yf, B_T in ((-1, Y_TF, B_TD), (1, Y_TD, B_TR)):
+    cand = []
+    for x in np.arange(min(xs_c), max(xs_c), 1.0):
+        for z in np.arange(min(zs_c), max(zs_c), 1.0):
+            if min(abs(z - zt) for zt in Z_TAGLI + Z_TAGLI_T) < PT_D:
+                continue
+            ic, it = quale(bc, z), quale(bt, z)
+            pc = Vector((x, yf - lato * 6.0, z))                   # nel corpo, oltre il fondo del foro
+            pt = Vector((x, yf + lato * (Y_TF / 2), z))             # a metà del telaio
+            if dentro(B_C[ic], pc, PT_MARGINE + PT_D / 2) and dentro(B_T[it], pt, PT_MARGINE_TELAIO):
+                cand.append((B_C[ic].find_nearest(pc)[3], x, z))
+    cand.sort(reverse=True)
+    scelti = []
+    for c, x, z in cand:
+        if all(math.dist((x, z), q) >= PT_PASSO for q in scelti):
+            scelti.append((x, z))
+    PERNI_T += [(lato, x, z) for x, z in scelti]
+
+
+def perno_t(lato, x, z):
+    """Perno con lo smusso in punta: parte dalla faccia di contatto e sporge verso -Y (davanti sul corpo, dietro sul telaio)."""
+    r = PT_D / 2
+    o = lathe([(0, -0.3), (r, -0.3), (r, PT_H - 0.4), (r - 0.4, PT_H), (0, PT_H)], "pt", C_TMP, seg=24)
+    yf = Y_TF if lato < 0 else Y_TD
+    o.data.transform(Matrix.Translation((x, yf, z)) @ Matrix.Rotation(math.pi / 2, 4, 'X'))   # +Z -> -Y
+    return o
+
+
+def foro_t(lato, x, z):
+    """Foro cieco dalla faccia di contatto verso -Y (davanti nel telaio, dietro nel corpo)."""
+    yf = Y_TF if lato < 0 else Y_TD
+    o = cyl(PT_FORO / 2, -1.0, PT_PROF, "ft", seg=24)
+    o.data.transform(Matrix.Translation((x, yf, z)) @ Matrix.Rotation(math.pi / 2, 4, 'X'))   # +Z -> -Y
+    return o
+
+
+for i, o in enumerate(corpi):
+    davanti = [(x, z) for l, x, z in PERNI_T if l < 0 and quale(bc, z) == i]
+    dietro = [(x, z) for l, x, z in PERNI_T if l > 0 and quale(bc, z) == i]
+    if davanti:
+        boolean(o, merge([perno_t(-1, x, z) for x, z in davanti], "perni", C_TMP), 'UNION', self_int=True)
+    if dietro:
+        boolean(o, merge([foro_t(1, x, z) for x, z in dietro], "fori", C_TMP), 'DIFFERENCE', self_int=True)
+for i, o in enumerate(tel_d):
+    fd = [(x, z) for l, x, z in PERNI_T if l < 0 and quale(bt, z) == i]
+    if fd:
+        boolean(o, merge([foro_t(-1, x, z) for x, z in fd], "fori", C_TMP), 'DIFFERENCE', self_int=True)
+for i, o in enumerate(tel_r):
+    pd = [(x, z) for l, x, z in PERNI_T if l > 0 and quale(bt, z) == i]
+    if pd:
+        boolean(o, merge([perno_t(1, x, z) for x, z in pd], "perni", C_TMP), 'UNION', self_int=True)
+pezzi_n = corpi + tel_d + tel_r
+for o in pezzi_n:
+    paint(o, M_VERDE)
+    pieces[o.name] = (o, Matrix.Rotation(-math.pi / 2, 4, 'X'))   # faccia con il Y più grande sul piatto, perni in alto
+    montato(o, M_VERDE, o.name.split("_", 1)[1])
 
 
 # --- tracciato campionato e posizioni delle capsule ---
@@ -800,7 +989,7 @@ for x in (-12.0, 12.0):                            # fori dei perni della base
     ven.append(f)
 boolean(tronco, merge([cav] + ven, "t", C_TMP), 'DIFFERENCE', True)
 # tenone: entra dal retro nella scanalatura sotto il nastro, si ferma contro il bordino
-boolean(tronco, box(TR_X - TEN_W / 2, Y_LIP + 0.3, Z_PIANO - 0.5, TR_X + TEN_W / 2, TR_D, Z_PIANO + TEN_H, "ten"), 'UNION')
+boolean(tronco, box(TR_X - TEN_W / 2, Y_LIP + 1.1, Z_PIANO - 0.5, TR_X + TEN_W / 2, TR_D, Z_PIANO + TEN_H, "ten"), 'UNION')
 paint(tronco, M_LEGNO)
 pieces[tronco.name] = (tronco, Matrix.Rotation(-math.pi / 2, 4, 'X'))  # retro sul piatto, apertura in alto
 montato(tronco, None, "Tronco")
@@ -833,7 +1022,7 @@ pieces[chiave.name] = (chiave, Matrix())
 montato(chiave, None, "Chiave", Matrix.Translation((TR_X - 30, BASE_Y0 - 22, 0)) @ Matrix.Rotation(math.radians(20), 4, 'Z'))
 
 # stella: base piatta + piramide sfaccettata + linguetta che entra nella fessura sulla cresta
-RS, RI, ST_B, ST_P = 22.0, 9.0, 3.0, 5.0
+RS, RI, ST_B, ST_P = 36.0, 14.5, 3.0, 8.0         # ST_B = spessore della linguetta: entra nella fessura da 3,4
 star = [(RS * math.cos(math.radians(90 + 36 * k)) if k % 2 == 0 else RI * math.cos(math.radians(90 + 36 * k)),
          RS * math.sin(math.radians(90 + 36 * k)) if k % 2 == 0 else RI * math.sin(math.radians(90 + 36 * k))) for k in range(10)]
 bm = bmesh.new()
@@ -922,13 +1111,18 @@ viste[pal_sotto.name] = lathe([(0, -PALLA_R)] + arco_rz(PALLA_R, -88, a_s, 7.5)[
 viste[pal_sopra.name] = lathe([(0, PB_S), (r_g, PB_S)] + arco_rz(PALLA_R, a_s, 88, 7.5)[1:] + [(0, PALLA_R)],
                               "vista_sopra", C_TMP, seg=32)
 boolean(viste[pal_sopra.name], occhiello(16), 'UNION')
+SC_PAL = 1.5                                      # palline in scala (filetti e occhiello compresi): Ø36
+S_PAL = Matrix.Scale(SC_PAL, 4)
+for o in (pal_sotto, pal_sopra, viste[pal_sotto.name], viste[pal_sopra.name]):
+    o.data.transform(S_PAL)
 pieces[pal_sopra.name] = (pal_sopra, Matrix())                                       # giunto sul piatto
 pieces[pal_sotto.name] = (pal_sotto, Matrix.Rotation(math.pi, 4, 'X'))               # capovolta, collare sul piatto
 
 # gancio a vite: perno filettato (nel nastro), collarino, piolo con gola dove si appoggia l'occhiello
-G_GOLA = (1.5, 2.0, -4.0, -9.3)                    # raggio della gola, raggio del piolo, inizio e fine della gola
-G_PROF = [(0, -12.0), (1.4, -12.0), (2.0, -11.4), (2.0, G_GOLA[3] - 0.5), (G_GOLA[0], G_GOLA[3]),
-          (G_GOLA[0], G_GOLA[2]), (2.0, G_GOLA[2] + 0.5), (4.5, -1.0), (4.5, 0.0), (PAL_R, 0.0),
+G_GOLA = (2.0, 2.5, -16.0, -21.3)                  # raggio della gola, raggio del piolo, inizio e fine della gola
+G_PUNTA = -24.0                                    # piolo lungo: la pallina Ø36 pende lontano dal nastro
+G_PROF = [(0, G_PUNTA), (G_GOLA[1] - 0.6, G_PUNTA), (G_GOLA[1], G_PUNTA + 0.6), (G_GOLA[1], G_GOLA[3] - 0.5), (G_GOLA[0], G_GOLA[3]),
+          (G_GOLA[0], G_GOLA[2]), (G_GOLA[1], G_GOLA[2] + 0.5), (4.5, -1.0), (4.5, 0.0), (PAL_R, 0.0),
           (PAL_R, PAL_PERNO), (0, PAL_PERNO)]
 gancio = lathe(G_PROF, "P15_Gancio", C_STAMPA, seg=48)
 viste[gancio.name] = lathe(G_PROF, "vista_gancio", C_TMP, seg=24)     # il perno filettato sta dentro il nastro
@@ -942,7 +1136,7 @@ z_gola = (G_GOLA[2] + G_GOLA[3]) / 2
 for i, (bocca, dirz) in enumerate(attacchi):
     A = asse(bocca, dirz)
     montato(gancio, None, f"Gancio_{i}", A)
-    M_p = A @ Matrix.Translation((0, -(OCCH[1] - G_GOLA[0]) - OCCH[3], z_gola)) @ R_PALLA
+    M_p = A @ Matrix.Translation((0, -(OCCH[1] * SC_PAL - G_GOLA[0]) - OCCH[3] * SC_PAL, z_gola)) @ R_PALLA
     montato(pal_sopra, None, f"Pallina_sopra_{i}", M_p)
     montato(pal_sotto, None, f"Pallina_sotto_{i}", M_p)
 
@@ -989,6 +1183,7 @@ def nastro_regalo(L, name):
 
 
 # pupazzo di neve: testa piatta in cima con un perno per il cappello (a parte, nero), foro per il naso (a parte, giallo)
+SC_PUP = 1.6                                       # scala del pupazzo rispetto al primo albero piccolo
 PUP_TESTA = 25.5                                   # quota del taglio piatto della testa
 CAP_PERNO, CAP_FORO = (3.0, 2.0), (3.2, 2.2)       # perno sulla testa e foro nel cappello: diametro, altezza
 # naso e occhi si avvitano nella testa: filetto Ø3 passo 1 (dente 0,4, gioco radiale 0,2), il più piccolo che viene
@@ -1061,10 +1256,10 @@ pieces[occhio.name] = (occhio, Matrix())                             # in piedi 
 
 # regali a parte (si stampano nel loro colore: davanti a destra verde, gli altri due rossi), ognuno fermato da
 # due perni in diagonale in fori ciechi del regalo e della base: si centra e non ruota
-REG_L = 14.0
-REG_POS = ((-50, -26, 15), (48, -24, -20), (70, 30, 5))       # x (dal tronco), y, rotazione; il secondo è il verde (REG_VERDE)
+REG_L = 22.0
+REG_POS = ((-62, -38, 15), (62, -34, -20), (88, 45, 5))       # x (dal tronco), y, rotazione; il secondo è il verde (REG_VERDE)
 REG_VERDE = 1                                                 # davanti a destra
-REG_PERNI = ((-3.5, -3.5), (3.5, 3.5))                      # posizione dei perni nel riferimento del regalo
+REG_PERNI = ((-5.5, -5.5), (5.5, 5.5))                      # posizione dei perni nel riferimento del regalo
 REG_FORO = (DIAM_FORO, 3.0)                                  # fori nel regalo e nella base: diametro, profondità
 REG_PERNO = (PERNO_D, 2 * REG_FORO[1] - 0.4)                 # perno: 0,2 d'aria in fondo a ciascun foro
 def foro_regalo(z0, z1, M):
@@ -1103,27 +1298,21 @@ for i, M in enumerate(M_reg):
 
 # il pupazzo resta unito alla base: affonda 0,2 mm, lo slicer lo unisce (bianco come la base)
 AFFONDO = 0.2
-pup.matrix_world = Matrix.Translation((TR_X - 50, 50, BASE[2] - AFFONDO))
+S_PUP = Matrix.Scale(SC_PUP, 4)                    # pupazzo, cappello, naso e occhi in scala (filetti compresi)
+for o in (pup, cappello, naso, occhio):
+    o.data.transform(S_PUP)
+pup.matrix_world = Matrix.Translation((TR_X - 65, 62, BASE[2] - AFFONDO))
 join_into(base, [pup], 0)
 montato(base, None, "Base")
-M_pup = Matrix.Translation((TR_X - 50, 50, BASE[2] - AFFONDO))
-montato(cappello, None, "Cappello", M_pup @ Matrix.Translation((0, 0, PUP_TESTA)))
-montato(naso, None, "Naso", M_pup @ asse_testa(d_naso, NASO[0]))
+M_pup = Matrix.Translation((TR_X - 65, 62, BASE[2] - AFFONDO))
+montato(cappello, None, "Cappello", M_pup @ S_PUP @ Matrix.Translation((0, 0, PUP_TESTA)) @ S_PUP.inverted())
+montato(naso, None, "Naso", M_pup @ S_PUP @ asse_testa(d_naso, NASO[0]) @ S_PUP.inverted())
 for k, d in enumerate(d_occhi):
-    montato(occhio, None, f"Occhio_{k}", M_pup @ asse_testa(d, OCCHI[0]))
+    montato(occhio, None, f"Occhio_{k}", M_pup @ S_PUP @ asse_testa(d, OCCHI[0]) @ S_PUP.inverted())
 
 # ===========================================================================
 # Controlli
 # ===========================================================================
-bm = bmesh.new(); bm.from_mesh(nastro.data)
-# baricentro del nastro (tetraedri dall'origine)
-bm_t = bm.copy(); bmesh.ops.triangulate(bm_t, faces=bm_t.faces)
-V, cx_acc = 0.0, 0.0
-for f in bm_t.faces:
-    a, b, c = (v.co for v in f.verts)
-    v6 = a.dot(b.cross(c))
-    V += v6; cx_acc += v6 * (a.x + b.x + c.x) / 4
-bm_t.free(); bm.free()
 cz = geo["controlli"]
 cz["canale_altezza_mm"] = round(2 * RC, 2)
 cz["gioco_capsula25_mm"] = round(2 * RC - CAP25_D, 2)
@@ -1139,7 +1328,7 @@ cz["spazio_libero_ingresso_mm"] = round(S_TOT - capsule[-1][4] - capsule[-1][3] 
 cz["bordino_mm"] = [LIP, Y_LIP]
 cz["aria_capsula_fra_i_bordini_mm"] = round(Y_LIP_DIETRO - Y_LIP - CAP_LEN, 2)
 cz["profondita_nastro_mm"] = round(D_TOT, 2)
-cz["baricentro_nastro_x_mm"] = round(cx_acc / V, 1)
+cz["baricentro_nastro_x_mm"] = round(BARI_X, 1)
 cz["tronco_x_mm"] = [TR_X - TR_W / 2, TR_X + TR_W / 2]
 cz["tenone_scanalatura_mm"] = [TEN_W, TEN_W + 2 * TEN_G, TEN_H, TEN_H + TEN_G]
 cz["gioco_radiale_tappo_mm"] = GIOCO_TAPPO
@@ -1153,7 +1342,8 @@ cz["colonnine_aria_bussolotto_mm"] = [round(Y_CAP - (Y_LIP - COL_GIOCO), 2),
 cz["numero_inciso_mm"] = NUM_H
 cz["numero_da_inserire_gioco_mm"] = NUM_GIOCO
 cz["cielo_sotto_numero_mm"] = round(TAPPO_CIELO - NUM_H, 2)
-cz["pallina_mm"] = {"diametro": 2 * PALLA_R, "guscio": PB_W, "filetto_cresta_d": 2 * PB_TM,
+cz["pallina_mm"] = {"scala_rispetto_alle_misure": SC_PAL, "diametro_stampato": 2 * PALLA_R * SC_PAL,
+                    "occhiello_spessore_vs_gola": [round(OCCH[2] * SC_PAL, 2), round(G_GOLA[2] - G_GOLA[3], 2)], "diametro": 2 * PALLA_R, "guscio": PB_W, "filetto_cresta_d": 2 * PB_TM,
                     "parete_anello_sopra": round(math.sqrt(PALLA_R ** 2 - PB_ZR ** 2) - (PB_RF + PB_H), 2),
                     "margine_vuoto_sopra": round(math.sqrt(PB_RI ** 2 - PB_ZR ** 2) - (PB_RF + PB_H), 2),
                     "gioco_collare_cima": round(PB_ZR - PB_ZC, 2)}
@@ -1166,7 +1356,7 @@ cz["perni_fori_mm"] = [PERNO_D, DIAM_FORO]
 cz["regali_mm"] = {"foro": list(REG_FORO), "perno": [PERNO_D, round(REG_PERNO[1], 2)], "fondo_sotto_foro_base": round(BASE[2] - REG_FORO[1], 2),
                    "aria_in_fondo_ai_fori": round((2 * REG_FORO[1] - REG_PERNO[1]) / 2, 2)}
 cz["nastro_regalo_mm"] = {"larghezza": NA_W, "solco": [NA_W + 2 * NA_G, NA_P], "sporgenza": NA_S, "spessore": round(NA_P - 0.05 + NA_S, 2)}
-cz["pupazzo_mm"] = {"perno_cappello": list(CAP_PERNO), "foro_cappello": list(CAP_FORO),
+cz["pupazzo_mm"] = {"scala_rispetto_alle_misure": SC_PUP, "perno_cappello": list(CAP_PERNO), "foro_cappello": list(CAP_FORO),
                     "filetto_viso": {"diametro": PF_D, "passo": PF_P, "dente": PF_H, "gioco_radiale": PF_G},
                     "naso": {"codolo": NASO[0], "foro": NASO[1], "base_d": 2 * NASO[2], "carota": NASO[3]},
                     "occhi": {"codolo": [OCCHI_D, OCCHI[0]], "foro": [OCCHI_D, OCCHI[1]], "bottone_d": 2 * OCCHI[2], "angoli": [OCCHI[3], OCCHI[4]]}}
@@ -1176,6 +1366,8 @@ for n, (o, mp) in pieces.items():
     bm = bmesh.new(); bm.from_mesh(o.data)
     bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=1e-3)
     bmesh.ops.dissolve_degenerate(bm, dist=1e-3, edges=bm.edges)
+    # i tagli del nastro lasciano buchini di pochi decimi sul davanti e sul retro, attorno alle curve: si chiudono
+    bmesh.ops.holes_fill(bm, edges=[e for e in bm.edges if e.is_boundary], sides=16)
     bm.to_mesh(o.data); bm.free()
     co = [mp @ v.co for v in o.data.vertices]
     zmin = min(c.z for c in co)
@@ -1197,8 +1389,11 @@ for n, (o, mp) in pieces.items():
             if pn == n:
                 write_stl(ov, mp, os.path.join(ROOT, "dati", "vista", cn + ".stl"))
     o.matrix_world = saved
-p = geo["pezzi"]["P01_Nastro"]["size"]
-cz["nastro_sta_sul_piatto_250"] = p[0] <= 250 and p[1] <= 250 and p[2] <= 250
+cz["nastro_pezzi_mm"] = {o.name: geo["pezzi"][o.name]["size"] for o in pezzi_n}
+cz["nastro_pezzi_stanno_in_235"] = all(max(geo["pezzi"][o.name]["size"]) <= 235 for o in pezzi_n)
+cz["nastro_perni_telai"] = {"davanti": sum(1 for p in PERNI_T if p[0] < 0), "dietro": sum(1 for p in PERNI_T if p[0] > 0),
+                            "perno": [PT_D, PT_H], "foro": [PT_FORO, PT_PROF],
+                            "posizioni": [[l, round(x, 1), round(z, 1)] for l, x, z in PERNI_T]}
 
 allco = []
 for d in C_MONT.objects:
@@ -1209,7 +1404,7 @@ geo["capsule"] = [{"n": n, "x": round(x, 2), "z": round(z, 2), "d": d} for n, x,
 
 bpy.data.collections.remove(C_TMP)
 print("CONTROLLI", json.dumps(cz))
-print("NASTRO", json.dumps(geo["pezzi"]["P01_Nastro"]))
+print("NASTRO", json.dumps({o.name: geo["pezzi"][o.name] for o in pezzi_n}))
 if SCRIVI:
     os.makedirs(os.path.join(ROOT, "dati"), exist_ok=True)
     with open(os.path.join(ROOT, "dati", "geometria.json"), "w", encoding="utf-8") as f:
